@@ -1,0 +1,6 @@
+# Copy to .dev.vars (gitignored) for `wrangler dev`.
+# Add secrets here as you wire real features:
+# SESSION_SECRET="change-me"
+# RESEND_API_KEY=""          # transactional email (application/match notifications)
+#
+# In production set these with: wrangler secret put SESSION_SECRET

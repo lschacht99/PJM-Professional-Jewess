@@ -4,8 +4,6 @@
 
   /* =========================
      Mobile nav
-     Fix: support BOTH .open and .is-open
-     because current CSS uses .open
      ========================= */
 
   const navToggle = $("#navToggle");
@@ -16,10 +14,8 @@
     if (!navToggle || !navLinks) return;
 
     navToggle.setAttribute("aria-expanded", "false");
-
-    navLinks.classList.remove("open", "is-open");
-    navScrim?.classList.remove("open", "is-open");
-
+    navLinks.classList.remove("is-open");
+    navScrim?.classList.remove("is-open");
     document.body.classList.remove("nav-open");
   }
 
@@ -27,10 +23,8 @@
     if (!navToggle || !navLinks) return;
 
     navToggle.setAttribute("aria-expanded", "true");
-
-    navLinks.classList.add("open", "is-open");
-    navScrim?.classList.add("open", "is-open");
-
+    navLinks.classList.add("is-open");
+    navScrim?.classList.add("is-open");
     document.body.classList.add("nav-open");
   }
 
@@ -85,7 +79,7 @@
 
     lastFocusedEl = document.activeElement;
 
-    modal.classList.add("is-open", "open");
+    modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("pj-modal-open");
 
@@ -96,13 +90,13 @@
       form?.querySelector("input[name='role']:checked") ||
       form?.querySelector("input:not(.pj-honeypot), select, textarea, button");
 
-    setTimeout(() => firstInput?.focus(), 80);
+    window.setTimeout(() => firstInput?.focus(), 80);
   }
 
   function closeApplyModal() {
     if (!modal) return;
 
-    modal.classList.remove("is-open", "open");
+    modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("pj-modal-open");
 
@@ -125,17 +119,12 @@
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeNav();
-      if (modal?.classList.contains("is-open") || modal?.classList.contains("open")) {
+      if (modal?.classList.contains("is-open")) {
         closeApplyModal();
       }
     }
   });
 
-  /* Open modal from URL:
-     index.html?apply=1
-     index.html?role=mentee
-     index.html?role=mentor
-  */
   const urlParams = new URLSearchParams(window.location.search);
   const roleFromUrl = urlParams.get("role");
   const applyFromUrl = urlParams.get("apply");
@@ -147,7 +136,7 @@
   }
 
   /* =========================
-     Submit application to Google Apps Script
+     Google Apps Script form submit
      ========================= */
 
   form?.addEventListener("submit", async (event) => {
@@ -171,8 +160,7 @@
 
     const firstName = formData.get("first_name") || "";
     const lastName = formData.get("last_name") || "";
-    const fallbackName = formData.get("name") || "";
-    const fullName = `${firstName} ${lastName}`.trim() || fallbackName;
+    const fullName = `${firstName} ${lastName}`.trim();
 
     const payload = {
       timestamp: new Date().toISOString(),
@@ -188,7 +176,6 @@
       email: formData.get("email") || "",
       phone: formData.get("phone") || "",
       whatsapp: formData.get("whatsapp") || "",
-      best_contact: formData.get("best_contact") || "",
 
       community: formData.get("community") || "",
       field: formData.get("field") || "",
@@ -217,7 +204,7 @@
       form.reset();
       setStatus("Application received. We will review it before making any introduction.", "success");
 
-      setTimeout(() => {
+      window.setTimeout(() => {
         closeApplyModal();
       }, 1300);
     } catch (error) {

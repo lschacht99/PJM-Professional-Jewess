@@ -27,11 +27,6 @@
 <link rel="manifest" href="manifest.webmanifest" />
 
 <script>
-  /*
-    Replace this with your deployed Google Apps Script Web App URL.
-    Example:
-    https://script.google.com/macros/s/AKfycbx.../exec
-  */
   window.PJ_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxCxkDd1YpCyx1TpVMaxFcOHMMCSzSapas5RLe0mHHfv0sUPRt3bliGSCPWXmDDYj7i/exec";
 </script>
 
@@ -53,10 +48,12 @@
 <header class="nav">
   <div class="pj-wrap nav-in">
     <a class="pj-brand" href="index.html" aria-label="Professional Jewess home">
-      <span class="pj-no">№</span><b>Professional</b><i>Jewess</i>
+      <span class="pj-no">№</span>
+      <b>Professional</b>
+      <i>Jewess</i>
     </a>
 
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
       <span></span>
     </button>
 
@@ -65,9 +62,12 @@
       <a href="for-mentees.html">For mentees</a>
       <a href="for-mentors.html">For mentors</a>
       <a href="faq.html">FAQ</a>
-      <button class="pj-btn pj-btn--primary pj-btn--sm pj-nav-apply" type="button" data-apply-open>Apply</button>
+      <button class="pj-btn pj-btn--primary pj-btn--sm" type="button" data-apply-open>
+        Apply
+      </button>
     </nav>
   </div>
+
   <div class="nav-scrim" id="navScrim"></div>
 </header>
 
@@ -99,7 +99,7 @@
         </button>
       </div>
 
-      <a class="pj-textlink" style="margin-top:18px;text-decoration:none" href="how-it-works.html">
+      <a class="pj-textlink" href="how-it-works.html">
         <span>See how matching works</span>
       </a>
     </div>
@@ -107,9 +107,9 @@
     <aside class="pj-card pj-hero-card" aria-label="How a match is made">
       <span class="pj-label">How a match is made</span>
 
-      <div class="pj-thread-wrap" style="padding:20px 6px 6px">
-        <div style="text-align:center">
-          <span class="pj-mg" style="background:#EAD9D2;color:#6E2438">You</span>
+      <div class="pj-thread-wrap">
+        <div class="pj-thread-person">
+          <span class="pj-mg pj-mg--light">You</span>
           <div class="pj-mm-role">Mentee</div>
         </div>
 
@@ -118,15 +118,15 @@
           <circle class="pj-thread-node" cx="100" cy="20" r="3.6" />
         </svg>
 
-        <div style="text-align:center">
-          <span class="pj-mg" style="background:#6E2438;color:#F6E7E1">Her</span>
+        <div class="pj-thread-person">
+          <span class="pj-mg pj-mg--dark">Her</span>
           <div class="pj-mm-role">Mentor</div>
         </div>
       </div>
 
-      <div style="margin-top:10px">
+      <div class="pj-card-block">
         <span class="pj-label">Matched on what matters</span>
-        <div class="pj-taglist" style="margin-top:10px">
+        <div class="pj-taglist">
           <span class="pj-tag">Field</span>
           <span class="pj-tag">Stage</span>
           <span class="pj-tag">Goals</span>
@@ -135,41 +135,41 @@
         </div>
       </div>
 
-      <p class="pj-small" style="margin-top:14px">
+      <p class="pj-small">
         Each person shares her background, goals, and availability. The team reviews the fit before making an introduction.
       </p>
     </aside>
   </div>
 </section>
 
-<section class="pj-section" style="background:var(--paper-deep);padding-top:56px;padding-bottom:56px">
+<section class="pj-section pj-section--deep">
   <div class="pj-wrap">
-    <div class="center" style="margin-bottom:26px">
+    <div class="center pj-section-head">
       <div class="pj-eyebrow">Two ways in</div>
-      <h2 class="pj-h2" style="margin-top:12px">Where do you fit right now?</h2>
+      <h2 class="pj-h2">Where do you fit right now?</h2>
     </div>
 
-    <div class="pj-grid pj-grid--2" style="gap:18px">
-      <article class="pj-card pj-card--flat" style="background:var(--surface)">
+    <div class="pj-grid pj-grid--2">
+      <article class="pj-card pj-card--flat">
         <div class="pj-eyebrow">For mentees</div>
-        <h3 class="pj-h3" style="margin-top:10px">Get guidance from someone who understands both worlds.</h3>
-        <p class="pj-body" style="margin-top:10px">
+        <h3 class="pj-h3">Get guidance from someone who understands both worlds.</h3>
+        <p class="pj-body">
           Choosing a major, applying to grad school, entering your first serious job, changing fields,
           or returning to work after years at home — with guidance from a frum woman who has lived it.
         </p>
-        <button class="pj-btn pj-btn--primary pj-btn--sm cta-link" style="margin-top:18px" type="button" data-apply-open data-apply-role="mentee">
+        <button class="pj-btn pj-btn--primary pj-btn--sm" type="button" data-apply-open data-apply-role="mentee">
           I want a mentor
         </button>
       </article>
 
-      <article class="pj-card pj-card--flat" style="background:var(--surface)">
+      <article class="pj-card pj-card--flat">
         <div class="pj-eyebrow">For mentors</div>
-        <h3 class="pj-h3" style="margin-top:10px">Offer clarity without becoming publicly available to everyone.</h3>
-        <p class="pj-body" style="margin-top:10px">
+        <h3 class="pj-h3">Offer clarity without becoming publicly available to everyone.</h3>
+        <p class="pj-body">
           You set your capacity and visibility. The team brings you a thoughtful match — not a flood of requests.
           One real conversation can give someone direction she could not get from a search bar.
         </p>
-        <button class="pj-btn pj-btn--primary pj-btn--sm cta-link" style="margin-top:18px" type="button" data-apply-open data-apply-role="mentor">
+        <button class="pj-btn pj-btn--primary pj-btn--sm" type="button" data-apply-open data-apply-role="mentor">
           I want to mentor
         </button>
       </article>
@@ -179,36 +179,36 @@
 
 <section class="pj-section">
   <div class="pj-wrap">
-    <div class="center" style="max-width:680px;margin:0 auto 28px">
+    <div class="center pj-section-head">
       <div class="pj-eyebrow">You might be here because</div>
-      <h2 class="pj-h2" style="margin-top:12px">Professional life can be hard to navigate alone.</h2>
-      <p class="pj-body" style="margin-top:12px">
+      <h2 class="pj-h2">Professional life can be hard to navigate alone.</h2>
+      <p class="pj-body">
         The questions are not only about resumes and applications. They are also about frum life, family life,
         workplace culture, ambition, boundaries, and what a sustainable path can actually look like.
       </p>
     </div>
 
-    <div class="pj-grid pj-grid--3" style="gap:16px">
+    <div class="pj-grid pj-grid--3">
       <article class="pj-card pj-card--flat">
         <span class="pj-label">Starting out</span>
-        <h3 class="pj-h3" style="margin-top:10px">You are choosing a path.</h3>
-        <p class="pj-body" style="margin-top:10px">
+        <h3 class="pj-h3">You are choosing a path.</h3>
+        <p class="pj-body">
           College, seminary, graduate school, internships, first resumes, interviews, and early career decisions.
         </p>
       </article>
 
       <article class="pj-card pj-card--flat">
         <span class="pj-label">Making a move</span>
-        <h3 class="pj-h3" style="margin-top:10px">You are changing direction.</h3>
-        <p class="pj-body" style="margin-top:10px">
+        <h3 class="pj-h3">You are changing direction.</h3>
+        <p class="pj-body">
           Switching fields, returning to work, growing a business, or figuring out what comes next.
         </p>
       </article>
 
       <article class="pj-card pj-card--flat">
         <span class="pj-label">Giving back</span>
-        <h3 class="pj-h3" style="margin-top:10px">You have hard-won clarity.</h3>
-        <p class="pj-body" style="margin-top:10px">
+        <h3 class="pj-h3">You have hard-won clarity.</h3>
+        <p class="pj-body">
           You know what you wish someone had explained earlier — and you are willing to share it thoughtfully.
         </p>
       </article>
@@ -216,12 +216,13 @@
   </div>
 </section>
 
-<section class="pj-section" style="background:var(--paper-deep)">
+<section class="pj-section pj-section--deep">
   <div class="pj-wrap page-narrow">
     <div class="pj-eyebrow">How it works</div>
-    <h2 class="pj-h2" style="margin-top:12px;margin-bottom:6px">From application to introduction.</h2>
-    <p class="pj-body" style="margin-bottom:18px">
-      No swiping, no open booking, no public mentor list. You answer a few questions, and the match is reviewed before anyone is introduced.
+    <h2 class="pj-h2">From application to introduction.</h2>
+    <p class="pj-body">
+      No swiping, no open booking, no public mentor list. You answer a few questions,
+      and the match is reviewed before anyone is introduced.
     </p>
 
     <div class="pj-path">
@@ -258,7 +259,7 @@
       </div>
     </div>
 
-    <a class="pj-textlink" style="margin-top:18px;text-decoration:none" href="how-it-works.html">
+    <a class="pj-textlink" href="how-it-works.html">
       <span>See the full matching process</span>
     </a>
   </div>
@@ -266,18 +267,18 @@
 
 <section class="pj-section">
   <div class="pj-wrap">
-    <div class="pj-two-col" style="align-items:start">
+    <div class="pj-two-col">
       <div>
         <div class="pj-eyebrow">Private by design</div>
-        <h2 class="pj-h2" style="margin-top:12px">Built for women who do not want to be publicly listed.</h2>
-        <p class="pj-lead" style="margin-top:14px">
-          Professional Jewess is not a searchable directory. Mentors control their visibility, mentees do not browse private profiles,
-          and introductions are handled with care.
+        <h2 class="pj-h2">Built for women who do not want to be publicly listed.</h2>
+        <p class="pj-lead">
+          Professional Jewess is not a searchable directory. Mentors control their visibility,
+          mentees do not browse private profiles, and introductions are handled with care.
         </p>
       </div>
 
       <div class="pj-card pj-card--flat">
-        <div class="pj-path" style="gap:12px">
+        <div class="pj-path pj-path--tight">
           <div class="pj-path-item">
             <div class="pj-path-num">✓</div>
             <div>
@@ -318,13 +319,13 @@
 <section class="pj-band">
   <div class="pj-wrap pj-section">
     <div class="pj-eyebrow">The current cohort</div>
-    <h2 class="pj-h2" style="margin-top:12px">Summer 2026 applications are open.</h2>
-    <p class="pj-lead" style="margin-top:14px;max-width:34em">
+    <h2 class="pj-h2">Summer 2026 applications are open.</h2>
+    <p class="pj-lead">
       A cohort gives the network a real rhythm: applications, review, matching, and then actual conversations.
       Not an endless feed of strangers.
     </p>
 
-    <div class="pj-kpis" style="margin-top:24px;max-width:520px">
+    <div class="pj-kpis">
       <div class="pj-kpi">
         <b>Private</b>
         <span>No public directory</span>
@@ -339,7 +340,7 @@
       </div>
     </div>
 
-    <button class="pj-btn pj-btn--light cta-link" style="margin-top:26px" type="button" data-apply-open>
+    <button class="pj-btn pj-btn--light" type="button" data-apply-open>
       Apply for Summer 2026
     </button>
   </div>
@@ -347,29 +348,29 @@
 
 <section class="pj-section">
   <div class="pj-wrap">
-    <div class="center" style="max-width:680px;margin:0 auto 28px">
+    <div class="center pj-section-head">
       <div class="pj-eyebrow">Sample paths</div>
-      <h2 class="pj-h2" style="margin-top:12px">What a match can help with.</h2>
+      <h2 class="pj-h2">What a match can help with.</h2>
     </div>
 
-    <div class="pj-grid pj-grid--3" style="gap:16px">
+    <div class="pj-grid pj-grid--3">
       <article class="pj-card pj-card--flat">
         <span class="pj-label">Medicine</span>
-        <p class="pj-body" style="margin-top:10px">
+        <p class="pj-body">
           A pre-med student wants to understand applications, rotations, Shabbos, dating, and whether the path is realistic.
         </p>
       </article>
 
       <article class="pj-card pj-card--flat">
         <span class="pj-label">Law</span>
-        <p class="pj-body" style="margin-top:10px">
+        <p class="pj-body">
           A college student is considering law school and wants a frum woman’s perspective on practice areas, workload, and family life.
         </p>
       </article>
 
       <article class="pj-card pj-card--flat">
         <span class="pj-label">Tech & business</span>
-        <p class="pj-body" style="margin-top:10px">
+        <p class="pj-body">
           An early-career woman wants help with interviews, workplace culture, confidence, negotiation, and next steps.
         </p>
       </article>
@@ -378,13 +379,13 @@
 </section>
 
 <section class="pj-section center">
-  <div class="pj-wrap" style="max-width:640px">
+  <div class="pj-wrap pj-final-cta">
     <h2 class="pj-h2">The woman you need may already have walked this path.</h2>
-    <p class="pj-lead" style="margin-top:14px">
+    <p class="pj-lead">
       Apply to be matched, or become the person someone else needed earlier.
     </p>
 
-    <div class="pj-hero-cta" style="justify-content:center;margin-top:22px">
+    <div class="pj-hero-cta pj-hero-cta--center">
       <button class="pj-btn pj-btn--primary" type="button" data-apply-open data-apply-role="mentee">
         Apply as a mentee
       </button>
@@ -404,20 +405,20 @@
 
 <footer class="pj-footer">
   <div class="pj-wrap">
-    <div class="pj-grid pj-grid--3" style="gap:28px">
+    <div class="pj-grid pj-grid--3 pj-footer-grid">
       <div>
-        <a class="pj-brand" href="index.html" style="margin-bottom:14px" aria-label="Professional Jewess home">
-          <span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i>
+        <a class="pj-brand pj-brand--footer" href="index.html" aria-label="Professional Jewess home">
+          <span class="pj-no">№</span>
+          <b>Professional</b>
+          <i>Jewess</i>
         </a>
         <p class="pj-small">
-          <span style="color:#C9BBB6">
-            A private mentorship network for frum Jewish women in the professions.
-          </span>
+          A private mentorship network for frum Jewish women in the professions.
         </p>
       </div>
 
       <div class="pj-stack-2">
-        <span class="pj-label" style="color:#8E7F7A">Network</span>
+        <span class="pj-label">Network</span>
         <a href="how-it-works.html">How it works</a>
         <a href="for-mentees.html">For mentees</a>
         <a href="for-mentors.html">For mentors</a>
@@ -425,22 +426,21 @@
       </div>
 
       <div class="pj-stack-2">
-        <span class="pj-label" style="color:#8E7F7A">Join</span>
+        <span class="pj-label">Join</span>
         <button class="pj-footer-link" type="button" data-apply-open data-apply-role="mentee">Find a mentor</button>
         <button class="pj-footer-link" type="button" data-apply-open data-apply-role="mentor">Become a mentor</button>
         <a href="contact.html">Contact</a>
       </div>
     </div>
 
-    <div class="pj-divider" style="margin:32px 0 18px"></div>
+    <div class="pj-divider"></div>
 
-    <span class="pj-small" style="color:#8E7F7A">
+    <span class="pj-small">
       Professional Jewess · 5786 / 2026 · Private mentorship for frum Jewish women
     </span>
   </div>
 </footer>
 
-<!-- Application Modal -->
 <div class="pj-modal" id="applyModal" aria-hidden="true">
   <div class="pj-modal__scrim" data-apply-close></div>
 
@@ -449,56 +449,98 @@
       ×
     </button>
 
-   <div class="pj-form-grid">
-  <label class="pj-field">
-    <span>First name</span>
-    <input name="first_name" type="text" autocomplete="given-name" required />
-  </label>
+    <div class="pj-modal__head">
+      <div>
+        <div class="pj-eyebrow">Apply to the network</div>
+        <h2 class="pj-h2" id="applyTitle">Tell us where you are right now.</h2>
+        <p class="pj-body">
+          This helps us understand whether you are looking for guidance, offering mentorship, or both.
+        </p>
+      </div>
+    </div>
 
-  <label class="pj-field">
-    <span>Last name</span>
-    <input name="last_name" type="text" autocomplete="family-name" required />
-  </label>
+    <form class="pj-form" id="pjApplicationForm">
+      <input type="hidden" name="source" value="homepage-popup" />
+      <input type="text" name="website" class="pj-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-  <label class="pj-field">
-    <span>Email</span>
-    <input name="email" type="email" autocomplete="email" required />
-  </label>
+      <fieldset class="pj-role-fieldset">
+        <legend class="pj-label">I am applying as</legend>
 
-  <label class="pj-field">
-    <span>Phone</span>
-    <input name="phone" type="tel" autocomplete="tel" />
-  </label>
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="mentee" required />
+          <span>
+            <b>Mentee</b>
+            <small>I want to be matched with a mentor.</small>
+          </span>
+        </label>
 
-  <label class="pj-field">
-    <span>WhatsApp</span>
-    <input name="whatsapp" type="tel" autocomplete="tel" />
-  </label>
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="mentor" required />
+          <span>
+            <b>Mentor</b>
+            <small>I want to offer guidance.</small>
+          </span>
+        </label>
 
-  <label class="pj-field">
-    <span>City / community</span>
-    <input name="community" type="text" autocomplete="address-level2" placeholder="Brooklyn, Lakewood..." />
-  </label>
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="both" required />
+          <span>
+            <b>Both</b>
+            <small>I may want to mentor and be mentored.</small>
+          </span>
+        </label>
+      </fieldset>
 
-  <label class="pj-field">
-    <span>Field</span>
-    <input name="field" type="text" placeholder="Medicine, law, tech..." />
-  </label>
+      <div class="pj-form-grid">
+        <label class="pj-field">
+          <span>First name</span>
+          <input name="first_name" type="text" autocomplete="given-name" required />
+        </label>
 
-  <label class="pj-field">
-    <span>Stage</span>
-    <select name="stage">
-      <option value="">Choose one</option>
-      <option>High school / seminary</option>
-      <option>College</option>
-      <option>Graduate school</option>
-      <option>Early career</option>
-      <option>Mid-career</option>
-      <option>Returning to work</option>
-      <option>Established professional</option>
-      <option>Other</option>
-    </select>
-  </label>
+        <label class="pj-field">
+          <span>Last name</span>
+          <input name="last_name" type="text" autocomplete="family-name" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Email</span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Phone</span>
+          <input name="phone" type="tel" autocomplete="tel" />
+        </label>
+
+        <label class="pj-field">
+          <span>WhatsApp</span>
+          <input name="whatsapp" type="tel" autocomplete="tel" />
+        </label>
+
+        <label class="pj-field">
+          <span>City / community</span>
+          <input name="community" type="text" autocomplete="address-level2" placeholder="Brooklyn, Lakewood..." />
+        </label>
+
+        <label class="pj-field">
+          <span>Field</span>
+          <input name="field" type="text" placeholder="Medicine, law, tech..." />
+        </label>
+
+        <label class="pj-field">
+          <span>Stage</span>
+          <select name="stage">
+            <option value="">Choose one</option>
+            <option>High school / seminary</option>
+            <option>College</option>
+            <option>Graduate school</option>
+            <option>Early career</option>
+            <option>Mid-career</option>
+            <option>Returning to work</option>
+            <option>Established professional</option>
+            <option>Other</option>
+          </select>
+        </label>
       </div>
 
       <label class="pj-field">
@@ -508,7 +550,7 @@
 
       <label class="pj-check">
         <input name="privacy_ack" type="checkbox" value="yes" required />
-        <span>I understand this is a private network and my information should be reviewed before any introduction is made.</span>
+        <span>I understand this is a private network and my information will be reviewed before any introduction is made.</span>
       </label>
 
       <button class="pj-btn pj-btn--primary pj-form-submit" type="submit">

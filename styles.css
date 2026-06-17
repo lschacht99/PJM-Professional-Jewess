@@ -533,3 +533,331 @@
 .pj-footer a{text-decoration:none}
 .pj-hero-cta a{text-decoration:none}
 .cta-link{text-decoration:none}
+
+/* =========================================================
+   Professional Jewess homepage upgrades
+   Mobile-first hero image + application modal
+   ========================================================= */
+
+/* Blurred hero background */
+.pj-hero--image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  margin-top: 18px;
+  padding: 34px 20px;
+  isolation: isolate;
+}
+
+.pj-hero--image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: url("images/hero.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px);
+  transform: scale(1.08);
+  opacity: 0.42;
+}
+
+.pj-hero--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(251, 247, 242, 0.94), rgba(251, 247, 242, 0.78)),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.72), transparent 44%);
+}
+
+.pj-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.pj-hero-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 252, 248, 0.84);
+}
+
+/* Buttons used where links were previously used */
+button.pj-btn {
+  font: inherit;
+  cursor: pointer;
+}
+
+.pj-nav-apply {
+  border: 0;
+}
+
+.pj-footer-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pj-footer-link:hover {
+  color: #F6EFE7;
+}
+
+/* Mobile-first application modal */
+.pj-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+}
+
+.pj-modal.is-open {
+  display: block;
+}
+
+.pj-modal__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 17, 20, 0.48);
+  backdrop-filter: blur(4px);
+}
+
+.pj-modal__sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: min(92dvh, 760px);
+  overflow: auto;
+  background: var(--surface, #FFFDF9);
+  border-radius: 26px 26px 0 0;
+  padding: 24px 18px calc(24px + env(safe-area-inset-bottom));
+  box-shadow: 0 -20px 60px rgba(44, 24, 32, 0.24);
+  animation: pjSheetIn 180ms ease-out;
+}
+
+@keyframes pjSheetIn {
+  from {
+    transform: translateY(18px);
+    opacity: 0.75;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.pj-modal__close {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(110, 36, 56, 0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  color: var(--garnet, #6E2438);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pj-modal__head {
+  margin-top: -28px;
+  padding-right: 44px;
+}
+
+.pj-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.pj-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.pj-role-fieldset {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.pj-role-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(110, 36, 56, 0.16);
+  border-radius: 18px;
+  background: rgba(251, 247, 242, 0.72);
+  cursor: pointer;
+}
+
+.pj-role-card input {
+  margin-top: 4px;
+  accent-color: var(--garnet, #6E2438);
+}
+
+.pj-role-card b {
+  display: block;
+  color: var(--ink, #2D2024);
+}
+
+.pj-role-card small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted, #75686B);
+  line-height: 1.35;
+}
+
+.pj-role-card:has(input:checked) {
+  border-color: rgba(110, 36, 56, 0.52);
+  background: rgba(234, 217, 210, 0.56);
+}
+
+.pj-form-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.pj-field {
+  display: grid;
+  gap: 7px;
+}
+
+.pj-field span,
+.pj-check span {
+  color: var(--ink, #2D2024);
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.pj-field input,
+.pj-field select,
+.pj-field textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid rgba(110, 36, 56, 0.18);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink, #2D2024);
+  font: inherit;
+  padding: 12px 13px;
+  outline: none;
+}
+
+.pj-field textarea {
+  resize: vertical;
+  min-height: 112px;
+}
+
+.pj-field input:focus,
+.pj-field select:focus,
+.pj-field textarea:focus {
+  border-color: rgba(110, 36, 56, 0.62);
+  box-shadow: 0 0 0 4px rgba(110, 36, 56, 0.10);
+}
+
+.pj-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.pj-check input {
+  margin-top: 4px;
+  accent-color: var(--garnet, #6E2438);
+}
+
+.pj-form-submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.pj-form-status {
+  min-height: 1.4em;
+}
+
+.pj-form-status.is-success {
+  color: #286140;
+}
+
+.pj-form-status.is-error {
+  color: #8A1F32;
+}
+
+body.pj-modal-open {
+  overflow: hidden;
+}
+
+/* Desktop refinement */
+@media (min-width: 760px) {
+  .pj-hero--image {
+    padding: 64px 44px;
+    margin-top: 26px;
+  }
+
+  .pj-hero--image::before {
+    filter: blur(22px);
+    opacity: 0.46;
+  }
+
+  .pj-hero--image::after {
+    background:
+      linear-gradient(90deg, rgba(251, 247, 242, 0.95), rgba(251, 247, 242, 0.70), rgba(251, 247, 242, 0.88)),
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.70), transparent 42%);
+  }
+
+  .pj-modal {
+    display: none;
+    place-items: center;
+    padding: 24px;
+  }
+
+  .pj-modal.is-open {
+    display: grid;
+  }
+
+  .pj-modal__sheet {
+    position: relative;
+    inset: auto;
+    width: min(720px, 100%);
+    max-height: min(88dvh, 840px);
+    border-radius: 28px;
+    padding: 30px;
+    box-shadow: 0 24px 80px rgba(44, 24, 32, 0.28);
+  }
+
+  .pj-modal__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+
+  .pj-modal__head {
+    margin-top: 0;
+    padding-right: 56px;
+  }
+
+  .pj-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pj-form-submit {
+    width: auto;
+    justify-self: start;
+  }
+}

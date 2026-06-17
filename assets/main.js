@@ -2,24 +2,35 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-  /* Mobile nav */
+  /* =========================
+     Mobile nav
+     Fix: support BOTH .open and .is-open
+     because current CSS uses .open
+     ========================= */
+
   const navToggle = $("#navToggle");
   const navLinks = $("#navLinks");
   const navScrim = $("#navScrim");
 
   function closeNav() {
     if (!navToggle || !navLinks) return;
+
     navToggle.setAttribute("aria-expanded", "false");
-    navLinks.classList.remove("is-open");
-    navScrim?.classList.remove("is-open");
+
+    navLinks.classList.remove("open", "is-open");
+    navScrim?.classList.remove("open", "is-open");
+
     document.body.classList.remove("nav-open");
   }
 
   function openNav() {
     if (!navToggle || !navLinks) return;
+
     navToggle.setAttribute("aria-expanded", "true");
-    navLinks.classList.add("is-open");
-    navScrim?.classList.add("is-open");
+
+    navLinks.classList.add("open", "is-open");
+    navScrim?.classList.add("open", "is-open");
+
     document.body.classList.add("nav-open");
   }
 
@@ -34,7 +45,14 @@
     item.addEventListener("click", closeNav);
   });
 
-  /* Application modal */
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 861) closeNav();
+  });
+
+  /* =========================
+     Application modal
+     ========================= */
+
   const modal = $("#applyModal");
   const form = $("#pjApplicationForm");
   const statusEl = $("#pjFormStatus");
@@ -44,13 +62,18 @@
 
   function setStatus(message, type = "") {
     if (!statusEl) return;
+
     statusEl.textContent = message || "";
     statusEl.classList.remove("is-success", "is-error");
-    if (type) statusEl.classList.add(`is-${type}`);
+
+    if (type) {
+      statusEl.classList.add(`is-${type}`);
+    }
   }
 
   function setRole(role) {
     if (!form || !role) return;
+
     const input = form.querySelector(`input[name="role"][value="${role}"]`);
     if (input) input.checked = true;
   }
@@ -58,22 +81,28 @@
   function openApplyModal(role = "") {
     if (!modal) return;
 
+    closeNav();
+
     lastFocusedEl = document.activeElement;
-    modal.classList.add("is-open");
+
+    modal.classList.add("is-open", "open");
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("pj-modal-open");
 
     setStatus("");
     setRole(role);
 
-    const firstInput = form?.querySelector("input[name='role']:checked") || form?.querySelector("input, select, textarea, button");
+    const firstInput =
+      form?.querySelector("input[name='role']:checked") ||
+      form?.querySelector("input:not(.pj-honeypot), select, textarea, button");
+
     setTimeout(() => firstInput?.focus(), 80);
   }
 
   function closeApplyModal() {
     if (!modal) return;
 
-    modal.classList.remove("is-open");
+    modal.classList.remove("is-open", "open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("pj-modal-open");
 
@@ -85,8 +114,7 @@
   openers.forEach((opener) => {
     opener.addEventListener("click", (event) => {
       event.preventDefault();
-      const role = opener.getAttribute("data-apply-role") || "";
-      openApplyModal(role);
+      openApplyModal(opener.getAttribute("data-apply-role") || "");
     });
   });
 
@@ -95,12 +123,15 @@
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && modal?.classList.contains("is-open")) {
-      closeApplyModal();
+    if (event.key === "Escape") {
+      closeNav();
+      if (modal?.classList.contains("is-open") || modal?.classList.contains("open")) {
+        closeApplyModal();
+      }
     }
   });
 
-  /* Open modal from URL, example:
+  /* Open modal from URL:
      index.html?apply=1
      index.html?role=mentee
      index.html?role=mentor
@@ -115,7 +146,10 @@
     });
   }
 
-  /* Submit application to Google Apps Script */
+  /* =========================
+     Submit application to Google Apps Script
+     ========================= */
+
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -135,14 +169,27 @@
       return;
     }
 
+    const firstName = formData.get("first_name") || "";
+    const lastName = formData.get("last_name") || "";
+    const fallbackName = formData.get("name") || "";
+    const fullName = `${firstName} ${lastName}`.trim() || fallbackName;
+
     const payload = {
       timestamp: new Date().toISOString(),
       page: window.location.href,
       source: formData.get("source") || "homepage-popup",
+
       role: formData.get("role") || "",
-      name: formData.get("name") || "",
+
+      first_name: firstName,
+      last_name: lastName,
+      name: fullName,
+
       email: formData.get("email") || "",
       phone: formData.get("phone") || "",
+      whatsapp: formData.get("whatsapp") || "",
+      best_contact: formData.get("best_contact") || "",
+
       community: formData.get("community") || "",
       field: formData.get("field") || "",
       stage: formData.get("stage") || "",
@@ -150,16 +197,14 @@
       privacy_ack: formData.get("privacy_ack") || ""
     };
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting...";
+    }
+
     setStatus("");
 
     try {
-      /*
-        text/plain keeps this as a simple request for Apps Script.
-        no-cors avoids browser blocking from Google Script response headers.
-        Because no-cors responses are opaque, we treat no thrown error as submitted.
-      */
       await fetch(endpoint, {
         method: "POST",
         mode: "no-cors",
@@ -174,13 +219,15 @@
 
       setTimeout(() => {
         closeApplyModal();
-      }, 1400);
+      }, 1300);
     } catch (error) {
       console.error(error);
       setStatus("Something went wrong. Please try again, or contact us directly.", "error");
     } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit application";
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit application";
+      }
     }
   });
 })();

@@ -26,6 +26,15 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="manifest" href="manifest.webmanifest" />
 
+<script>
+  /*
+    Replace this with your deployed Google Apps Script Web App URL.
+    Example:
+    https://script.google.com/macros/s/AKfycbx.../exec
+  */
+  window.PJ_FORM_ENDPOINT = "PASTE_YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
+</script>
+
 <script src="assets/main.js" defer></script>
 
 <script type="application/ld+json">
@@ -56,7 +65,7 @@
       <a href="for-mentees.html">For mentees</a>
       <a href="for-mentors.html">For mentors</a>
       <a href="faq.html">FAQ</a>
-      <a class="pj-btn pj-btn--primary pj-btn--sm" href="apply.html">Apply</a>
+      <button class="pj-btn pj-btn--primary pj-btn--sm pj-nav-apply" type="button" data-apply-open>Apply</button>
     </nav>
   </div>
   <div class="nav-scrim" id="navScrim"></div>
@@ -64,8 +73,8 @@
 
 <main>
 
-<section class="pj-wrap pj-hero">
-  <div class="pj-two-col">
+<section class="pj-wrap pj-hero pj-hero--image">
+  <div class="pj-two-col pj-hero-content">
     <div>
       <div class="pj-eyebrow">Private mentorship for frum Jewish women</div>
 
@@ -82,8 +91,12 @@
       </p>
 
       <div class="pj-hero-cta">
-        <a class="pj-btn pj-btn--primary" href="apply.html?role=mentee">Find a mentor</a>
-        <a class="pj-btn pj-btn--ghost" href="apply.html?role=mentor">Become a mentor</a>
+        <button class="pj-btn pj-btn--primary" type="button" data-apply-open data-apply-role="mentee">
+          Find a mentor
+        </button>
+        <button class="pj-btn pj-btn--ghost" type="button" data-apply-open data-apply-role="mentor">
+          Become a mentor
+        </button>
       </div>
 
       <a class="pj-textlink" style="margin-top:18px;text-decoration:none" href="how-it-works.html">
@@ -144,9 +157,9 @@
           Choosing a major, applying to grad school, entering your first serious job, changing fields,
           or returning to work after years at home — with guidance from a frum woman who has lived it.
         </p>
-        <a class="pj-btn pj-btn--primary pj-btn--sm cta-link" style="margin-top:18px" href="apply.html?role=mentee">
+        <button class="pj-btn pj-btn--primary pj-btn--sm cta-link" style="margin-top:18px" type="button" data-apply-open data-apply-role="mentee">
           I want a mentor
-        </a>
+        </button>
       </article>
 
       <article class="pj-card pj-card--flat" style="background:var(--surface)">
@@ -156,9 +169,9 @@
           You set your capacity and visibility. The team brings you a thoughtful match — not a flood of requests.
           One real conversation can give someone direction she could not get from a search bar.
         </p>
-        <a class="pj-btn pj-btn--primary pj-btn--sm cta-link" style="margin-top:18px" href="apply.html?role=mentor">
+        <button class="pj-btn pj-btn--primary pj-btn--sm cta-link" style="margin-top:18px" type="button" data-apply-open data-apply-role="mentor">
           I want to mentor
-        </a>
+        </button>
       </article>
     </div>
   </div>
@@ -326,9 +339,9 @@
       </div>
     </div>
 
-    <a class="pj-btn pj-btn--light cta-link" style="margin-top:26px" href="apply.html">
+    <button class="pj-btn pj-btn--light cta-link" style="margin-top:26px" type="button" data-apply-open>
       Apply for Summer 2026
-    </a>
+    </button>
   </div>
 </section>
 
@@ -372,8 +385,12 @@
     </p>
 
     <div class="pj-hero-cta" style="justify-content:center;margin-top:22px">
-      <a class="pj-btn pj-btn--primary" href="apply.html?role=mentee">Apply as a mentee</a>
-      <a class="pj-btn pj-btn--ghost" href="apply.html?role=mentor">Become a mentor</a>
+      <button class="pj-btn pj-btn--primary" type="button" data-apply-open data-apply-role="mentee">
+        Apply as a mentee
+      </button>
+      <button class="pj-btn pj-btn--ghost" type="button" data-apply-open data-apply-role="mentor">
+        Become a mentor
+      </button>
     </div>
   </div>
 </section>
@@ -381,8 +398,8 @@
 </main>
 
 <div class="pj-mobile-apply" aria-label="Quick apply links">
-  <a class="pj-btn pj-btn--primary" href="apply.html?role=mentee">Find a mentor</a>
-  <a class="pj-btn pj-btn--ghost" href="apply.html?role=mentor">Mentor</a>
+  <button class="pj-btn pj-btn--primary" type="button" data-apply-open data-apply-role="mentee">Find a mentor</button>
+  <button class="pj-btn pj-btn--ghost" type="button" data-apply-open data-apply-role="mentor">Mentor</button>
 </div>
 
 <footer class="pj-footer">
@@ -409,8 +426,8 @@
 
       <div class="pj-stack-2">
         <span class="pj-label" style="color:#8E7F7A">Join</span>
-        <a href="apply.html?role=mentee">Find a mentor</a>
-        <a href="apply.html?role=mentor">Become a mentor</a>
+        <button class="pj-footer-link" type="button" data-apply-open data-apply-role="mentee">Find a mentor</button>
+        <button class="pj-footer-link" type="button" data-apply-open data-apply-role="mentor">Become a mentor</button>
         <a href="contact.html">Contact</a>
       </div>
     </div>
@@ -422,6 +439,116 @@
     </span>
   </div>
 </footer>
+
+<!-- Application Modal -->
+<div class="pj-modal" id="applyModal" aria-hidden="true">
+  <div class="pj-modal__scrim" data-apply-close></div>
+
+  <section class="pj-modal__sheet" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+    <button class="pj-modal__close" type="button" aria-label="Close application form" data-apply-close>
+      ×
+    </button>
+
+    <div class="pj-modal__head">
+      <div class="pj-eyebrow">Apply to the network</div>
+      <h2 class="pj-h2" id="applyTitle">Tell us where you are right now.</h2>
+      <p class="pj-body">
+        This helps us understand whether you are looking for guidance, offering mentorship, or both.
+      </p>
+    </div>
+
+    <form class="pj-form" id="pjApplicationForm">
+      <input type="hidden" name="source" value="homepage-popup" />
+      <input type="text" name="website" class="pj-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <fieldset class="pj-role-fieldset">
+        <legend class="pj-label">I am applying as</legend>
+
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="mentee" required />
+          <span>
+            <b>Mentee</b>
+            <small>I want to be matched with a mentor.</small>
+          </span>
+        </label>
+
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="mentor" required />
+          <span>
+            <b>Mentor</b>
+            <small>I want to offer guidance.</small>
+          </span>
+        </label>
+
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="both" required />
+          <span>
+            <b>Both</b>
+            <small>I may want to mentor and be mentored.</small>
+          </span>
+        </label>
+      </fieldset>
+
+      <div class="pj-form-grid">
+        <label class="pj-field">
+          <span>Name</span>
+          <input name="name" type="text" autocomplete="name" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Email</span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Phone / WhatsApp</span>
+          <input name="phone" type="tel" autocomplete="tel" />
+        </label>
+
+        <label class="pj-field">
+          <span>City / community</span>
+          <input name="community" type="text" autocomplete="address-level2" placeholder="Example: Brooklyn, Lakewood, Teaneck" />
+        </label>
+
+        <label class="pj-field">
+          <span>Field</span>
+          <input name="field" type="text" placeholder="Medicine, law, tech, business..." />
+        </label>
+
+        <label class="pj-field">
+          <span>Stage</span>
+          <select name="stage">
+            <option value="">Choose one</option>
+            <option>High school / seminary</option>
+            <option>College</option>
+            <option>Graduate school</option>
+            <option>Early career</option>
+            <option>Mid-career</option>
+            <option>Returning to work</option>
+            <option>Established professional</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="pj-field">
+        <span>What kind of guidance or match would be helpful?</span>
+        <textarea name="goals" rows="4" placeholder="Tell us a little about what you are looking for, or what you can offer."></textarea>
+      </label>
+
+      <label class="pj-check">
+        <input name="privacy_ack" type="checkbox" value="yes" required />
+        <span>I understand this is a private network and my information should be reviewed before any introduction is made.</span>
+      </label>
+
+      <button class="pj-btn pj-btn--primary pj-form-submit" type="submit">
+        Submit application
+      </button>
+
+      <p class="pj-small pj-form-status" id="pjFormStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</div>
 
 </body>
 </html>

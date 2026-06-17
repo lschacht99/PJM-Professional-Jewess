@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Contact · Professional Jewess</title>
+<meta name="description" content="Contact Professional Jewess." />
+<meta name="theme-color" content="#6E2438" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+<header class="nav">
+  <div class="pj-wrap nav-in">
+    <a class="pj-brand" href="index.html"><span class="pj-no">№</span><b>Professional</b><i>Jewess</i></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="how-it-works.html">How it works</a>
+      <a href="for-mentees.html">For mentees</a>
+      <a href="for-mentors.html">For mentors</a>
+      <a href="stories.html">Stories</a>
+      <a href="faq.html">FAQ</a>
+      <a href="login.html">Log in</a>
+      <a class="pj-btn pj-btn--primary pj-btn--sm" href="apply.html">Apply</a>
+    </nav>
+  </div>
+  <div class="nav-scrim" id="navScrim"></div>
+</header>
+<section class="pj-wrap page" style="max-width:560px">
+  <a class="crumb" href="index.html">&larr; Home</a>
+  <div class="page-head" style="margin-top:14px"><div class="pj-eyebrow">Contact</div><h1 class="pj-h1" style="font-size:clamp(36px,7vw,54px)">Say hello.</h1></div>
+  <p class="pj-body">Questions, partnerships, or you&rsquo;d like to help build this &mdash; send a note.</p>
+  <form class="form-card" style="margin-top:20px" onsubmit="this.classList.add('hidden');document.getElementById('cdone').classList.remove('hidden');return false">
+    <div class="form-row two"><div class="pj-field"><label>Name</label><input class="pj-input" placeholder="Your name" /></div><div class="pj-field"><label>Email</label><input class="pj-input" type="email" placeholder="you@email.com" /></div></div>
+    <div class="pj-field"><label>Message</label><textarea class="pj-input" rows="5" placeholder="What&rsquo;s on your mind?" style="resize:vertical;font-family:var(--sans)"></textarea></div>
+    <button class="pj-btn pj-btn--primary pj-btn--block" type="submit">Send</button>
+  </form>
+  <div class="form-card hidden center" id="cdone" style="margin-top:20px"><h2 class="pj-h2" style="font-size:24px">Thank you.</h2><p class="pj-body" style="margin-top:8px">We&rsquo;ll be in touch.</p></div>
+  <p class="note" style="margin-top:16px"><b>For developers:</b> wire this to Formspree or your email service via the form&rsquo;s <code>action</code>.</p>
+</section><footer class="pj-footer">
+  <div class="pj-wrap">
+    <div class="pj-grid pj-grid--3" style="gap:28px">
+      <div>
+        <a class="pj-brand" href="index.html" style="margin-bottom:14px"><span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i></a>
+        <p class="pj-small"><span style="color:#C9BBB6">A private mentorship network for frum Jewish women in the professions.</span></p>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Network</span>
+        <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
+        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><a href="apply.html">Apply</a><a href="login.html">Log in</a>
+      </div>
+    </div>
+    <div class="pj-divider" style="margin:32px 0 18px"></div>
+    <span class="pj-small" style="color:#8E7F7A">Professional Jewess · 5786 / 2026 · a prototype</span>
+  </div>
+</footer>
+</body>
+</html>

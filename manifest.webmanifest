@@ -1,0 +1,15 @@
+{
+  "name": "Professional Jewess",
+  "short_name": "Prof. Jewess",
+  "description": "A private mentorship network for frum Jewish women in the professions.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FBF7F2",
+  "theme_color": "#6E2438",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

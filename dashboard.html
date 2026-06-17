@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Cohort feed · Professional Jewess</title>
+<meta name="description" content="Your cohort feed." />
+<meta name="theme-color" content="#6E2438" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+<header class="nav">
+  <div class="pj-wrap nav-in">
+    <a class="pj-brand" href="dashboard.html"><span class="pj-no">№</span><b>PJ</b><i>•</i></a>
+    <nav class="nav-links" id="navLinks" style="position:static;transform:none;flex-direction:row;width:auto;padding:0;background:none;border:0;box-shadow:none">
+      <span class="pj-small">Signed in · Summer 2026</span>
+      <a class="pj-btn pj-btn--ghost pj-btn--sm" href="index.html">Log out</a>
+    </nav>
+  </div>
+</header>
+<div class="pj-wrap" style="padding-top:22px"><nav class="subnav">
+    <a href="dashboard.html" aria-current="page">Feed</a>
+    <a href="match.html">My match</a>
+    <a href="cohort.html">Cohort</a>
+    <a href="profile.html">Profile</a>
+</nav></div>
+<section class="pj-wrap" style="padding-bottom:64px">
+  <div class="pj-screen-head"><div class="pj-eyebrow">Your cohort &middot; Summer 2026</div><h1 class="pj-screen-title">The cohort feed.</h1><p class="pj-body" style="margin-top:8px">Just the women in your cohort &mdash; not a firehose. Short posts, real wins, quick threads.</p></div>
+  <div class="pj-cohort-strip"><div class="pj-cohort-row"><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#EAD9D2;color:#6E2438">TK</span><span class="pj-cohort-name">Tova</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#EAD9D2;color:#6E2438">NG</span><span class="pj-cohort-name">Naomi</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#241A24;color:#EFE7E9">LB</span><span class="pj-cohort-name">Leah</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#A9824B;color:#F6E7E1">EB</span><span class="pj-cohort-name">Esti</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#EAD9D2;color:#6E2438">YS</span><span class="pj-cohort-name">Yael</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">RS</span><span class="pj-cohort-name">Rachel</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#4A2740;color:#F2E3EC">DK</span><span class="pj-cohort-name">Devorah</span></div><div class="pj-cohort-m"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">ST</span><span class="pj-cohort-name">Shira</span></div></div></div>
+  <div class="pj-tweetbox"><span class="pj-mg pj-mg--sm" style="background:#EAD9D2;color:#6E2438">TK</span><input class="pj-tweetbox-fake" id="newPost" placeholder="What&rsquo;s happening in your world?" style="border:0;outline:none;background:none" /><button class="pj-btn pj-btn--primary pj-btn--sm" onclick="post()">Post</button></div>
+  <div class="pj-timeline" id="timeline">
+<div class="pj-tweet pj-tweet--mile" style="display:block;cursor:default"><div style="display:flex;gap:12px"><span class="pj-mg" style="background:#EAD9D2;color:#6E2438">NG</span><div class="pj-tweet-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Naomi Gold</span><span class="pj-tweet-handle">@naomig</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">2h</span><span class="pj-tweet-chip">&#9733; Got in</span></div><div class="pj-tweet-text">Accepted to the Touro PA program!! Two years of second-guessing whether I belonged. To the girl who thinks it&rsquo;s too late &mdash; it isn&rsquo;t.</div><div class="pj-tweet-actions"><button class="pj-tact pj-tact--reply" onclick="toggleReplies(this)">&#128172; <span>2</span></button><button class="pj-tact pj-tact--mazel" onclick="react(this)">&#9733; <span data-base="47">47</span></button><button class="pj-tact pj-tact--chazak" onclick="react(this)">&#9829; <span data-base="9">9</span></button></div><div class="replies hidden" style="margin-top:4px;border-top:1px solid var(--line-soft)"><div class="pj-reply"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">RS</span><div class="pj-reply-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Rachel Stein</span><span class="pj-tweet-handle">@rstein</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">1h</span></div><div class="pj-tweet-text">MAZEL TOV Naomi!! &#129402;</div></div></div><div class="pj-reply"><span class="pj-mg pj-mg--sm" style="background:#241A24;color:#EFE7E9">LB</span><div class="pj-reply-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Leah Brody</span><span class="pj-tweet-handle">@leahb</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">1h</span></div><div class="pj-tweet-text">ok this is the sign I needed. starting my application tonight.</div></div></div></div></div></div></div><div class="pj-tweet pj-tweet--mile" style="display:block;cursor:default"><div style="display:flex;gap:12px"><span class="pj-mg" style="background:#A9824B;color:#F6E7E1">EB</span><div class="pj-tweet-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Esti Brizel</span><span class="pj-tweet-handle">@estib</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">5h</span><span class="pj-tweet-chip">&#9733; First job</span></div><div class="pj-tweet-text">Signed my first engineering offer &#127881; Eighteen months ago I was teaching myself loops after the kids were asleep. Keep shipping.</div><div class="pj-tweet-actions"><button class="pj-tact pj-tact--reply" onclick="toggleReplies(this)">&#128172; <span>1</span></button><button class="pj-tact pj-tact--mazel" onclick="react(this)">&#9733; <span data-base="64">64</span></button><button class="pj-tact pj-tact--chazak" onclick="react(this)">&#9829; <span data-base="14">14</span></button></div><div class="replies hidden" style="margin-top:4px;border-top:1px solid var(--line-soft)"><div class="pj-reply"><span class="pj-mg pj-mg--sm" style="background:#4A2740;color:#F2E3EC">DK</span><div class="pj-reply-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Devorah Klein</span><span class="pj-tweet-handle">@devk</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">4h</span></div><div class="pj-tweet-text">Bookmarking this for every woman who says she started too late.</div></div></div></div></div></div></div><div class="pj-tweet" style="display:block;cursor:default"><div style="display:flex;gap:12px"><span class="pj-mg" style="background:#241A24;color:#EFE7E9">LB</span><div class="pj-tweet-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Leah Brody</span><span class="pj-tweet-handle">@leahb</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">8h</span></div><div class="pj-tweet-text">studying for the MCAT and questioning all my life choices. someone tell me the 3am flashcards are worth it &#128517;</div><div class="pj-tweet-actions"><button class="pj-tact pj-tact--reply" onclick="toggleReplies(this)">&#128172; <span>1</span></button><button class="pj-tact pj-tact--mazel" onclick="react(this)">&#9733; <span data-base="12">12</span></button><button class="pj-tact pj-tact--chazak" onclick="react(this)">&#9829; <span data-base="28">28</span></button></div><div class="replies hidden" style="margin-top:4px;border-top:1px solid var(--line-soft)"><div class="pj-reply"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">ST</span><div class="pj-reply-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Dr. Shira Tendler</span><span class="pj-tweet-handle">@drshira</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">7h</span></div><div class="pj-tweet-text">They are. The 3am you is building the doctor a frum family will be lucky to have. Chazak — one card at a time.</div></div></div></div></div></div></div><div class="pj-tweet" style="display:block;cursor:default"><div style="display:flex;gap:12px"><span class="pj-mg" style="background:#6E2438;color:#F6E7E1">RS</span><div class="pj-tweet-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Rachel Stein</span><span class="pj-tweet-handle">@rstein</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">1d</span></div><div class="pj-tweet-text">Reminder to my cohort: decide your lines before someone else draws them. I leave at 3:30 on Fridays and the work still gets done.</div><div class="pj-tweet-actions"><button class="pj-tact pj-tact--reply" onclick="toggleReplies(this)">&#128172; <span></span></button><button class="pj-tact pj-tact--mazel" onclick="react(this)">&#9733; <span data-base="38">38</span></button><button class="pj-tact pj-tact--chazak" onclick="react(this)">&#9829; <span data-base="21">21</span></button></div></div></div></div>
+  </div>
+  <p class="pj-small center" style="margin-top:18px">Only your cohort sees this. No photos, no follower counts.</p>
+</section><footer class="pj-footer">
+  <div class="pj-wrap">
+    <div class="pj-grid pj-grid--3" style="gap:28px">
+      <div>
+        <a class="pj-brand" href="index.html" style="margin-bottom:14px"><span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i></a>
+        <p class="pj-small"><span style="color:#C9BBB6">A private mentorship network for frum Jewish women in the professions.</span></p>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Network</span>
+        <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
+        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><a href="apply.html">Apply</a><a href="login.html">Log in</a>
+      </div>
+    </div>
+    <div class="pj-divider" style="margin:32px 0 18px"></div>
+    <span class="pj-small" style="color:#8E7F7A">Professional Jewess · 5786 / 2026 · a prototype</span>
+  </div>
+</footer>
+<script>
+function react(btn){
+  var span = btn.querySelector("span");
+  var base = parseInt(span.getAttribute("data-base"),10);
+  if (btn.classList.toggle("on")){ span.textContent = base+1; btn.style.color = btn.classList.contains("pj-tact--chazak") ? "var(--brass)" : "var(--garnet)"; }
+  else { span.textContent = base; btn.style.color = ""; }
+}
+function toggleReplies(btn){
+  var tweet = btn.closest(".pj-tweet");
+  var r = tweet.querySelector(".replies");
+  if (r) r.classList.toggle("hidden");
+}
+function post(){
+  var inp = document.getElementById("newPost");
+  var text = inp.value.trim(); if(!text) return;
+  var el = document.createElement("div");
+  el.className = "pj-tweet"; el.style.display="block";
+  el.innerHTML = '<div style="display:flex;gap:12px"><span class="pj-mg" style="background:#EAD9D2;color:#6E2438">TK</span>'
+    + '<div class="pj-tweet-main"><div class="pj-tweet-head"><span class="pj-tweet-name">Tova Klein</span>'
+    + '<span class="pj-tweet-handle">@tovak</span><span class="pj-tweet-dot">&middot;</span><span class="pj-tweet-handle">now</span></div>'
+    + '<div class="pj-tweet-text"></div>'
+    + '<div class="pj-tweet-actions"><button class="pj-tact pj-tact--mazel" onclick="react(this)">&#9733; <span data-base="0">0</span></button>'
+    + '<button class="pj-tact pj-tact--chazak" onclick="react(this)">&#9829; <span data-base="0">0</span></button></div></div></div>';
+  el.querySelector(".pj-tweet-text").textContent = text;
+  var t = document.getElementById("timeline");
+  t.insertBefore(el, t.firstChild);
+  inp.value = "";
+}
+document.getElementById("newPost").addEventListener("keydown", function(e){ if(e.key==="Enter") post(); });
+</script>
+</body>
+</html>

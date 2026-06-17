@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Profile · Professional Jewess</title>
+<meta name="description" content="Your profile." />
+<meta name="theme-color" content="#6E2438" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+<header class="nav">
+  <div class="pj-wrap nav-in">
+    <a class="pj-brand" href="dashboard.html"><span class="pj-no">№</span><b>PJ</b><i>•</i></a>
+    <nav class="nav-links" id="navLinks" style="position:static;transform:none;flex-direction:row;width:auto;padding:0;background:none;border:0;box-shadow:none">
+      <span class="pj-small">Signed in · Summer 2026</span>
+      <a class="pj-btn pj-btn--ghost pj-btn--sm" href="index.html">Log out</a>
+    </nav>
+  </div>
+</header>
+<div class="pj-wrap" style="padding-top:22px"><nav class="subnav">
+    <a href="dashboard.html">Feed</a>
+    <a href="match.html">My match</a>
+    <a href="cohort.html">Cohort</a>
+    <a href="profile.html" aria-current="page">Profile</a>
+</nav></div>
+<section class="pj-wrap" style="padding-bottom:64px">
+  <div class="pj-detail-hero" style="margin-bottom:18px"><span class="pj-mg pj-mg--lg" style="background:#EAD9D2;color:#6E2438">TK</span><div><h1 class="pj-screen-title">Tova Klein</h1><p class="pj-reg-meta" style="margin-top:6px">College &middot; Exploring law &middot; New York</p></div></div>
+  <div class="pj-card" style="margin-bottom:14px"><span class="pj-label">Your match status</span><p class="pj-body" style="margin-top:8px">Matched with Rachel Stein. <a href="match.html" style="color:var(--garnet)">Open your space &rarr;</a></p></div>
+  <div class="pj-card" style="margin-bottom:14px"><span class="pj-label">What you&rsquo;re looking for</span><div class="pj-taglist" style="margin-top:10px"><span class="pj-tag">Choosing a major</span><span class="pj-tag">Law school</span><span class="pj-tag">Interview prep</span><span class="pj-tag">Frum life at work</span></div></div>
+  <div class="pj-card"><span class="pj-label">If you mentor one day &mdash; your visibility</span><p class="pj-small" style="margin-top:8px">Choose how much shows. Your name stays private until you approve a match.</p><div class="pj-vis" id="vis"><button class="on" onclick="visPick(this)"><span class="pj-vis-r"></span><span><span class="pj-vis-t">Members only</span><span class="pj-vis-d">Approved members see your profile. Name shared after a match.</span></span></button><button onclick="visPick(this)"><span class="pj-vis-r"></span><span><span class="pj-vis-t">Public preview</span><span class="pj-vis-d">Field, bio, and tags appear on the public site.</span></span></button><button onclick="visPick(this)"><span class="pj-vis-r"></span><span><span class="pj-vis-t">Private</span><span class="pj-vis-d">Not listed anywhere. The team matches you directly.</span></span></button></div></div>
+</section><footer class="pj-footer">
+  <div class="pj-wrap">
+    <div class="pj-grid pj-grid--3" style="gap:28px">
+      <div>
+        <a class="pj-brand" href="index.html" style="margin-bottom:14px"><span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i></a>
+        <p class="pj-small"><span style="color:#C9BBB6">A private mentorship network for frum Jewish women in the professions.</span></p>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Network</span>
+        <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
+        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><a href="apply.html">Apply</a><a href="login.html">Log in</a>
+      </div>
+    </div>
+    <div class="pj-divider" style="margin:32px 0 18px"></div>
+    <span class="pj-small" style="color:#8E7F7A">Professional Jewess · 5786 / 2026 · a prototype</span>
+  </div>
+</footer>
+<script>
+function visPick(btn){
+  Array.prototype.forEach.call(document.querySelectorAll("#vis button"), function(b){ b.classList.remove("on"); });
+  btn.classList.add("on");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>My match · Professional Jewess</title>
+<meta name="description" content="Your mentor match." />
+<meta name="theme-color" content="#6E2438" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script src="assets/main.js" defer></script>
+</head>
+<body>
+<header class="nav">
+  <div class="pj-wrap nav-in">
+    <a class="pj-brand" href="dashboard.html"><span class="pj-no">№</span><b>PJ</b><i>•</i></a>
+    <nav class="nav-links" id="navLinks" style="position:static;transform:none;flex-direction:row;width:auto;padding:0;background:none;border:0;box-shadow:none">
+      <span class="pj-small">Signed in · Summer 2026</span>
+      <a class="pj-btn pj-btn--ghost pj-btn--sm" href="index.html">Log out</a>
+    </nav>
+  </div>
+</header>
+<div class="pj-wrap" style="padding-top:22px"><nav class="subnav">
+    <a href="dashboard.html">Feed</a>
+    <a href="match.html" aria-current="page">My match</a>
+    <a href="cohort.html">Cohort</a>
+    <a href="profile.html">Profile</a>
+</nav></div>
+<section class="pj-wrap" style="padding-bottom:64px">
+  <div class="pj-banner"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">RS</span><div><b>You&rsquo;re matched.</b> <span class="pj-small">It&rsquo;s just you and Rachel now.</span></div></div>
+  <div class="pj-match" style="margin-bottom:20px"><div class="pj-match-top"><span class="pj-label">Your mentor</span></div>
+    <div class="pj-thread-wrap" style="padding:20px 6px 6px"><div style="text-align:center"><span class="pj-mg" style="background:#EAD9D2;color:#6E2438">TK</span><div class="pj-mm-role">Mentee</div></div><svg class="pj-thread-svg" viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><path class="pj-thread-path" d="M2 20 C 60 20, 60 20, 100 20 S 140 20, 198 20" /><circle class="pj-thread-node" cx="100" cy="20" r="3.6" /></svg><div style="text-align:center"><span class="pj-mg" style="background:#6E2438;color:#F6E7E1">RS</span><div class="pj-mm-role">Mentor</div></div></div>
+    <div style="padding:0 18px 18px"><div class="pj-h3">Rachel Stein</div><div class="pj-reg-meta" style="margin-top:5px">Corporate Associate &middot; Litigation &amp; finance &middot; New York</div>
+      <dl class="pj-defrow" style="margin-top:14px"><dt>Education</dt><dd>NYU School of Law</dd></dl><dl class="pj-defrow"><dt>Experience</dt><dd>7 years</dd></dl><dl class="pj-defrow"><dt>Focus</dt><dd>Law school &middot; interviews &middot; Shabbos at work</dd></dl>
+      <div class="pj-card" style="background:var(--ink);color:var(--paper);margin-top:16px"><span class="pj-eyebrow">What I wish I knew</span><p class="pj-quote" style="color:#F2E7E1;margin-top:10px">&ldquo;You can be the most observant person in the room and the most prepared. They are not in tension.&rdquo;</p></div>
+    </div></div>
+  <span class="pj-label">Your first call</span>
+  <div id="sched" style="margin-top:10px"><div class="pj-stack-4" style="gap:10px"><button class="pj-slot" onclick="pick(this)" data-label="Tue, Jul 8 &middot; 11:00 AM"><div><div class="pj-slot-day">Tue, Jul 8</div><div class="pj-slot-time">11:00 AM</div></div><span class="pj-slot-radio"></span></button><button class="pj-slot" onclick="pick(this)" data-label="Wed, Jul 9 &middot; 2:30 PM"><div><div class="pj-slot-day">Wed, Jul 9</div><div class="pj-slot-time">2:30 PM</div></div><span class="pj-slot-radio"></span></button><button class="pj-slot" onclick="pick(this)" data-label="Thu, Jul 10 &middot; 8:00 PM"><div><div class="pj-slot-day">Thu, Jul 10</div><div class="pj-slot-time">8:00 PM</div></div><span class="pj-slot-radio"></span></button><button class="pj-slot" onclick="pick(this)" data-label="Sun, Jul 13 &middot; 10:00 AM"><div><div class="pj-slot-day">Sun, Jul 13</div><div class="pj-slot-time">10:00 AM</div></div><span class="pj-slot-radio"></span></button></div><button class="pj-btn pj-btn--primary pj-btn--block" id="confirmBtn" style="margin-top:14px" disabled onclick="book()">Choose a time</button></div>
+  <div id="booked" class="pj-card hidden" style="margin-top:10px;display:flex;gap:12px;align-items:center"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">&#10003;</span><div><div style="font:600 14px/1.2 var(--sans)">First call confirmed</div><div class="pj-small" id="bookedLabel"></div></div></div>
+  <div style="margin-top:24px"><span class="pj-label">Messages</span><div class="pj-thread2" id="thread"><div style="align-self:flex-start;max-width:82%"><div class="pj-bubble pj-bubble--them">So glad we matched, Tova. Ask me anything before our call.</div><div class="pj-when">Mon</div></div></div><div class="pj-msgbar"><input id="msg" placeholder="Message Rachel&hellip;" /><button class="pj-iconbtn" onclick="send()" aria-label="Send">&#8594;</button></div></div>
+</section><footer class="pj-footer">
+  <div class="pj-wrap">
+    <div class="pj-grid pj-grid--3" style="gap:28px">
+      <div>
+        <a class="pj-brand" href="index.html" style="margin-bottom:14px"><span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i></a>
+        <p class="pj-small"><span style="color:#C9BBB6">A private mentorship network for frum Jewish women in the professions.</span></p>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Network</span>
+        <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
+        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><a href="apply.html">Apply</a><a href="login.html">Log in</a>
+      </div>
+    </div>
+    <div class="pj-divider" style="margin:32px 0 18px"></div>
+    <span class="pj-small" style="color:#8E7F7A">Professional Jewess · 5786 / 2026 · a prototype</span>
+  </div>
+</footer>
+<script>
+var picked = null;
+function pick(btn){
+  Array.prototype.forEach.call(document.querySelectorAll(".pj-slot"), function(s){ s.classList.remove("pj-slot--on"); });
+  btn.classList.add("pj-slot--on");
+  picked = btn.getAttribute("data-label");
+  var c = document.getElementById("confirmBtn"); c.disabled=false; c.textContent="Confirm "+picked.replace("&middot;","·");
+}
+function book(){
+  if(!picked) return;
+  document.getElementById("sched").classList.add("hidden");
+  var b = document.getElementById("booked"); b.classList.remove("hidden");
+  document.getElementById("bookedLabel").innerHTML = picked;
+}
+function send(){
+  var i = document.getElementById("msg"); var t = i.value.trim(); if(!t) return;
+  var wrap = document.createElement("div"); wrap.style.alignSelf="flex-end"; wrap.style.maxWidth="82%";
+  var b = document.createElement("div"); b.className="pj-bubble pj-bubble--me"; b.textContent=t;
+  var w = document.createElement("div"); w.className="pj-when"; w.style.textAlign="right"; w.textContent="now";
+  wrap.appendChild(b); wrap.appendChild(w);
+  document.getElementById("thread").appendChild(wrap); i.value="";
+}
+document.getElementById("msg").addEventListener("keydown", function(e){ if(e.key==="Enter") send(); });
+</script>
+</body>
+</html>

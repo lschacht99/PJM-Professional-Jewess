@@ -469,23 +469,27 @@ svg {
   inset: 0;
   z-index: -2;
   content: "";
-  background-image: url("./images/hero.png");
+  background-image: url("images/hero.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: blur(20px);
-  opacity: 0.42;
-  transform: scale(1.08);
+  filter: blur(8px);
+  opacity: 0.86;
+  transform: scale(1.04);
 }
 
 .pj-hero--image::after {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(90deg, rgba(251, 247, 242, 0.97), rgba(251, 247, 242, 0.84)),
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.75), transparent 42%);
   content: "";
+  background:
+    linear-gradient(
+      90deg,
+      rgba(251, 247, 242, 0.76) 0%,
+      rgba(251, 247, 242, 0.55) 48%,
+      rgba(251, 247, 242, 0.34) 100%
+    );
 }
 
 .pj-hero-content {

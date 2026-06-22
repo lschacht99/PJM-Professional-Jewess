@@ -10,6 +10,9 @@
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="manifest" href="manifest.webmanifest" />
+<script>
+  window.PJ_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxCxkDd1YpCyx1TpVMaxFcOHMMCSzSapas5RLe0mHHfv0sUPRt3bliGSCPWXmDDYj7i/exec";
+</script>
 <script src="assets/main.js" defer></script>
 </head>
 <body>
@@ -47,7 +50,7 @@
         <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
       </div>
       <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
-        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><a href="apply.html">Apply</a><a href="login.html">Log in</a>
+        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><button type="button" data-apply-open>Apply</button><a href="login.html">Log in</a>
       </div>
     </div>
     <div class="pj-divider" style="margin:32px 0 18px"></div>
@@ -84,5 +87,126 @@ function post(){
 }
 document.getElementById("newPost").addEventListener("keydown", function(e){ if(e.key==="Enter") post(); });
 </script>
+<div class="pj-modal" id="applyModal" aria-hidden="true">
+  <div class="pj-modal__scrim" data-apply-close></div>
+
+  <section class="pj-modal__sheet" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+    <button class="pj-modal__close" type="button" aria-label="Close application form" data-apply-close>
+      ×
+    </button>
+
+    <div class="pj-modal__head">
+      <div>
+        <div class="pj-eyebrow">Apply to the network</div>
+        <h2 class="pj-h2" id="applyTitle">Tell us where you are right now.</h2>
+        <p class="pj-body">
+          This helps us understand whether you are looking for guidance, offering mentorship, or both.
+        </p>
+      </div>
+    </div>
+
+    <form class="pj-form" id="pjApplicationForm">
+      <input type="hidden" name="source" value="homepage-popup" />
+      <input type="text" name="website" class="pj-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <fieldset class="pj-role-fieldset">
+        <legend class="pj-label">I am applying as</legend>
+
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="mentee" required />
+          <span>
+            <b>Mentee</b>
+            <small>I want to be matched with a mentor.</small>
+          </span>
+        </label>
+
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="mentor" required />
+          <span>
+            <b>Mentor</b>
+            <small>I want to offer guidance.</small>
+          </span>
+        </label>
+
+        <label class="pj-role-card">
+          <input type="radio" name="role" value="both" required />
+          <span>
+            <b>Both</b>
+            <small>I may want to mentor and be mentored.</small>
+          </span>
+        </label>
+      </fieldset>
+
+      <div class="pj-form-grid">
+        <label class="pj-field">
+          <span>First name</span>
+          <input name="first_name" type="text" autocomplete="given-name" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Last name</span>
+          <input name="last_name" type="text" autocomplete="family-name" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Email</span>
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+
+        <label class="pj-field">
+          <span>Phone</span>
+          <input name="phone" type="tel" autocomplete="tel" />
+        </label>
+
+        <label class="pj-field">
+          <span>WhatsApp</span>
+          <input name="whatsapp" type="tel" autocomplete="tel" />
+        </label>
+
+        <label class="pj-field">
+          <span>City / community</span>
+          <input name="community" type="text" autocomplete="address-level2" placeholder="Brooklyn, Lakewood..." />
+        </label>
+
+        <label class="pj-field">
+          <span>Field</span>
+          <input name="field" type="text" placeholder="Medicine, law, tech..." />
+        </label>
+
+        <label class="pj-field">
+          <span>Stage</span>
+          <select name="stage">
+            <option value="">Choose one</option>
+            <option>High school / seminary</option>
+            <option>College</option>
+            <option>Graduate school</option>
+            <option>Early career</option>
+            <option>Mid-career</option>
+            <option>Returning to work</option>
+            <option>Established professional</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+
+      <label class="pj-field">
+        <span>What kind of guidance or match would be helpful?</span>
+        <textarea name="goals" rows="4" placeholder="Tell us a little about what you are looking for, or what you can offer."></textarea>
+      </label>
+
+      <label class="pj-check">
+        <input name="privacy_ack" type="checkbox" value="yes" required />
+        <span>I understand this is a private network and my information will be reviewed before any introduction is made.</span>
+      </label>
+
+      <button class="pj-btn pj-btn--primary pj-form-submit" type="submit">
+        Submit application
+      </button>
+
+      <p class="pj-small pj-form-status" id="pjFormStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</div>
+
 </body>
 </html>

@@ -3,6 +3,92 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
   /* =========================
+     Copy cleanup
+     ========================= */
+
+  const copyReplacements = [
+    ["Private mentorship for frum Jewish women", "Private mentorship for observant Jewish women"],
+    ["Private, thoughtfully matched mentorship for frum Jewish women in the professions.", "Private, thoughtfully matched mentorship for observant Jewish women in the professions."],
+    ["A private, thoughtfully matched mentorship network for frum Jewish women in the professions.", "A private, thoughtfully matched mentorship network for observant Jewish women in the professions."],
+    ["A private mentorship network for frum Jewish women in the professions.", "A private mentorship network for observant Jewish women in the professions."],
+    ["Professional Jewess · 5786 / 2026 · Private mentorship for frum Jewish women", "Professional Jewess · 5786 / 2026 · Private mentorship for observant Jewish women"],
+    ["Professional Jewess connects frum women building careers with women who have already walked the path.", "Professional Jewess connects observant and Orthodox women building careers with women who have already walked the path."],
+    ["with guidance from a frum woman who has lived it.", "with guidance from an observant woman who has lived it."],
+    ["They are also about frum life, family life,", "They are also about observant life, family life,"],
+    ["A college student is considering law school and wants a frum woman’s perspective on practice areas, workload, and family life.", "An Orthodox college student is considering law school and wants a mentor’s perspective on practice areas, workload, and family life."],
+    ["Find a frum woman mentor in your field, thoughtfully matched.", "Find an observant mentor in your field, thoughtfully matched."],
+    ["you want a guide who’s done it as a frum woman, and knows", "you want a guide who understands Orthodox life, and knows"],
+    ["Frum life at work", "Observant life at work"],
+    ["Mentor a young frum woman on your terms.", "Mentor an observant woman on your terms."],
+    ["Frum women who’ve built a career", "Observant women who’ve built a career"],
+    ["Milestones and lessons from frum professional women.", "Milestones and lessons from observant professional women."],
+    ["The 3am you is building the doctor a frum family will be lucky to have.", "The 3am you is building the doctor a Jewish family will be lucky to have."],
+    ["frum Jewish women", "observant Jewish women"],
+    ["frum professional women", "observant professional women"],
+    ["frum women", "observant women"],
+    ["frum woman’s", "Orthodox woman’s"],
+    ["frum woman", "observant woman"],
+    ["frum life", "observant life"],
+    ["frum family", "Jewish family"],
+    ["Frum Jewish women", "Observant Jewish women"],
+    ["Frum professional women", "Observant professional women"],
+    ["Frum women", "Observant women"],
+    ["Frum woman’s", "Orthodox woman’s"],
+    ["Frum woman", "Observant woman"],
+    ["Frum life", "Observant life"],
+    ["Frum family", "Jewish family"]
+  ];
+
+  function rewriteCopy(value) {
+    if (!value) return value;
+
+    return copyReplacements.reduce(
+      (text, pair) => text.split(pair[0]).join(pair[1]),
+      value
+    );
+  }
+
+  function normalizeReligiousCopy() {
+    document.title = rewriteCopy(document.title);
+
+    $$('meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]').forEach((meta) => {
+      meta.setAttribute("content", rewriteCopy(meta.getAttribute("content") || ""));
+    });
+
+    $$('script[type="application/ld+json"]').forEach((script) => {
+      script.textContent = rewriteCopy(script.textContent || "");
+    });
+
+    if (!document.body) return;
+
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent) return NodeFilter.FILTER_REJECT;
+          if (["SCRIPT", "STYLE", "TEXTAREA", "NOSCRIPT"].includes(parent.tagName)) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return node.nodeValue && node.nodeValue.includes("frum") || node.nodeValue.includes("Frum")
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        }
+      }
+    );
+
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach((node) => {
+      node.nodeValue = rewriteCopy(node.nodeValue);
+    });
+  }
+
+  normalizeReligiousCopy();
+
+  /* =========================
      Mobile nav
      ========================= */
 

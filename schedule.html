@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Schedule · Professional Jewess</title>
+<meta name="description" content="Fill your schedule, match a call, add it to your calendar." />
+<meta name="theme-color" content="#6E2438" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<script>
+  window.PJ_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxCxkDd1YpCyx1TpVMaxFcOHMMCSzSapas5RLe0mHHfv0sUPRt3bliGSCPWXmDDYj7i/exec";
+</script>
+<script src="assets/main.js" defer></script>
+<script src="assets/schedule.js"></script>
+</head>
+<body>
+<header class="nav">
+  <div class="pj-wrap nav-in">
+    <a class="pj-brand" href="dashboard.html"><span class="pj-no">№</span><b>PJ</b><i>•</i></a>
+    <nav class="nav-links" id="navLinks" style="position:static;transform:none;flex-direction:row;width:auto;padding:0;background:none;border:0;box-shadow:none">
+      <span class="pj-small">Signed in · Summer 2026</span>
+      <a class="pj-btn pj-btn--ghost pj-btn--sm" href="index.html">Log out</a>
+    </nav>
+  </div>
+</header>
+<div class="pj-wrap" style="padding-top:22px"><nav class="subnav">
+    <a href="dashboard.html">Feed</a>
+    <a href="match.html">My match</a>
+    <a href="schedule.html" aria-current="page">Schedule</a>
+    <a href="messages.html">Messages</a>
+    <a href="cohort.html">Cohort</a>
+    <a href="profile.html">Profile</a>
+</nav></div>
+<section class="pj-wrap" style="padding-bottom:64px;max-width:720px">
+  <div class="pj-screen-head">
+    <div class="pj-eyebrow">You &amp; Rachel</div>
+    <h1 class="pj-screen-title">The shared schedule.</h1>
+    <p class="pj-body" style="margin-top:8px">Either of you can put times on the calendar. Match one, and it lands in both calendars.</p>
+  </div>
+
+  <div class="pj-roletabs" id="roleTabs" role="tablist" aria-label="View as">
+    <button class="on" data-role="mentee" role="tab" aria-selected="true">Tova <span class="pj-small">(mentee)</span></button>
+    <button data-role="mentor" role="tab" aria-selected="false">Rachel <span class="pj-small">(mentor)</span></button>
+  </div>
+
+  <div id="bookedWrap" class="hidden" style="margin-top:22px">
+    <span class="pj-label">Matched calls</span>
+    <div id="bookedList" class="pj-stack-4" style="gap:10px;margin-top:10px"></div>
+  </div>
+
+  <div style="margin-top:22px">
+    <span class="pj-label">Open times</span>
+    <div id="openList" class="pj-stack-4" style="gap:10px;margin-top:10px"></div>
+    <p class="pj-small hidden" id="openEmpty">Nothing open right now. Add a time below.</p>
+  </div>
+
+  <div class="pj-card" style="margin-top:22px">
+    <span class="pj-label" id="addTitle">Add a time</span>
+    <p class="pj-small" style="margin-top:6px" id="addHint"></p>
+    <form id="slotForm" class="pj-form" style="margin-top:12px">
+      <div class="pj-form-grid">
+        <label class="pj-field"><span>Date</span><input name="date" type="date" required /></label>
+        <label class="pj-field"><span>Time</span><input name="time" type="time" required /></label>
+        <label class="pj-field"><span>Length</span>
+          <select name="mins"><option value="30">30 min</option><option value="45">45 min</option><option value="60">60 min</option></select>
+        </label>
+        <label class="pj-field" id="typeField"><span>Format</span>
+          <select name="type">
+            <option value="one">One-on-one</option>
+            <option value="group">Group call (open the room)</option>
+          </select>
+        </label>
+        <label class="pj-field hidden" id="capField"><span>Seats</span>
+          <select name="cap"><option>4</option><option selected>6</option><option>10</option></select>
+        </label>
+      </div>
+      <label class="pj-field"><span>Topic (optional)</span><input name="note" type="text" placeholder="Interview prep, group Q&amp;A..." /></label>
+      <button class="pj-btn pj-btn--primary" type="submit">Put it on the schedule</button>
+    </form>
+    <p class="pj-small" style="margin-top:10px" id="groupNote">Group calls are the mentor&rsquo;s option: Rachel can open a room for several mentees at once.</p>
+  </div>
+
+  <p class="pj-small" style="margin-top:18px">Matching a call notifies the other person by email — and by text if she opted in on her <a href="profile.html" style="color:var(--garnet)">profile</a>. <button type="button" class="pj-linkbtn" onclick="PJApp.reset()">Reset demo data</button></p>
+</section>
+<div class="pj-toast" id="toast" role="status" aria-live="polite"></div>
+<footer class="pj-footer">
+  <div class="pj-wrap">
+    <div class="pj-grid pj-grid--3" style="gap:28px">
+      <div>
+        <a class="pj-brand" href="index.html" style="margin-bottom:14px"><span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i></a>
+        <p class="pj-small"><span style="color:#C9BBB6">A private mentorship network for frum Jewish women in the professions.</span></p>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Network</span>
+        <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
+      </div>
+      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
+        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><button type="button" data-apply-open>Apply</button><a href="login.html">Log in</a>
+      </div>
+    </div>
+    <div class="pj-divider" style="margin:32px 0 18px"></div>
+    <span class="pj-small" style="color:#8E7F7A">Professional Jewess · 5786 / 2026 · a prototype</span>
+  </div>
+</footer>
+<script>
+var state = PJApp.load();
+var role = "mentee"; // whose eyes we're looking through
+var ME = { mentee: "Tova K.", mentor: "Rachel S." };
+
+document.querySelectorAll("#roleTabs button").forEach(function(b){
+  b.addEventListener("click", function(){
+    document.querySelectorAll("#roleTabs button").forEach(function(x){ x.classList.remove("on"); x.setAttribute("aria-selected","false"); });
+    b.classList.add("on"); b.setAttribute("aria-selected","true");
+    role = b.getAttribute("data-role");
+    render();
+  });
+});
+
+var slotForm = document.getElementById("slotForm");
+slotForm.type.addEventListener("change", function(){
+  document.getElementById("capField").classList.toggle("hidden", slotForm.type.value !== "group");
+});
+slotForm.addEventListener("submit", function(e){
+  e.preventDefault();
+  var isGroup = role === "mentor" && slotForm.type.value === "group";
+  state.slots.push({
+    id: "s" + Date.now(),
+    start: slotForm.date.value + "T" + slotForm.time.value,
+    mins: parseInt(slotForm.mins.value, 10),
+    type: isGroup ? "group" : "one",
+    cap: isGroup ? parseInt(slotForm.cap.value, 10) : 1,
+    by: role,
+    note: slotForm.note.value.trim(),
+    attendees: []
+  });
+  PJApp.save(state);
+  slotForm.reset();
+  document.getElementById("capField").classList.add("hidden");
+  toast("Added to the schedule.");
+  render();
+});
+
+function matchSlot(id){
+  var slot = state.slots.filter(function(s){ return s.id === id; })[0];
+  if (!slot) return;
+  if (slot.attendees.length >= slot.cap) { toast("That call is full."); return; }
+  slot.attendees.push(ME[role]);
+  var channels = PJApp.notifyMatch(state, slot, ME[role]);
+  PJApp.save(state);
+  toast(channels.length
+    ? "Matched. " + (role === "mentee" ? "Rachel" : "Tova") + " was notified by " + channels.join(" and ") + "."
+    : "Matched. (Notifications are off — see Profile.)");
+  render();
+}
+
+function cancelSlot(id){
+  state.slots = state.slots.filter(function(s){ return s.id !== id; });
+  PJApp.save(state);
+  render();
+}
+
+function ics(id){
+  var slot = state.slots.filter(function(s){ return s.id === id; })[0];
+  if (slot) PJApp.downloadIcs(slot);
+}
+
+function slotMeta(s){
+  var bits = [(s.mins) + " min"];
+  if (s.type === "group") bits.push("Group · " + s.attendees.length + "/" + s.cap + " seats");
+  if (s.note) bits.push(s.note);
+  bits.push(s.by === "mentor" ? "added by Rachel" : "added by Tova");
+  return bits.join(" · ");
+}
+
+function render(){
+  var open = [], booked = [];
+  state.slots
+    .slice()
+    .sort(function(a,b){ return a.start < b.start ? -1 : 1; })
+    .forEach(function(s){ (s.attendees.length ? booked : open).push(s); });
+
+  // A group call with free seats stays matchable even once it has attendees.
+  var joinable = booked.filter(function(s){ return s.type === "group" && s.attendees.length < s.cap; });
+
+  var openList = document.getElementById("openList");
+  openList.innerHTML = "";
+  open.concat(role === "mentee" ? joinable : []).forEach(function(s){
+    var mine = s.by === role;
+    var el = document.createElement("div");
+    el.className = "pj-slotcard";
+    el.innerHTML =
+      '<div class="pj-slotcard-main"><div class="pj-slot-day"></div><div class="pj-small"></div></div>' +
+      '<div class="pj-slotcard-acts"></div>';
+    el.querySelector(".pj-slot-day").textContent = PJApp.fmt(s);
+    el.querySelector(".pj-small").textContent = slotMeta(s);
+    var acts = el.querySelector(".pj-slotcard-acts");
+    if (!mine || (s.type === "group" && role === "mentee")) {
+      var m = document.createElement("button");
+      m.className = "pj-btn pj-btn--primary pj-btn--sm";
+      m.textContent = s.type === "group" ? "Join this call" : "Match this call";
+      m.onclick = function(){ matchSlot(s.id); };
+      acts.appendChild(m);
+    }
+    if (mine && !s.attendees.length) {
+      var c = document.createElement("button");
+      c.className = "pj-btn pj-btn--ghost pj-btn--sm";
+      c.textContent = "Remove";
+      c.onclick = function(){ cancelSlot(s.id); };
+      acts.appendChild(c);
+    }
+    openList.appendChild(el);
+  });
+  document.getElementById("openEmpty").classList.toggle("hidden", openList.children.length > 0);
+
+  var bookedWrap = document.getElementById("bookedWrap");
+  var bookedList = document.getElementById("bookedList");
+  bookedList.innerHTML = "";
+  booked.forEach(function(s){
+    var el = document.createElement("div");
+    el.className = "pj-slotcard pj-slotcard--booked";
+    el.innerHTML =
+      '<div class="pj-slotcard-main"><div class="pj-slot-day"></div><div class="pj-small"></div></div>' +
+      '<div class="pj-slotcard-acts"></div>';
+    el.querySelector(".pj-slot-day").textContent = "✓ " + PJApp.fmt(s);
+    el.querySelector(".pj-small").textContent =
+      (s.type === "group" ? "Group · with " : "With ") + s.attendees.join(", ") +
+      (s.note ? " · " + s.note : "");
+    var acts = el.querySelector(".pj-slotcard-acts");
+    var g = document.createElement("a");
+    g.className = "pj-btn pj-btn--ghost pj-btn--sm";
+    g.textContent = "Google Calendar";
+    g.href = PJApp.gcalUrl(s); g.target = "_blank"; g.rel = "noopener";
+    var i = document.createElement("button");
+    i.className = "pj-btn pj-btn--ghost pj-btn--sm";
+    i.textContent = "Other calendar (.ics)";
+    i.onclick = function(){ ics(s.id); };
+    acts.appendChild(g); acts.appendChild(i);
+    bookedList.appendChild(el);
+  });
+  bookedWrap.classList.toggle("hidden", booked.length === 0);
+
+  var mentor = role === "mentor";
+  document.getElementById("typeField").classList.toggle("hidden", !mentor);
+  if (!mentor) { slotForm.type.value = "one"; document.getElementById("capField").classList.add("hidden"); }
+  document.getElementById("groupNote").classList.toggle("hidden", !mentor);
+  document.getElementById("addHint").textContent = mentor
+    ? "Open times for Tova to match — or open a group room for several mentees."
+    : "You can fill the schedule too: propose a time and Rachel can match it.";
+}
+
+var toastTimer;
+function toast(text){
+  var t = document.getElementById("toast");
+  t.textContent = text;
+  t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove("on"); }, 3200);
+}
+
+render();
+</script>
+<div class="pj-modal" id="applyModal" aria-hidden="true">
+  <div class="pj-modal__scrim" data-apply-close></div>
+  <section class="pj-modal__sheet" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
+    <button class="pj-modal__close" type="button" aria-label="Close application form" data-apply-close>×</button>
+    <div class="pj-modal__head">
+      <div>
+        <div class="pj-eyebrow">Apply to the network</div>
+        <h2 class="pj-h2" id="applyTitle">Tell us where you are right now.</h2>
+        <p class="pj-body">This helps us understand whether you are looking for guidance, offering mentorship, or both.</p>
+      </div>
+    </div>
+    <form class="pj-form" id="pjApplicationForm">
+      <input type="hidden" name="source" value="homepage-popup" />
+      <input type="text" name="website" class="pj-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <fieldset class="pj-role-fieldset">
+        <legend class="pj-label">I am applying as</legend>
+        <label class="pj-role-card"><input type="radio" name="role" value="mentee" required /><span><b>Mentee</b><small>I want to be matched with a mentor.</small></span></label>
+        <label class="pj-role-card"><input type="radio" name="role" value="mentor" required /><span><b>Mentor</b><small>I want to offer guidance.</small></span></label>
+        <label class="pj-role-card"><input type="radio" name="role" value="both" required /><span><b>Both</b><small>I may want to mentor and be mentored.</small></span></label>
+      </fieldset>
+      <div class="pj-form-grid">
+        <label class="pj-field"><span>First name</span><input name="first_name" type="text" autocomplete="given-name" required /></label>
+        <label class="pj-field"><span>Last name</span><input name="last_name" type="text" autocomplete="family-name" required /></label>
+        <label class="pj-field"><span>Email</span><input name="email" type="email" autocomplete="email" required /></label>
+        <label class="pj-field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" /></label>
+        <label class="pj-field"><span>WhatsApp</span><input name="whatsapp" type="tel" autocomplete="tel" /></label>
+        <label class="pj-field"><span>City / community</span><input name="community" type="text" autocomplete="address-level2" placeholder="Brooklyn, Lakewood..." /></label>
+        <label class="pj-field"><span>Field</span><input name="field" type="text" placeholder="Medicine, law, tech..." /></label>
+        <label class="pj-field"><span>Stage</span>
+          <select name="stage">
+            <option value="">Choose one</option>
+            <option>High school / seminary</option>
+            <option>College</option>
+            <option>Graduate school</option>
+            <option>Early career</option>
+            <option>Mid-career</option>
+            <option>Returning to work</option>
+            <option>Established professional</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label class="pj-field"><span>What kind of guidance or match would be helpful?</span><textarea name="goals" rows="4" placeholder="Tell us a little about what you are looking for, or what you can offer."></textarea></label>
+      <label class="pj-check"><input name="privacy_ack" type="checkbox" value="yes" required /><span>I understand this is a private network and my information will be reviewed before any introduction is made.</span></label>
+      <button class="pj-btn pj-btn--primary pj-form-submit" type="submit">Submit application</button>
+      <p class="pj-small pj-form-status" id="pjFormStatus" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</div>
+</body>
+</html>

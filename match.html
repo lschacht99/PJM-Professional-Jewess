@@ -28,6 +28,8 @@
 <div class="pj-wrap" style="padding-top:22px"><nav class="subnav">
     <a href="dashboard.html">Feed</a>
     <a href="match.html" aria-current="page">My match</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="messages.html">Messages</a>
     <a href="cohort.html">Cohort</a>
     <a href="profile.html">Profile</a>
 </nav></div>
@@ -42,6 +44,7 @@
   <span class="pj-label">Your first call</span>
   <div id="sched" style="margin-top:10px"><div class="pj-stack-4" style="gap:10px"><button class="pj-slot" onclick="pick(this)" data-label="Tue, Jul 8 &middot; 11:00 AM"><div><div class="pj-slot-day">Tue, Jul 8</div><div class="pj-slot-time">11:00 AM</div></div><span class="pj-slot-radio"></span></button><button class="pj-slot" onclick="pick(this)" data-label="Wed, Jul 9 &middot; 2:30 PM"><div><div class="pj-slot-day">Wed, Jul 9</div><div class="pj-slot-time">2:30 PM</div></div><span class="pj-slot-radio"></span></button><button class="pj-slot" onclick="pick(this)" data-label="Thu, Jul 10 &middot; 8:00 PM"><div><div class="pj-slot-day">Thu, Jul 10</div><div class="pj-slot-time">8:00 PM</div></div><span class="pj-slot-radio"></span></button><button class="pj-slot" onclick="pick(this)" data-label="Sun, Jul 13 &middot; 10:00 AM"><div><div class="pj-slot-day">Sun, Jul 13</div><div class="pj-slot-time">10:00 AM</div></div><span class="pj-slot-radio"></span></button></div><button class="pj-btn pj-btn--primary pj-btn--block" id="confirmBtn" style="margin-top:14px" disabled onclick="book()">Choose a time</button></div>
   <div id="booked" class="pj-card hidden" style="margin-top:10px;display:flex;gap:12px;align-items:center"><span class="pj-mg pj-mg--sm" style="background:#6E2438;color:#F6E7E1">&#10003;</span><div><div style="font:600 14px/1.2 var(--sans)">First call confirmed</div><div class="pj-small" id="bookedLabel"></div></div></div>
+  <p class="pj-small" style="margin-top:12px">After the first call, you and Rachel keep times on a <a href="schedule.html" style="color:var(--garnet)">shared schedule</a> &mdash; group calls, calendar export and all.</p>
   <div style="margin-top:24px"><span class="pj-label">Messages</span><div class="pj-thread2" id="thread"><div style="align-self:flex-start;max-width:82%"><div class="pj-bubble pj-bubble--them">So glad we matched, Tova. Ask me anything before our call.</div><div class="pj-when">Mon</div></div></div><div class="pj-msgbar"><input id="msg" placeholder="Message Rachel&hellip;" /><button class="pj-iconbtn" onclick="send()" aria-label="Send">&#8594;</button></div></div>
 </section><footer class="pj-footer">
   <div class="pj-wrap">

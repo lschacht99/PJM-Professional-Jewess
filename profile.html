@@ -14,6 +14,7 @@
   window.PJ_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxCxkDd1YpCyx1TpVMaxFcOHMMCSzSapas5RLe0mHHfv0sUPRt3bliGSCPWXmDDYj7i/exec";
 </script>
 <script src="assets/main.js" defer></script>
+<script src="assets/schedule.js"></script>
 </head>
 <body>
 <header class="nav">
@@ -28,6 +29,8 @@
 <div class="pj-wrap" style="padding-top:22px"><nav class="subnav">
     <a href="dashboard.html">Feed</a>
     <a href="match.html">My match</a>
+    <a href="schedule.html">Schedule</a>
+    <a href="messages.html">Messages</a>
     <a href="cohort.html">Cohort</a>
     <a href="profile.html" aria-current="page">Profile</a>
 </nav></div>
@@ -35,6 +38,23 @@
   <div class="pj-detail-hero" style="margin-bottom:18px"><span class="pj-mg pj-mg--lg" style="background:#EAD9D2;color:#6E2438">TK</span><div><h1 class="pj-screen-title">Tova Klein</h1><p class="pj-reg-meta" style="margin-top:6px">College &middot; Exploring law &middot; New York</p></div></div>
   <div class="pj-card" style="margin-bottom:14px"><span class="pj-label">Your match status</span><p class="pj-body" style="margin-top:8px">Matched with Rachel Stein. <a href="match.html" style="color:var(--garnet)">Open your space &rarr;</a></p></div>
   <div class="pj-card" style="margin-bottom:14px"><span class="pj-label">What you&rsquo;re looking for</span><div class="pj-taglist" style="margin-top:10px"><span class="pj-tag">Choosing a major</span><span class="pj-tag">Law school</span><span class="pj-tag">Interview prep</span><span class="pj-tag">Frum life at work</span></div></div>
+  <div class="pj-card" style="margin-bottom:14px"><span class="pj-label">Account &amp; security</span>
+    <p class="pj-small" style="margin-top:8px">Your profile is a real account, not just a link &mdash; free, private, and protected with two-step verification by email or text.</p>
+    <div class="pj-sec-row"><div><b>Email</b><div class="pj-small">tova&#64;example.com</div></div><span class="pj-secchip" id="chipEmail">Not verified</span><button class="pj-btn pj-btn--ghost pj-btn--sm" onclick="startVerify('email')">Verify</button></div>
+    <div class="pj-sec-row"><div><b>Phone</b><div class="pj-small">+1 (718) 555-0142</div></div><span class="pj-secchip" id="chipPhone">Not verified</span><button class="pj-btn pj-btn--ghost pj-btn--sm" onclick="startVerify('phone')">Verify</button></div>
+    <div id="codeBox" class="hidden" style="margin-top:12px">
+      <p class="pj-small" id="codeHint"></p>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <input id="codeInput" inputmode="numeric" maxlength="6" placeholder="6-digit code" style="flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:10px" />
+        <button class="pj-btn pj-btn--primary pj-btn--sm" onclick="confirmVerify()">Confirm</button>
+      </div>
+    </div>
+    <div class="pj-divider" style="margin:16px 0 12px"></div>
+    <span class="pj-label">Notifications when someone matches a call</span>
+    <label class="pj-check" style="margin-top:10px"><input type="checkbox" id="prefEmail" onchange="savePrefs()" /><span>Email me when a call is matched or changed.</span></label>
+    <label class="pj-check"><input type="checkbox" id="prefSms" onchange="savePrefs()" /><span>Also text my phone. <span class="pj-small">(Only if you accept &mdash; off by default.)</span></span></label>
+    <p class="pj-small" style="margin-top:10px">The free plan includes all of this &mdash; scheduling, messaging, and calendar export.</p>
+  </div>
   <div class="pj-card"><span class="pj-label">If you mentor one day &mdash; your visibility</span><p class="pj-small" style="margin-top:8px">Choose how much shows. Your name stays private until you approve a match.</p><div class="pj-vis" id="vis"><button class="on" onclick="visPick(this)"><span class="pj-vis-r"></span><span><span class="pj-vis-t">Members only</span><span class="pj-vis-d">Approved members see your profile. Name shared after a match.</span></span></button><button onclick="visPick(this)"><span class="pj-vis-r"></span><span><span class="pj-vis-t">Public preview</span><span class="pj-vis-d">Field, bio, and tags appear on the public site.</span></span></button><button onclick="visPick(this)"><span class="pj-vis-r"></span><span><span class="pj-vis-t">Private</span><span class="pj-vis-d">Not listed anywhere. The team matches you directly.</span></span></button></div></div>
 </section><footer class="pj-footer">
   <div class="pj-wrap">
@@ -59,6 +79,54 @@ function visPick(btn){
   Array.prototype.forEach.call(document.querySelectorAll("#vis button"), function(b){ b.classList.remove("on"); });
   btn.classList.add("on");
 }
+
+var state = PJApp.load();
+var verifying = null;
+var sentCode = null;
+
+function renderSec(){
+  ["Email","Phone"].forEach(function(k){
+    var ok = state.security[k.toLowerCase() + "Verified"];
+    var chip = document.getElementById("chip" + k);
+    chip.textContent = ok ? "✓ Verified" : "Not verified";
+    chip.classList.toggle("on", ok);
+    chip.nextElementSibling.classList.toggle("hidden", ok);
+  });
+  document.getElementById("prefEmail").checked = !!state.prefs.email;
+  document.getElementById("prefSms").checked = !!state.prefs.sms;
+}
+
+function startVerify(which){
+  verifying = which;
+  sentCode = String(Math.floor(100000 + Math.random() * 900000));
+  document.getElementById("codeBox").classList.remove("hidden");
+  // Prototype stand-in for a real email/SMS delivery — the code is shown here.
+  document.getElementById("codeHint").textContent =
+    "We sent a code to your " + which + ". (Demo: the code is " + sentCode + ".)";
+  document.getElementById("codeInput").value = "";
+  document.getElementById("codeInput").focus();
+}
+
+function confirmVerify(){
+  if (!verifying) return;
+  if (document.getElementById("codeInput").value.trim() !== sentCode) {
+    document.getElementById("codeHint").textContent = "That code doesn’t match — try again.";
+    return;
+  }
+  state.security[verifying + "Verified"] = true;
+  PJApp.save(state);
+  document.getElementById("codeBox").classList.add("hidden");
+  verifying = null;
+  renderSec();
+}
+
+function savePrefs(){
+  state.prefs.email = document.getElementById("prefEmail").checked;
+  state.prefs.sms = document.getElementById("prefSms").checked;
+  PJApp.save(state);
+}
+
+renderSec();
 </script>
 <div class="pj-modal" id="applyModal" aria-hidden="true">
   <div class="pj-modal__scrim" data-apply-close></div>

@@ -21,26 +21,41 @@
   });
   $$("a", menu || document.createElement("div")).forEach(a => a.addEventListener("click", closeMenu));
 
-  // The first-round priority window ends at midnight in New York on Nov 9, 2026.
-  // After the cutoff, keep the intake open for later introductions instead of displaying an expired offer.
-  const firstRoundClosed = Date.now() >= Date.parse("2026-11-09T05:00:00Z");
-  if (firstRoundClosed) {
-    $("[data-round-banner]").forEach(banner => {
-      banner.innerHTML = '<div class="round-header">FUTURE MATCHING OPPORTUNITIES</div>' +
-        '<p>The November first-round deadline has passed. You can still apply to be considered for future introductions as the network grows. There is no guarantee of a match.</p>';
+  // November 8 is a priority application date, never an intake cutoff.
+  // After that date, keep accepting people for a November match while review
+  // is underway and for later rounds whenever there is a relevant connection.
+  const priorityDatePassed = Date.now() >= Date.parse("2026-11-09T05:00:00Z");
+  const novemberReviewUnderway = Date.now() >= Date.parse("2026-11-16T05:00:00Z");
+
+  if (priorityDatePassed) {
+    $$("[data-round-banner]").forEach(banner => {
+      banner.innerHTML =
+        '<div class="round-header">NOVEMBER MATCHING · APPLICATIONS STILL OPEN</div>' +
+        '<div class="round-dates"><div><span>November 8 priority date</span><strong>Passed — still accepting</strong></div>' +
+        '<div><span>Matching review</span><strong>' +
+          (novemberReviewUnderway ? "Underway" : "Begins November 16") +
+        '</strong></div></div>' +
+        '<p>Late applications stay in our database and may be considered for November if matching is still underway, or for future rounds. Introductions depend on fit and availability.</p>';
     });
-    $("[data-round-status]").forEach(label => {
-      label.textContent = "Future matching opportunities · Applications open";
+    $$("[data-round-status]").forEach(label => {
+      const message = "November matching · Applications still open";
+      if (label.classList.contains("pill")) {
+        label.innerHTML = '<span class="pill-dot"></span> ' + message;
+      } else {
+        label.textContent = message;
+      }
     });
-    $("[data-round-cta]").forEach(link => {
-      link.textContent = "Apply for future introductions ↗";
+    $$("[data-round-cta]").forEach(link => {
+      link.textContent = "Apply for a matching introduction ↗";
     });
-    $("[data-round-desc]").forEach(desc => {
-      desc.textContent = "The first matching-round deadline has passed. New applications are welcome and will be considered for future introductions as the network grows.";
+    $$("[data-round-desc]").forEach(desc => {
+      desc.textContent = "November 8 was our priority date, not a cutoff. You can still apply for potential November introductions if matching is ongoing, or for future rounds.";
     });
     const successText = $("#applicationSuccess p");
-    if (successText) successText.textContent =
-      "Your application has been saved for consideration in future matching opportunities. We will contact you if a suitable next step becomes available. An introduction is not guaranteed.";
+    if (successText) {
+      successText.textContent =
+        "Your application has been saved. Even though the November 8 priority date has passed, you may be considered for a November introduction if matching is still underway or a future round. We'll contact you if a suitable fit becomes available.";
+    }
   }
 
   const form = $("#applicationForm");

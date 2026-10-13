@@ -1,187 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>FAQ · Professional Jewess</title>
-<meta name="description" content="Frequently asked questions about Professional Jewess." />
-<meta name="theme-color" content="#6E2438" />
-<link rel="stylesheet" href="styles.css" />
-<link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-<link rel="manifest" href="manifest.webmanifest" />
-<script>
-  window.PJ_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxCxkDd1YpCyx1TpVMaxFcOHMMCSzSapas5RLe0mHHfv0sUPRt3bliGSCPWXmDDYj7i/exec";
-</script>
-<script src="assets/main.js" defer></script>
-</head>
-<body>
-<header class="nav">
-  <div class="pj-wrap nav-in">
-    <a class="pj-brand" href="index.html"><span class="pj-no">№</span><b>Professional</b><i>Jewess</i></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false"><span></span></button>
-    <nav class="nav-links" id="navLinks">
-      <a href="how-it-works.html">How it works</a>
-      <a href="for-mentees.html">For mentees</a>
-      <a href="for-mentors.html">For mentors</a>
-      <a href="stories.html">Stories</a>
-      <a href="faq.html" aria-current="page">FAQ</a>
-      <a href="login.html">Log in</a>
-      <button class="pj-btn pj-btn--primary pj-btn--sm" type="button" data-apply-open>Apply</button>
-    </nav>
-  </div>
-  <div class="nav-scrim" id="navScrim"></div>
-</header>
-<section class="pj-wrap page page-narrow">
-  <a class="crumb" href="index.html">&larr; Home</a>
-  <div class="page-head" style="margin-top:14px"><div class="pj-eyebrow">Questions</div><h1 class="pj-h1" style="font-size:clamp(36px,7vw,54px)">Good questions.</h1></div>
-  <div style="margin-top:24px">
-    <details class="pj-card" style="margin-bottom:12px"><summary style="font:600 16px/1.4 var(--sans);color:var(--ink);cursor:pointer">Is this a directory I can browse?</summary><p class="pj-body" style="margin-top:10px">No. There is no public list of mentors to scroll. You tell us about yourself, and the team matches you thoughtfully &mdash; dignified and private by design.</p></details>
-    <details class="pj-card" style="margin-bottom:12px"><summary style="font:600 16px/1.4 var(--sans);color:var(--ink);cursor:pointer">How are matches made?</summary><p class="pj-body" style="margin-top:10px">On what both sides share at signup: field, stage, community/observance (optional), goals, and availability. A person on the team confirms every match.</p></details>
-    <details class="pj-card" style="margin-bottom:12px"><summary style="font:600 16px/1.4 var(--sans);color:var(--ink);cursor:pointer">Is my information private?</summary><p class="pj-body" style="margin-top:10px">Yes. Mentor details are private by default, and a mentor&rsquo;s name is never public unless she chooses. Contact info is never shown to other members.</p></details>
-    <details class="pj-card" style="margin-bottom:12px"><summary style="font:600 16px/1.4 var(--sans);color:var(--ink);cursor:pointer">Do I have to commit long-term?</summary><p class="pj-body" style="margin-top:10px">No. You can ask for a single one-time call, ongoing mentorship, or a small group &mdash; whatever fits your life this season.</p></details>
-    <details class="pj-card" style="margin-bottom:12px"><summary style="font:600 16px/1.4 var(--sans);color:var(--ink);cursor:pointer">Who can join as a mentor?</summary><p class="pj-body" style="margin-top:10px">Frum women who&rsquo;ve built a career and want to guide someone coming up behind them. You set your own capacity and visibility.</p></details>
-    <details class="pj-card" style="margin-bottom:12px"><summary style="font:600 16px/1.4 var(--sans);color:var(--ink);cursor:pointer">What does it cost?</summary><p class="pj-body" style="margin-top:10px">This is a prototype; pricing isn&rsquo;t set. The model is built to stay curated and trust-based, not a paid marketplace.</p></details>
-  </div>
-  <div class="center" style="margin-top:24px"><button class="pj-btn pj-btn--primary cta-link" type="button" data-apply-open>Apply to join</button></div>
-</section><footer class="pj-footer">
-  <div class="pj-wrap">
-    <div class="pj-grid pj-grid--3" style="gap:28px">
-      <div>
-        <a class="pj-brand" href="index.html" style="margin-bottom:14px"><span class="pj-no">№</span><b style="color:#F6EFE7">Professional</b><i>Jewess</i></a>
-        <p class="pj-small"><span style="color:#C9BBB6">A private mentorship network for frum Jewish women in the professions.</span></p>
-      </div>
-      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Network</span>
-        <a href="how-it-works.html">How it works</a><a href="stories.html">Stories</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a>
-      </div>
-      <div class="pj-stack-2"><span class="pj-label" style="color:#8E7F7A">Join</span>
-        <a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><button type="button" data-apply-open>Apply</button><a href="login.html">Log in</a>
-      </div>
-    </div>
-    <div class="pj-divider" style="margin:32px 0 18px"></div>
-    <span class="pj-small" style="color:#8E7F7A">Professional Jewess · 5786 / 2026 · a prototype</span>
-  </div>
-</footer>
-<div class="pj-modal" id="applyModal" aria-hidden="true">
-  <div class="pj-modal__scrim" data-apply-close></div>
-
-  <section class="pj-modal__sheet" role="dialog" aria-modal="true" aria-labelledby="applyTitle">
-    <button class="pj-modal__close" type="button" aria-label="Close application form" data-apply-close>
-      ×
-    </button>
-
-    <div class="pj-modal__head">
-      <div>
-        <div class="pj-eyebrow">Apply to the network</div>
-        <h2 class="pj-h2" id="applyTitle">Tell us where you are right now.</h2>
-        <p class="pj-body">
-          This helps us understand whether you are looking for guidance, offering mentorship, or both.
-        </p>
-      </div>
-    </div>
-
-    <form class="pj-form" id="pjApplicationForm">
-      <input type="hidden" name="source" value="homepage-popup" />
-      <input type="text" name="website" class="pj-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-      <fieldset class="pj-role-fieldset">
-        <legend class="pj-label">I am applying as</legend>
-
-        <label class="pj-role-card">
-          <input type="radio" name="role" value="mentee" required />
-          <span>
-            <b>Mentee</b>
-            <small>I want to be matched with a mentor.</small>
-          </span>
-        </label>
-
-        <label class="pj-role-card">
-          <input type="radio" name="role" value="mentor" required />
-          <span>
-            <b>Mentor</b>
-            <small>I want to offer guidance.</small>
-          </span>
-        </label>
-
-        <label class="pj-role-card">
-          <input type="radio" name="role" value="both" required />
-          <span>
-            <b>Both</b>
-            <small>I may want to mentor and be mentored.</small>
-          </span>
-        </label>
-      </fieldset>
-
-      <div class="pj-form-grid">
-        <label class="pj-field">
-          <span>First name</span>
-          <input name="first_name" type="text" autocomplete="given-name" required />
-        </label>
-
-        <label class="pj-field">
-          <span>Last name</span>
-          <input name="last_name" type="text" autocomplete="family-name" required />
-        </label>
-
-        <label class="pj-field">
-          <span>Email</span>
-          <input name="email" type="email" autocomplete="email" required />
-        </label>
-
-        <label class="pj-field">
-          <span>Phone</span>
-          <input name="phone" type="tel" autocomplete="tel" />
-        </label>
-
-        <label class="pj-field">
-          <span>WhatsApp</span>
-          <input name="whatsapp" type="tel" autocomplete="tel" />
-        </label>
-
-        <label class="pj-field">
-          <span>City / community</span>
-          <input name="community" type="text" autocomplete="address-level2" placeholder="Brooklyn, Lakewood..." />
-        </label>
-
-        <label class="pj-field">
-          <span>Field</span>
-          <input name="field" type="text" placeholder="Medicine, law, tech..." />
-        </label>
-
-        <label class="pj-field">
-          <span>Stage</span>
-          <select name="stage">
-            <option value="">Choose one</option>
-            <option>High school / seminary</option>
-            <option>College</option>
-            <option>Graduate school</option>
-            <option>Early career</option>
-            <option>Mid-career</option>
-            <option>Returning to work</option>
-            <option>Established professional</option>
-            <option>Other</option>
-          </select>
-        </label>
-      </div>
-
-      <label class="pj-field">
-        <span>What kind of guidance or match would be helpful?</span>
-        <textarea name="goals" rows="4" placeholder="Tell us a little about what you are looking for, or what you can offer."></textarea>
-      </label>
-
-      <label class="pj-check">
-        <input name="privacy_ack" type="checkbox" value="yes" required />
-        <span>I understand this is a private network and my information will be reviewed before any introduction is made.</span>
-      </label>
-
-      <button class="pj-btn pj-btn--primary pj-form-submit" type="submit">
-        Submit application
-      </button>
-
-      <p class="pj-small pj-form-status" id="pjFormStatus" role="status" aria-live="polite"></p>
-    </form>
-  </section>
-</div>
-
-</body>
-</html>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Frequently asked questions | Professional Jewess</title><meta name="description" content="Practical answers about who can join, mentorship matching, application privacy, and the Professional Jewess founding pilot.">
+<meta name="theme-color" content="#fcfaf7"><link rel="canonical" href="https://lschacht99.github.io/PJM-Professional-Jewess/faq.html">
+<meta property="og:title" content="Frequently asked questions | Professional Jewess"><meta property="og:description" content="Practical answers about who can join, mentorship matching, application privacy, and the Professional Jewess founding pilot."><meta property="og:type" content="website">
+<meta property="og:image" content="https://lschacht99.github.io/PJM-Professional-Jewess/assets/social-card.png">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/pilot.css?v=20261013-2">
+<script src="assets/pilot.js?v=20261013-2" defer></script></head><body>
+<header class="site-nav"><div class="container nav-inner">
+<a class="brand" href="index.html" aria-label="Professional Jewess home"><span class="brand-mark">№</span><span>Professional <i>Jewess</i></span></a>
+<button class="nav-toggle" id="menuButton" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">☰</button>
+<nav class="nav-links" id="primaryNav" aria-label="Primary navigation">
+<a href="how-it-works.html">How it works</a><a href="for-mentees.html">Find guidance</a><a href="for-mentors.html">Offer guidance</a><a href="faq.html">Questions</a>
+<a class="btn btn--primary btn--sm" href="apply.html">Join the network</a>
+</nav></div></header>
+<main><section class="inner-hero"><div class="container"><div class="eyebrow">Questions and answers</div><h1>Everything you need to know before applying.</h1><p class="lead">This is a founding pilot, so we're being clear about what is available now and what we're building toward.</p></div></section><section class="content-section"><div class="container narrow">
+<details class="faq"><summary>Who can apply?</summary><p>Jewish women exploring a career, already established in a field, returning to work, changing direction, or willing to share their experience. We welcome a wide range of professional and creative paths.</p></details>
+<details class="faq"><summary>Do I have to be Orthodox?</summary><p>We want women to feel comfortable discussing Jewish life and their professional ambitions. You don't need to belong to a particular community or level of observance to express interest.</p></details>
+<details class="faq"><summary>Can I both ask for help and offer guidance?</summary><p>Yes. Choose “Both” on the application. Many women have questions about one part of their careers while being able to help others with something different.</p></details>
+<details class="faq"><summary>How are introductions made?</summary><p>The founding pilot uses human review. We look for relevant experience and needs, then reach out about potential matches when someone suitable may be available. There is no automatic matching engine or public directory.</p></details>
+<details class="faq"><summary>Am I guaranteed a mentor or mentee?</summary><p>No. The availability of a relevant match will depend on the people who apply and their capacity. We'll contact you if there's a promising next step.</p></details>
+<details class="faq"><summary>How much time do I have to commit?</summary><p>That depends on what works for both participants. Mentors can indicate whether they would prefer one conversation, occasional calls, or more ongoing support.</p></details>
+<details class="faq"><summary>Does it cost anything to apply?</summary><p>There is no payment required to submit an application. Any future paid offerings or fees would be explained before someone agrees to participate.</p></details>
+<details class="faq"><summary>Who can see my application?</summary><p>Applications are stored privately for organizer review. Personal details are not published in a directory. You will be contacted before an introduction is arranged. See our <a href="privacy.html">privacy page</a>.</p></details>
+<details class="faq"><summary>What about member accounts, calendars, and events?</summary><p>These are potential future additions, not features of the current pilot. We're starting with applications and personal introductions.</p></details>
+<div class="hero-actions" style="margin-top:32px"><a class="btn btn--primary" href="apply.html">Join the founding network →</a><a class="btn btn--secondary" href="contact.html">Ask another question</a></div></div></section></main>
+<footer class="site-footer"><div class="container"><div class="footer-grid">
+<div class="footer-brand"><a class="brand" href="index.html"><span class="brand-mark">№</span><span>Professional <i>Jewess</i></span></a>
+<p>A growing professional network connecting Jewish women across fields and career stages. Applications for the founding pilot are open.</p></div>
+<nav class="footer-links" aria-label="Footer links"><a href="how-it-works.html">How it works</a><a href="for-mentees.html">For mentees</a><a href="for-mentors.html">For mentors</a><a href="faq.html">FAQs</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></nav>
+</div><div class="footer-bottom">© 2026 Professional Jewess · Founding pilot · Thoughtful introductions, reviewed personally</div>
+</div></footer></body></html>

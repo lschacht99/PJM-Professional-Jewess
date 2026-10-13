@@ -34,3 +34,29 @@
 /* Keep contact-method labels legible on compact iPhone viewports. */
 @media(max-width:740px){.contact-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.radio-inline:last-child{grid-column:1/-1}.radio-inline{min-height:48px}}
 @media(max-width:330px){.contact-options{grid-template-columns:1fr}.radio-inline:last-child{grid-column:auto}}
+
+
+/* About the founder — personal, readable and mobile-first */
+.about-hero{background:linear-gradient(130deg,#f5f1ec,#eaf0f2);padding:76px 0}
+.about-hero-inner{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(230px,.6fr);align-items:center;gap:70px}
+.about-hero h1{margin:15px 0 20px}
+.about-hero .lead{max-width:680px}
+.about-hero-aside{padding:30px;border:1px solid #d9e0e3;border-radius:20px;background:rgba(255,255,255,.75)}
+.about-hero-aside p{font-family:var(--serif);font-size:clamp(23px,2.7vw,32px);line-height:1.28;letter-spacing:-.025em;margin:14px 0 19px}
+.about-signature{font-family:var(--serif);font-style:italic;color:#794653;font-size:25px}
+.about-story-layout{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:76px;align-items:start}
+.about-story{max-width:700px}
+.about-story h2{margin:14px 0 26px}
+.about-story p:not(.small){font-size:17px;line-height:1.82;color:#34404b;margin:0 0 23px}
+.about-story .about-signature{margin:30px 0 0!important}
+.about-story .small{margin:0 0 7px}
+.about-aside{position:sticky;top:102px;background:#f5f4f1;border:1px solid #e0e1de;border-radius:20px;padding:28px}
+.about-aside h3{font-size:26px;margin:11px 0 13px}
+.about-aside p{font-size:15px;line-height:1.65;color:#57636e}
+.about-aside .btn{margin-top:14px;width:100%}
+.about-mini-detail{display:flex;flex-direction:column;gap:4px;border-top:1px solid #d8dddf;padding:14px 0}
+.about-mini-detail span{color:#65717b;font-size:12px}
+.about-mini-detail strong{color:#293845;font-size:15px}
+.home-founder-note{margin:8px 0 0}
+.home-founder-note .eyebrow{display:block;margin-bottom:15px}
+@media(max-width:850px){.about-hero-inner,.about-story-layout{grid-template-columns:1fr;gap:28px}.about-hero{padding:56px 0}.about-hero-aside{padding:22px}.about-aside{position:static}.about-story p:not(.small){font-size:16px;line-height:1.75}}

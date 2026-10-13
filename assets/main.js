@@ -184,7 +184,10 @@
   }
 
   function openApplyModal(role = "") {
-    if (!modal) return;
+    if (!modal) {
+      window.location.assign("index.html?apply=" + encodeURIComponent(role || "1"));
+      return;
+    }
 
     closeNav();
 
@@ -247,80 +250,70 @@
   }
 
   /* =========================
-     Google Apps Script form submit
+     Verified Supabase application submission
+     Public key can be used in browser; table is insert-only for visitors.
      ========================= */
+
+  const PJ_SUPABASE_URL = "https://vvveenntewwtyhnmimal.supabase.co";
+  const PJ_SUPABASE_KEY = "sb_publishable_-ydn9Mgc5B0Sqw4Qh6zfdg_46FQy87z";
 
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const endpoint = window.PJ_FORM_ENDPOINT;
+    if (!form.reportValidity()) return;
 
-    if (!endpoint || endpoint.includes("PASTE_YOUR_GOOGLE_SCRIPT")) {
-      setStatus("The form is not connected yet. Add your Google Apps Script Web App URL in index.html.", "error");
-      return;
-    }
-
-    const submitBtn = form.querySelector("[type='submit']");
     const formData = new FormData(form);
-
     if (formData.get("website")) {
-      setStatus("Application received.", "success");
       form.reset();
+      setStatus("Application received.", "success");
       return;
     }
 
-    const firstName = formData.get("first_name") || "";
-    const lastName = formData.get("last_name") || "";
-    const fullName = `${firstName} ${lastName}`.trim();
-
+    const getText = (field) => String(formData.get(field) || "").trim();
     const payload = {
-      timestamp: new Date().toISOString(),
-      page: window.location.href,
-      source: formData.get("source") || "homepage-popup",
-
-      role: formData.get("role") || "",
-
-      first_name: firstName,
-      last_name: lastName,
-      name: fullName,
-
-      email: formData.get("email") || "",
-      phone: formData.get("phone") || "",
-      whatsapp: formData.get("whatsapp") || "",
-
-      community: formData.get("community") || "",
-      field: formData.get("field") || "",
-      stage: formData.get("stage") || "",
-      goals: formData.get("goals") || "",
-      privacy_ack: formData.get("privacy_ack") || ""
+      role: getText("role"),
+      first_name: getText("first_name"),
+      last_name: getText("last_name"),
+      email: getText("email"),
+      phone: getText("phone") || null,
+      whatsapp: getText("whatsapp") || null,
+      community: getText("community") || null,
+      field: getText("field") || null,
+      stage: getText("stage") || null,
+      goals: getText("goals") || null,
+      privacy_ack: formData.get("privacy_ack") === "yes",
+      source: getText("source") || "website"
     };
 
+    const submitBtn = form.querySelector("[type='submit']");
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = "Submitting...";
     }
-
     setStatus("");
 
     try {
-      await fetch(endpoint, {
+      const response = await fetch(PJ_SUPABASE_URL + "/rest/v1/pj_applications", {
         method: "POST",
-        mode: "no-cors",
+        mode: "cors",
+        credentials: "omit",
         headers: {
-          "Content-Type": "text/plain;charset=utf-8"
+          "apikey": PJ_SUPABASE_KEY,
+          "Content-Type": "application/json",
+          "Prefer": "return=minimal"
         },
         body: JSON.stringify(payload)
       });
 
-      form.reset();
-      setStatus("Application received. We will review it before making any introduction.", "success");
+      if (!response.ok) {
+        throw new Error("Submission rejected (HTTP " + response.status + ")");
+      }
 
-      window.setTimeout(() => {
-        closeApplyModal();
-      }, 1300);
+      form.reset();
+      setStatus("Application saved successfully. We'll review it before making an introduction.", "success");
     } catch (error) {
-      console.error(error);
-      setStatus("Something went wrong. Please try again, or contact us directly.", "error");
+      console.error("Professional Jewess application submission failed:", error);
+      setStatus("We couldn't save your application. Please check your connection and try again.", "error");
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;

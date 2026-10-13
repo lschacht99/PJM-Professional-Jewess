@@ -21,6 +21,28 @@
   });
   $$("a", menu || document.createElement("div")).forEach(a => a.addEventListener("click", closeMenu));
 
+  // The first-round priority window ends at midnight in New York on Nov 9, 2026.
+  // After the cutoff, keep the intake open for later introductions instead of displaying an expired offer.
+  const firstRoundClosed = Date.now() >= Date.parse("2026-11-09T05:00:00Z");
+  if (firstRoundClosed) {
+    $("[data-round-banner]").forEach(banner => {
+      banner.innerHTML = '<div class="round-header">FUTURE MATCHING OPPORTUNITIES</div>' +
+        '<p>The November first-round deadline has passed. You can still apply to be considered for future introductions as the network grows. There is no guarantee of a match.</p>';
+    });
+    $("[data-round-status]").forEach(label => {
+      label.textContent = "Future matching opportunities · Applications open";
+    });
+    $("[data-round-cta]").forEach(link => {
+      link.textContent = "Apply for future introductions ↗";
+    });
+    $("[data-round-desc]").forEach(desc => {
+      desc.textContent = "The first matching-round deadline has passed. New applications are welcome and will be considered for future introductions as the network grows.";
+    });
+    const successText = $("#applicationSuccess p");
+    if (successText) successText.textContent =
+      "Your application has been saved for consideration in future matching opportunities. We will contact you if a suitable next step becomes available. An introduction is not guaranteed.";
+  }
+
   const form = $("#applicationForm");
   if (form) {
     const roleInputs = $$('input[name="role"]', form);

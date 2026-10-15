@@ -266,3 +266,9 @@ body.home-v3{--copper:#b77857;--copper-d:#a16345;--ivory:#faf7f0;--off:#f4ede5;-
 
 /* Thin, geometric vector arrows that look the same on every device. */
 .jm-line-arrow{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;margin-left:.25em;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+
+/* Documentary-style visual breaks between editorial sections. */
+.jm-photo-break{position:relative;margin:0;background:#e8e6df;overflow:hidden;height:clamp(230px,34vw,500px)}
+.jm-photo-break img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:saturate(.9)}
+.jm-photo-break figcaption{position:absolute;bottom:15px;left:max(20px,calc((100vw - 1240px)/2));background:#0e2530ca;color:white;padding:6px 10px;font:500 11px/1.4 var(--sans);max-width:480px}
+@media(max-width:640px){.jm-photo-break{height:225px}.jm-photo-break figcaption{bottom:9px;left:12px;font-size:10px}}

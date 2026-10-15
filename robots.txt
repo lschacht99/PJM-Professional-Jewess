@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://lschacht99.github.io/PJM-Professional-Jewess/sitemap.xml

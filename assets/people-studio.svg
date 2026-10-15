@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 980" role="img" aria-label="Editorial illustration of two women exploring a design studio together">
+<defs><linearGradient id="wall" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#dec7b4"/><stop offset="1" stop-color="#bdbcb1"/></linearGradient><linearGradient id="window" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a8c7c6"/><stop offset="1" stop-color="#e6eee5"/></linearGradient><filter id="shadow"><feGaussianBlur stdDeviation="16"/></filter></defs>
+<rect width="880" height="980" fill="#d9c6b4"/><rect x="44" y="40" width="792" height="890" fill="url(#wall)" stroke="#f8f2e9" stroke-width="2"/>
+<rect x="510" y="108" width="250" height="470" rx="125" fill="#d4ded2" stroke="#f2ece0" stroke-width="15"/><rect x="535" y="137" width="200" height="435" rx="100" fill="url(#window)"/><path d="M635 140V575M535 372H736" stroke="#e6eee5" stroke-width="14"/><path d="M540 570v-120l50-35 35 28 55-50 53 31v146" fill="#9caaa0" opacity=".53"/><path d="M540 570v-66l47-28 45 22 55-46 45 19v99" fill="#688d8f" opacity=".38"/>
+<path d="M78 740H812V922H78Z" fill="#e9d8c8"/><path d="M66 744L766 688L812 786L127 836Z" fill="#f0e4d5"/><path d="M77 747L765 701L791 746L109 795Z" fill="#9d6a50" opacity=".23"/>
+<!-- Rolled plans and prototype on working table -->
+<path d="M382 670l165-28 87 37-156 38Z" fill="#f9f7ef" stroke="#948f7e" stroke-width="3"/><path d="M410 677l88-17 91 28-88 17z" fill="none" stroke="#678c8a" stroke-width="3"/><path d="M464 667l31 26m-12-31 31 26" stroke="#a7b5ae" stroke-width="2"/>
+<path d="M559 608l58-22 65 29-60 21z" fill="#d4c3ac" stroke="#8a785f" stroke-width="3"/><path d="M579 602v-58l59-22v62" fill="#f8f3e7" stroke="#8a785f" stroke-width="3"/><path d="M638 521l44 20v74l-44-30z" fill="#aec7bf" stroke="#8a785f" stroke-width="3"/><path d="M577 543l58-22 47 20-62 23z" fill="#fff8eb" stroke="#8a785f" stroke-width="3"/>
+<path d="M679 756l62-20" stroke="#a56751" stroke-width="6" stroke-linecap="round"/><path d="M677 760l-17 8 10-17z" fill="#b67b59"/>
+<!-- Person at left -->
+<path d="M48 910V540q20-65 84-84 68-17 115 21 39 39 49 101l14 335Z" fill="#805c57"/>
+<path d="M136 604c-10-28-23-54-14-93 8-38 41-65 83-64 53 4 82 44 69 100-10 41-34 65-60 81z" fill="#342f36"/>
+<ellipse cx="200" cy="550" rx="64" ry="86" fill="#c98f73"/><path d="M143 531q-13-66 43-88 75-18 93 51-30-14-53-40-18 35-83 43" fill="#342f36"/><path d="M257 593q14 18 39 6" stroke="#b47b62" stroke-width="5" fill="none"/><path d="M216 571q11 7 20 0" stroke="#834f40" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M146 616q-41-13-83 43l-29 255h309l-35-204q-18-68-82-90l-30 45z" fill="#b66c50"/>
+<path d="M285 713q69 6 123 43" stroke="#c98f73" stroke-width="28" fill="none" stroke-linecap="round"/><path d="M406 755q19-3 31 5" stroke="#c98f73" stroke-width="16" fill="none" stroke-linecap="round"/>
+<!-- Person at right -->
+<path d="M695 914V663q-42-43-81-48-78-11-119 67l-53 232Z" fill="#2f5554"/><path d="M602 637q-20-30-12-81 4-46 45-68 47-26 92 11 37 33 23 90-9 34-34 53" fill="#3e302f"/><ellipse cx="668" cy="562" rx="58" ry="77" fill="#a96c55"/><path d="M610 559q-5-69 62-88 72 7 80 80-33-8-59-33-44 30-83 41z" fill="#3b2f2c"/><path d="M679 589q10 7 19-1" stroke="#6d463b" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M614 626q-39 9-63 43-22 33-52 242h290l-27-234q-17-55-61-62l-36 44z" fill="#426f6c"/>
+<path d="M585 718q-59-30-106-26" stroke="#a96c55" stroke-width="27" fill="none" stroke-linecap="round"/><path d="M477 694q-21 5-37 20" stroke="#a96c55" stroke-width="15" stroke-linecap="round" fill="none"/>
+<!-- Floating linen story note -->
+<g transform="rotate(-5 205 176)"><rect x="81" y="114" width="322" height="176" fill="#faf4e8" opacity=".96"/><path d="M108 158H362M108 184H312M108 210H348" stroke="#bdaca0" stroke-width="2"/><text x="109" y="256" font-size="24" font-family="Georgia,serif" fill="#6b6158" font-style="italic">The first step is seeing it.</text></g>
+<circle cx="782" cy="160" r="8" fill="#a86751"/><path d="M774 160h16m-8-8v16" stroke="#f4eade" stroke-width="1.5"/>
+<text x="62" y="961" font-family="Arial,sans-serif" font-size="14" letter-spacing="3" fill="#6c5147">ILLUSTRATION · PROFESSIONAL DISCOVERY</text></svg>

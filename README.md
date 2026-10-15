@@ -10,5 +10,3 @@ Public website for a developing educational and professional-experience initiati
 - Legal and tax-exempt status are not implied or asserted.
 - Historical version preserved on `archive-professional-jewess-2026-10-14`. Existing database records have not been removed.
 - Site owners should add a dedicated contact mailbox, review RLS/spam protection, legal/privacy language, and educational documents before promoting widely.
-
-Deployment note: site refresh committed October 2026.

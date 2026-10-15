@@ -272,3 +272,57 @@ body.home-v3{--copper:#b77857;--copper-d:#a16345;--ivory:#faf7f0;--off:#f4ede5;-
 .jm-photo-break img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 45%;filter:saturate(.9)}
 .jm-photo-break figcaption{position:absolute;bottom:15px;left:max(20px,calc((100vw - 1240px)/2));background:#0e2530ca;color:white;padding:6px 10px;font:500 11px/1.4 var(--sans);max-width:480px}
 @media(max-width:640px){.jm-photo-break{height:225px}.jm-photo-break figcaption{bottom:9px;left:12px;font-size:10px}}
+
+/* A clearer, quieter editorial rhythm */
+.jm-simp-section{padding:clamp(48px,6vw,86px) 0;background:var(--paper)}
+.jm-simp-heading{margin:0 0 30px;max-width:670px}
+.jm-simp-heading h2,.jm-simp-copy h2,.jm-simp-cta h2,.jm-simp-about h2{font:450 clamp(31px,3.8vw,54px)/1.14 var(--serif);letter-spacing:-.045em;color:var(--navy);margin:10px 0 12px}
+.jm-simp-heading p{font-size:16px;color:var(--muted);max-width:520px}
+.jm-simp-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.jm-simp-tile{text-decoration:none;color:inherit;background:var(--ivory);display:block}
+.jm-simp-tile>img{width:100%;height:clamp(200px,27vw,350px);display:block;object-fit:cover}
+.jm-simp-tile>div{padding:25px 28px 30px}
+.jm-simp-tile small,.jm-simp-three small{font:700 10px var(--sans);text-transform:uppercase;letter-spacing:.13em;color:#8f6048}
+.jm-simp-tile h3,.jm-simp-three h3{font:450 clamp(26px,2.4vw,34px)/1.17 var(--serif);letter-spacing:-.03em;margin:10px 0}
+.jm-simp-tile p,.jm-simp-three p{font-size:15px;line-height:1.56;color:#596970;margin:0 0 19px}
+.jm-simp-tile>div>span,.jm-simp-three a,.jm-simp-foot a,.jm-simp-link{font:700 13px var(--sans);color:var(--navy);text-decoration:none}
+.jm-simp-foot{display:flex;justify-content:space-between;gap:18px;margin-top:22px;font-size:12px;color:var(--muted)}
+.jm-simp-split{display:grid;grid-template-columns:1fr 1fr;min-height:400px;background:#e8ebe6}
+.jm-simp-image{position:relative;min-height:300px;background:#dadbd5}
+.jm-simp-image img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.jm-simp-copy{padding:clamp(32px,5.5vw,78px);display:flex;flex-direction:column;justify-content:center;align-items:start}
+.jm-simp-copy p{font-size:16px;line-height:1.68;color:#52646b;max-width:490px;margin:8px 0 22px}
+.jm-simp-reverse{background:#f0ede5}.jm-simp-reverse .jm-simp-image{order:2}
+.jm-simp-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.jm-simp-three article{background:var(--ivory)}
+.jm-simp-three article>img{width:100%;height:clamp(180px,19vw,260px);display:block;object-fit:cover}
+.jm-simp-three article>div{padding:23px}
+.jm-simp-three h3{font-size:29px}
+.jm-simp-center{text-align:center;max-width:620px;margin:44px auto 0}
+.jm-simp-center p{font-size:16px;line-height:1.58;margin-bottom:19px}
+.jm-simp-center small{display:block;margin-top:14px;font-size:12px;color:var(--muted)}
+.jm-simp-cta{background:#e4eae6;padding:68px 0}
+.jm-simp-cta p{font-size:16px;margin:12px 0 0}
+.jm-simp-types{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.jm-simp-types>div{padding:24px}
+.jm-simp-types>div+div{border-left:1px solid var(--line)}
+.jm-simp-types h3{font:450 26px var(--serif);margin:0 0 8px}
+.jm-simp-types p{font-size:14px;color:var(--muted);line-height:1.6;margin:0}
+.jm-simp-note{font-size:13px!important;color:var(--muted)!important}
+.jm-simp-about{display:grid;grid-template-columns:1fr 1fr;gap:65px}
+.jm-simp-about h2{font-size:clamp(29px,3vw,42px)}
+.jm-simp-about p{font-size:15px;line-height:1.7;color:#53666d}
+.jm-quiet-hero .v4-hero-text h1{margin-bottom:22px}
+.nav-links>a[href="applied.html"]{display:none}
+@media(max-width:790px){
+.jm-simp-tiles,.jm-simp-three,.jm-simp-split,.jm-simp-about{grid-template-columns:1fr}
+.jm-simp-reverse .jm-simp-image{order:0}
+.jm-simp-image{min-height:245px}
+.jm-simp-copy{padding:38px 24px 45px}
+.jm-simp-tile>img,.jm-simp-three article>img{height:220px}
+.jm-simp-foot{flex-direction:column}
+.jm-simp-types{grid-template-columns:1fr}
+.jm-simp-types>div{padding:20px 0}
+.jm-simp-types>div+div{border:0;border-top:1px solid var(--line)}
+.jm-simp-cta{padding:50px 0}
+}

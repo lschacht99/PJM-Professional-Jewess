@@ -262,3 +262,7 @@ body.home-v3{--copper:#b77857;--copper-d:#a16345;--ivory:#faf7f0;--off:#f4ede5;-
 @media(max-width:380px){.v5-catalog-grid,.v5-interest-choices{grid-template-columns:1fr}.v5-program img{height:200px}}
 
 .jm-honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}.jm-privacy-consent{display:flex;gap:11px;align-items:start;margin:21px 0 18px;font-size:14px;line-height:1.55;color:#263e47}.jm-privacy-consent input{flex:0 0 auto;margin-top:5px}.jm-privacy-consent a{color:#8e5738;text-decoration:underline}.form-state{min-height:24px}.form-state.visible{margin-top:12px;font-weight:600}
+
+
+/* Thin, geometric vector arrows that look the same on every device. */
+.jm-line-arrow{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;margin-left:.25em;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;overflow:visible}

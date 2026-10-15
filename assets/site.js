@@ -95,3 +95,47 @@ finally{button.disabled=false;button.innerHTML=label;if(status){status.classList
 });
 }
 })();
+
+
+// Replace font-dependent Unicode arrow glyphs with crisp, consistent SVG line icons.
+(() => {
+  const paths = {
+    '↗':'M5.5 18.5 18.5 5.5 M8 5.5 H18.5 V16',
+    '→':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '➝':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '➜':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '➔':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '➞':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '➤':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '⇒':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18',
+    '⟶':'M4.5 12 H19.5 M13.5 6 L19.5 12 L13.5 18'
+  };
+  const glyphs=/([↗→➝➜➔➞➤⇒⟶])/g, ns='http://www.w3.org/2000/svg';
+  const render=()=>{
+    const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),nodes=[];
+    while(walker.nextNode()){
+      const node=walker.currentNode;
+      if(!/[↗→➝➜➔➞➤⇒⟶]/.test(node.nodeValue||''))continue;
+      if(node.parentElement?.closest('script,style,textarea,pre,code,svg,[contenteditable="true"]'))continue;
+      nodes.push(node);
+    }
+    nodes.forEach(node=>{
+      const fragment=document.createDocumentFragment();
+      (node.nodeValue||'').split(glyphs).forEach(part=>{
+        if(!part)return;
+        if(!paths[part]){fragment.appendChild(document.createTextNode(part));return;}
+        const svg=document.createElementNS(ns,'svg');
+        svg.setAttribute('viewBox','0 0 24 24');
+        svg.setAttribute('class','jm-line-arrow');
+        svg.setAttribute('aria-hidden','true');
+        svg.setAttribute('focusable','false');
+        const path=document.createElementNS(ns,'path');
+        path.setAttribute('d',paths[part]);svg.appendChild(path);
+        fragment.appendChild(svg);
+      });
+      node.replaceWith(fragment);
+    });
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render,{once:true});
+  else render();
+})();

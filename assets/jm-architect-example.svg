@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title2 desc2"><title id="title2">An architect explains plans to a younger student</title><desc id="desc2">Stylized hand-painted illustration with an older Jewish woman architect wearing glasses and a young man in a kippah reviewing drawings.</desc><defs><filter id="paper"><feTurbulence baseFrequency=".75" numOctaves="2" seed="8" result="n"/><feColorMatrix in="n" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".10"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter></defs>
+<g filter="url(#paper)" stroke-linecap="round" stroke-linejoin="round">
+<path d="M50 103Q113 40 240 67L340 93Q520 35 590 116L609 288Q506 372 332 368L143 378Q33 308 50 103Z" fill="#F1E2CD"/>
+<path d="M67 320l505-7 23 29-534 10Z" fill="#E7B15B" stroke="#274361" stroke-width="4"/>
+<path d="M75 349l-4 60m509-65 7 62" fill="none" stroke="#274361" stroke-width="10"/>
+<!-- mentor older woman left -->
+<path d="M90 244Q95 177 153 166L209 170Q261 187 266 259L264 328L88 330Z" fill="#244B85" stroke="#253A53" stroke-width="4"/>
+<path d="M148 165l4 32 40 19 31-29-16-31Z" fill="#C99167" stroke="#253A53" stroke-width="3"/>
+<path d="M112 113Q117 69 172 64Q227 68 232 135L218 177Q191 199 151 182Q115 173 112 113" fill="#D7A67F" stroke="#253A53" stroke-width="4"/>
+<path d="M115 119Q99 55 168 56Q233 45 239 127L225 121Q220 84 189 84L173 95L137 91L125 124" fill="#665A55" stroke="#253A53" stroke-width="4"/>
+<path d="M124 101q5-18 15-24m85 26q0-19-14-28" fill="none" stroke="#E2D6C6" stroke-width="6"/>
+<ellipse cx="156" cy="135" rx="23" ry="17" fill="none" stroke="#253A53" stroke-width="3"/><ellipse cx="204" cy="131" rx="20" ry="17" fill="none" stroke="#253A53" stroke-width="3"/><path d="M179 132l5-2" stroke="#253A53" stroke-width="3"/>
+<path d="M154 132l8 1m38-5 6 1" stroke="#253A53" stroke-width="4"/><path d="M180 134l-8 22 10 4" fill="none" stroke="#A27056" stroke-width="3"/>
+<path d="M158 164q15 10 31-1" stroke="#855240" stroke-width="3" fill="none"/><path d="M133 155l-7 10m91-15 5 8m-70 22 12 5m39-10-8 10" stroke="#A7765B" stroke-width="2" fill="none"/>
+<path d="M104 227q-14 35-5 65l66 11 8-34-47-5 13-24" fill="#244B85" stroke="#253A53" stroke-width="4"/>
+<!-- younger man right -->
+<path d="M379 250Q394 207 442 199L511 201Q551 215 565 265L560 326H381Z" fill="#8DAA97" stroke="#253A53" stroke-width="4"/>
+<path d="M448 196l-5 30 33 14 24-21-9-26" fill="#ECB693" stroke="#253A53" stroke-width="3"/>
+<path d="M407 143Q404 103 453 94Q518 99 524 155l-15 44q-27 19-63 10Q413 190 407 143" fill="#ECB693" stroke="#253A53" stroke-width="4"/>
+<path d="M407 136q-13-55 44-62Q508 72 527 127L514 123Q480 96 463 108L438 107 413 143" fill="#65422F" stroke="#253A53" stroke-width="4"/>
+<path d="M433 83Q451 61 477 65Q501 70 511 87Z" fill="#1D478B" stroke="#253A53" stroke-width="4"/>
+<path d="M424 153q9-9 22-1m38-4q12-8 24 2" fill="none" stroke="#65422F" stroke-width="3"/><path d="M427 157q9 7 19 0m40-4q11 8 19-1" stroke="#253A53" stroke-width="3" fill="none"/>
+<circle cx="440" cy="157" r="3" fill="#253A53"/><circle cx="500" cy="153" r="3" fill="#253A53"/>
+<path d="M471 153l-4 19 7 2m-23 17q18 9 32-5" stroke="#986C58" stroke-width="3" fill="none"/>
+<!-- building model and drawing -->
+<path d="M220 300l146-19 93 38-158 25Z" fill="#FFF9ED" stroke="#253A53" stroke-width="4"/>
+<path d="M246 306l85-11m-70 22 87-12m-55 23 118-11" stroke="#1D478B" stroke-width="3"/>
+<path d="M308 290l7-72 48 9 1 65Z" fill="#F8F4ED" stroke="#253A53" stroke-width="4"/>
+<path d="M332 227v62m18-60v60m-35-27h45" stroke="#E56B51" stroke-width="4"/>
+<path d="M215 279q15-26 29-26l21-29q7-11 13-7q8 6-4 22l-12 23 15-10q10-6 12 1q2 7-13 17l-29 23" fill="#D7A67F" stroke="#253A53" stroke-width="3"/>
+<path d="M429 284q3-19 10-20 10-1 9 16l16-11q10-4 11 3q-2 13-25 27" fill="#ECB693" stroke="#253A53" stroke-width="3"/>
+</g></svg>

@@ -73,8 +73,8 @@ try{
 if(form.closest('#inquiry')){
 const first=limit(form.querySelector('#pname')?.value,150),org=limit(form.querySelector('#porg')?.value,180),email=limit(form.querySelector('#pemail')?.value,254);
 const role=limit(form.querySelector('#prole')?.value,120),loc=limit(form.querySelector('#ploc')?.value,120),detail=limit(form.querySelector('#pmessage')?.value,750);
-const types=selected(form,'contribution_type');
-await post('pj_inquiries',{full_name:first,email,message:limit(`[Partnership inquiry] Organization: ${org}. Role: ${role}. Location: ${loc}. Contribution interests: ${types.join(', ')}. Details: ${detail}`,1950),source:'jewish-mutual-partner-2026'});
+const types=selected(form,'contribution_type'),settings=selected(form,'meeting_format');
+await post('pj_inquiries',{full_name:first,email,message:limit(`[Partnership inquiry] Organization: ${org}. Role: ${role}. Location: ${loc}. Contribution interests: ${types.join(', ')}. Meeting options: ${settings.join(', ')}. Details: ${detail}`,1950),source:'jewish-mutual-partner-2026'});
 }else{
 const first=val(form,'jfirst'),last=val(form,'jlast'),email=val(form,'jemail'),role=val(form,'participation_role');
 const city=val(form,'jcity'),fields=selected(form,'field_interest'),other=val(form,'jfield'),goals=val(form,'jgoal'),suggestion=val(form,'jsuggest');

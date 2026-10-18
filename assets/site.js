@@ -70,7 +70,10 @@ const consent=form.elements.namedItem('privacy_ack');if(!consent?.checked){if(st
 button.disabled=true;const label=button.innerHTML;button.textContent='Sending…';
 if(status){status.textContent='Saving your message…';status.classList.add('visible')}
 try{
-if(form.closest('#inquiry')){
+if(form.hasAttribute('data-contact-form')){
+const name=limit(form.querySelector('#cname')?.value,150),email=limit(form.querySelector('#cemail')?.value,254),subject=limit(form.querySelector('#csubject')?.value,120),message=limit(form.querySelector('#cmessage')?.value,1400);
+await post('pj_inquiries',{full_name:name,email,message:limit('[Website contact: '+subject+'] '+message,1950),source:'jewish-mutual-contact-2026'});
+}else if(form.closest('#inquiry')){
 const first=limit(form.querySelector('#pname')?.value,150),org=limit(form.querySelector('#porg')?.value,180),email=limit(form.querySelector('#pemail')?.value,254);
 const role=limit(form.querySelector('#prole')?.value,120),loc=limit(form.querySelector('#ploc')?.value,120),detail=limit(form.querySelector('#pmessage')?.value,750);
 const types=selected(form,'contribution_type'),settings=selected(form,'meeting_format');
@@ -94,4 +97,13 @@ form.reset();if(status)status.textContent='Thank you—your information has been
 finally{button.disabled=false;button.innerHTML=label;if(status){status.classList.add('visible');status.setAttribute('tabindex','-1');status.focus()}}
 });
 }
+})();
+
+/* Shared interest-selection experience; carries multiple choices to the short form. */
+(()=>{'use strict';
+const explorer=document.querySelector('[data-jm-explorer]');
+if(explorer){const chips=[...explorer.querySelectorAll('[data-jm-field]')],link=explorer.querySelector('.jm-explorer-next'),state=explorer.querySelector('.jm-explorer-state');function update(){const fields=chips.filter(el=>el.getAttribute('aria-pressed')==='true').map(el=>el.dataset.jmField);link.href='join.html?role=seek'+(fields.length?'&fields='+encodeURIComponent(fields.join('|')):'');state.textContent=fields.length?fields.length+' '+(fields.length===1?'interest selected':'interests selected')+'. You can change these on the next page.':'You can select more than one.';link.firstChild.textContent=fields.length?'Continue with '+fields.length+' '+(fields.length===1?'interest':'interests')+' ':'Continue with my interests '}
+chips.forEach(el=>el.addEventListener('click',()=>{el.setAttribute('aria-pressed',String(el.getAttribute('aria-pressed')!=='true'));update()}));update()}
+const field=document.querySelector('#jfield');
+if(field){const params=new URLSearchParams(location.search),single=params.get('interest'),multi=(params.get('fields')||'').split('|').filter(Boolean);const chosen=multi.length?multi:single?[single]:[];if(chosen.length){field.value=chosen.join(', ').slice(0,140);const holder=document.querySelector('#formTopic'),label=document.querySelector('#formTopicLabel');if(holder&&label){holder.hidden=false;label.textContent=chosen.join(', ')}}}
 })();

@@ -1,0 +1,40 @@
+/* Shared visual identity — one navigation/footer and a restrained editorial system. */
+.jm-shared-header{background:#F8F4ED!important;border-bottom:1px solid #21478022!important}
+.jm-shared-header .header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.jm-shared-header .brand{display:block;padding:0;line-height:1}
+.jm-shared-header .brand img{display:block;width:110px;height:76px;object-fit:contain}
+.jm-site-nav{display:flex;gap:14px;align-items:center}
+.jm-site-nav a:not(.header-pro){font:700 12px 'DM Sans',Arial,sans-serif;color:#1D478B;white-space:nowrap}
+.jm-site-nav .jm-nav-extra{display:none}
+.jm-site-nav .header-pro{font:700 12px 'DM Sans',Arial,sans-serif;color:#1D478B;border:1.5px solid #1D478B;border-radius:30px;padding:10px 11px;white-space:nowrap}
+.jm-site-nav a:hover{text-decoration:underline;text-underline-offset:4px}
+.jm-shared-footer{padding:26px 0;background:#1D478B;color:white}
+.jm-shared-footer .foot-inner{display:flex;gap:14px;justify-content:space-between;flex-wrap:wrap;font-size:12px}
+.jm-shared-footer nav{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.jm-shared-footer a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.jm-sketch-panel{min-height:165px;background:#f1e4d4;display:flex;justify-content:center;align-items:center;flex-direction:column;position:relative;overflow:hidden}
+.jm-sketch-panel:after{content:'';width:76%;height:9px;background:var(--panel-accent);border-radius:63% 21% 45% 19%;transform:rotate(-4deg);opacity:.8;position:absolute;bottom:23px}
+.jm-sketch-number{position:absolute;top:14px;left:21px;font:500 13px 'DM Sans',sans-serif;color:#1D478B8c}
+.jm-sketch-word{font:italic 600 clamp(23px,4vw,36px) 'Source Serif 4',Georgia,serif;color:#1D478B;max-width:80%;text-align:center;transform:rotate(-3deg);letter-spacing:-.025em}
+.jm-example-card:nth-child(2) .jm-sketch-panel{background:#e0eadf}
+.jm-example-card:nth-child(3) .jm-sketch-panel{background:#f3e5cd}
+.jm-example-card:nth-child(4) .jm-sketch-panel{background:#f3dfd5}
+.jm-examples-heading p{margin-bottom:10px}
+.jm-interest-section{background:#f5eee4;padding:58px 0 70px;scroll-margin-top:18px}
+.jm-interest-intro h2{font-size:clamp(34px,8.5vw,54px);line-height:1.08;margin:0 0 15px}
+.jm-interest-intro>p:not(.eyebrow){font-size:15px;line-height:1.55;color:#425b70;max-width:530px;margin-bottom:14px}
+.jm-interest-intro .jm-explorer-note{font-size:12px!important;color:#77818b!important}
+.jm-interest-layout{display:grid;grid-template-columns:1fr;gap:25px}
+.jm-interest-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.jm-interest-options button{border:1.5px solid #b7bcba;background:#fffaf3;border-radius:10px;padding:18px 11px;font:600 15px/1.2 'Source Serif 4',Georgia,serif;text-align:left;min-height:86px;cursor:pointer;color:#1D478B;transition:border-color .15s,background .15s}
+.jm-interest-options button:hover{border-color:#1D478B}
+.jm-interest-options button[aria-pressed="true"]{background:#d6e1cb;border:2px solid #1D478B;box-shadow:inset 4px 0 #E56B51}
+.jm-explorer-next{display:flex;width:100%;margin-top:16px;gap:12px}
+.jm-explorer-state{margin:11px 0 0;font-size:12px;color:#516478;min-height:21px}
+.jm-examples .jm-example-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.hero-people img{image-rendering:auto;box-shadow:none!important}
+.hero-people .people-caption{color:#1D478B;font-size:14px}
+@media(min-width:730px){.jm-site-nav{gap:24px}.jm-site-nav .jm-nav-extra{display:inline}.jm-site-nav .header-pro{padding:11px 18px}.jm-shared-header .brand img{width:142px;height:91px}.jm-examples .jm-example-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.jm-interest-layout{grid-template-columns:.78fr 1.22fr;gap:55px;align-items:start}}
+@media(min-width:1060px){.jm-interest-options{grid-template-columns:repeat(3,minmax(0,1fr))}.jm-interest-options button{min-height:94px}.jm-sketch-panel{min-height:184px}}
+@media(max-width:400px){.jm-site-nav{gap:8px}.jm-site-nav a:not(.header-pro){font-size:11px}.jm-site-nav .header-pro{font-size:11px;padding:9px}.jm-interest-options button{font-size:14px;min-height:80px}}
+.join-form select{display:block;width:100%;min-height:48px;padding:12px;border:1.5px solid #B7BDC3;border-radius:7px;font:14px 'DM Sans',sans-serif;background:#fff;color:#273F5A}

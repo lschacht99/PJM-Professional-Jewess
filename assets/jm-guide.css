@@ -1,0 +1,74 @@
+/* Jewish life explained: accessible, editorial, mobile-first. */
+.jg-main{background:#F8F4ED;color:#41586d}
+.jg-hero{background:#F2EADC;padding:46px 0 58px}
+.jg-hero-grid{display:grid;gap:32px;grid-template-columns:minmax(0,1fr)}
+.jg-back{display:inline-flex;align-items:center;font-size:12px;font-weight:700;color:#1D478B;margin-bottom:32px}
+.jg-back svg{margin-left:0;margin-right:7px}
+.jg-hero h1{font:600 clamp(43px,10.5vw,75px)/1.04 'Source Serif 4',Georgia,serif;letter-spacing:-.05em;color:#1D478B;max-width:750px;margin:0 0 20px}
+.jg-hero h1 em{color:#C9624C;font-weight:500}
+.jg-lead{font-size:clamp(16px,4vw,19px);line-height:1.65;max-width:700px;margin:0}
+.jg-hero-aside{max-width:470px;border-top:2px solid #1D478B;padding-top:20px}
+.jg-hero-aside h2{font:600 25px/1.2 'Source Serif 4',Georgia,serif;margin:0 0 11px}
+.jg-hero-aside p{font-size:13px;line-height:1.7;margin:0 0 10px}
+.jg-search{background:#E4EDE2;padding:32px 0}
+.jg-search-heading{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:5px 15px;margin-bottom:14px}
+.jg-search-heading label{font:600 clamp(26px,7vw,33px)/1.2 'Source Serif 4',Georgia,serif;color:#1D478B}
+.jg-search-heading p{font-size:12px;color:#617586;margin:0}
+.jg-search input{display:block;width:100%;max-width:750px;min-height:54px;min-width:0;border:1.5px solid #8295A6;border-radius:8px;padding:12px 16px;color:#1D478B;background:#FFFDF8;font-size:16px}
+.jg-search input::placeholder{color:#708293}
+.jg-search-below{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;margin-top:17px}
+.jg-search-below nav{display:flex;flex-wrap:wrap;gap:8px}
+.jg-search-below nav a{border-radius:30px;border:1px solid #8C9EAC;color:#1D478B;font-weight:700;font-size:11px;padding:9px 13px}
+.jg-search-below nav a:hover{background:#fff}
+.jg-search-below p{font-size:11px;color:#607486;margin:0}
+.jg-content{padding-bottom:72px}
+.jg-group{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);padding:53px 0 37px;scroll-margin-top:20px}
+.jg-group+.jg-group{border-top:1px solid #1D478B25}
+.jg-number{font-size:11px;color:#C45E49;letter-spacing:.1em;font-weight:700}
+.jg-group-heading h2{font:600 clamp(31px,8vw,42px)/1.12 'Source Serif 4',Georgia,serif;letter-spacing:-.04em;color:#1D478B;margin:12px 0}
+.jg-group-heading p{font-size:13px;line-height:1.7;max-width:300px;margin:0;color:#607181}
+.jg-item{border-top:1px solid #1D478B40;scroll-margin-top:15px}
+.jg-item:last-child{border-bottom:1px solid #1D478B40}
+.jg-item summary{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;list-style:none;cursor:pointer;padding:22px 0;color:#1D478B}
+.jg-item summary::-webkit-details-marker{display:none}
+.jg-item summary::marker{content:''}
+.jg-item summary>span:first-child{font:600 clamp(22px,5.7vw,28px)/1.27 'Source Serif 4',Georgia,serif;letter-spacing:-.025em}
+.jg-plus{display:block;flex:0 0 23px;width:23px;height:23px;border:1px solid #1D478B64;border-radius:50%;position:relative;margin-top:2px}
+.jg-plus:before,.jg-plus:after{content:'';position:absolute;height:1px;left:6px;right:6px;top:11px;background:#1D478B}
+.jg-plus:after{transform:rotate(90deg)}
+.jg-item[open] .jg-plus:after{transform:none}
+.jg-answer{padding:0 28px 25px 0;max-width:770px}
+.jg-answer>p{font-size:14px;line-height:1.8;margin:0 0 17px}
+.jg-tip{padding:17px 19px;background:#F0E7D9;border-left:3px solid #DF6B54;margin:14px 0}
+.jg-tip strong{display:block;color:#1D478B;font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+.jg-tip p{font-size:13px;line-height:1.7;margin:7px 0 0}
+.jg-reference a{font-size:12px;font-weight:700;color:#1D478B;text-decoration:underline;text-underline-offset:4px}
+.jg-reference svg{width:12px;height:12px}
+.jg-no-matches{font-size:15px;padding:30px 0}
+.jg-letters{padding:58px 0;background:#DDE8DC}
+.jg-letters-layout{display:grid;gap:30px}
+.jg-letters h2{font:600 clamp(33px,8vw,48px)/1.1 'Source Serif 4',Georgia,serif;letter-spacing:-.035em;color:#1D478B;margin:0 0 15px}
+.jg-letters p:not(.eyebrow){font-size:14px;line-height:1.65;margin:0;max-width:560px}
+.jg-letters-links{display:flex;flex-direction:column;gap:20px;justify-content:center}
+.jg-letters-links .button{font-size:13px}
+.jg-letters-links>a:not(.button){font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px;color:#1D478B;align-self:center}
+.jg-disclaimer{padding:36px 0}
+.jg-disclaimer p{font-size:12px;line-height:1.8;color:#637486;max-width:940px;margin:0 0 12px}
+.jg-disclaimer a{color:#1D478B;text-decoration:underline;text-underline-offset:4px}
+.jm-r-guide-bar{background:#E3EADF;padding:18px 0;border-bottom:1px solid #1D478B26}
+.jm-r-guide-bar .container{width:calc(100% - 38px);max-width:1160px;margin-inline:auto}
+.jm-r-guide-bar-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 30px}
+.jm-r-guide-bar-label{font-size:11px;letter-spacing:.1em;font-weight:700;color:#1D478B}
+.jm-r-guide-bar-links{display:flex;align-items:center;flex-wrap:wrap;gap:10px 23px}
+.jm-r-guide-bar-links a{font-size:12px;line-height:1.5;font-weight:700;color:#1D478B!important;text-decoration:underline;text-underline-offset:4px}
+.jm-r-guide-bar-links svg{width:12px;height:12px;margin-left:5px}
+@media(min-width:840px){
+.jg-hero{padding:80px 0 88px}.jg-hero-grid{grid-template-columns:1.6fr .8fr;gap:75px}
+.jg-group{grid-template-columns:minmax(210px,.45fr) minmax(0,1fr);gap:70px;padding:70px 0 44px}
+.jg-content{padding-bottom:110px}.jg-letters{padding:78px 0}
+.jg-letters-layout{grid-template-columns:1.15fr .8fr;gap:60px}
+}
+@media(max-width:420px){
+.jg-search input{font-size:14px}.jg-hero{padding-top:38px}
+.jm-r-guide-bar-inner{align-items:flex-start}.jm-r-guide-bar-links{flex-direction:column;align-items:flex-start}
+}

@@ -72,3 +72,5 @@
 .jg-search input{font-size:14px}.jg-hero{padding-top:38px}
 .jm-r-guide-bar-inner{align-items:flex-start}.jm-r-guide-bar-links{flex-direction:column;align-items:flex-start}
 }
+/* Filtering: explicit hidden states override group grid display on all viewports. */
+.jg-main .jg-group[hidden],.jg-main .jg-item[hidden],.jg-main .jg-no-matches[hidden]{display:none!important}

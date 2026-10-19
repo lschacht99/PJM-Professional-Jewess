@@ -92,3 +92,23 @@
 .jg-search-below nav{row-gap:9px}
 .jg-main .jg-group[hidden],.jg-main .jg-item[hidden],.jg-main .jg-no-matches[hidden]{display:none!important}
 @media(min-width:840px){.jg-research-note{padding:34px 0 38px}.jg-research-note .wrap{grid-template-columns:minmax(160px,.32fr) minmax(0,1fr);gap:65px}.jg-popular>span{flex:0 0 auto;margin-right:5px}}
+
+/* Unified Jewish Life & Work integration */
+.jg-audience-chooser{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 26px}
+.jg-audience-chooser>a{display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding:22px 21px;background:#FFFCF6;border:1px solid #B7C5C2;border-radius:12px;text-decoration:none;color:#355575;transition:border-color .16s,transform .16s}
+.jg-audience-chooser>a:hover{border-color:#1D478B;transform:translateY(-2px)}
+.jg-audience-chooser>a:focus-visible{outline:3px solid #E56B51;outline-offset:3px}
+.jg-audience-chooser .jg-audience-label{font:700 10px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.095em;color:#A65142}
+.jg-audience-chooser strong{font:600 clamp(23px,5.4vw,28px)/1.18 'Source Serif 4',Georgia,serif;letter-spacing:-.025em;color:#1D478B}
+.jg-audience-chooser>a>span:last-child{font:400 12px/1.6 'DM Sans',Arial,sans-serif;color:#5B6E7B}
+.jg-further-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px}
+.jg-further-links a{display:inline-block}
+.jm-r-life-spotlight{background:#E4EDE2;padding:45px 0 49px;border-bottom:1px solid #D3E0D4}
+.jm-r-life-layout{display:grid;grid-template-columns:1fr;gap:23px}
+.jm-r-life-spotlight h2{font:600 clamp(30px,7.5vw,44px)/1.12 'Source Serif 4',Georgia,serif;letter-spacing:-.035em;color:#1D478B;margin:10px 0 15px}
+.jm-r-life-spotlight p:not(.jm-r-eyebrow){font:400 14px/1.73 'DM Sans',Arial,sans-serif;max-width:660px;margin:0;color:#4B6374}
+.jm-r-life-action{display:flex;flex-direction:column;align-items:flex-start;gap:9px;justify-content:center}
+.jm-r-life-action>span{font:700 10px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:.05em;color:#49677B}
+.jm-r-life-action .button{margin-top:11px;text-decoration:none}
+@media(min-width:720px){.jg-audience-chooser{grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px}.jm-r-life-layout{grid-template-columns:minmax(0,1.3fr) minmax(215px,.68fr);gap:60px;align-items:center}.jm-r-life-spotlight{padding:56px 0 62px}}
+@media(prefers-reduced-motion:reduce){.jg-audience-chooser>a{transition:none}}

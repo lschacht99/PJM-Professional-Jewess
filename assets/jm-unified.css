@@ -83,13 +83,13 @@
 .jm-hero-editorial .hero-intro{font-size:clamp(18px,4.5vw,22px);line-height:1.55;max-width:700px;margin-bottom:10px}
 .jm-hero-editorial .hero-next{font-size:15px;max-width:640px}
 .jm-hero-editorial .hero-actions{max-width:540px}
-.jm-hero-editorial .small-status{max-width:670px;margin-top:23px}
-.jm-hero-methods{border-top:1px solid #1D478B33;display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:54px;padding:17px 0 0;color:#1D478B;font-size:11px;font-weight:700;line-height:1.4;letter-spacing:.055em;text-transform:uppercase}
-.jm-hero-methods span{display:inline-flex;align-items:center;white-space:nowrap}
-.jm-hero-methods span+span:before{content:'·';margin-right:16px;font-weight:700;color:#CB684E}
-@media(min-width:800px){.hero.jm-hero-editorial{padding:91px 0 51px}.jm-hero-editorial .hero-copy{max-width:970px}.jm-hero-editorial .hero-actions{max-width:590px}.jm-hero-methods{margin-top:84px;gap:23px;padding-top:23px;font-size:12px}.jm-hero-methods span+span:before{margin-right:23px}}
-@media(max-width:500px){.jm-hero-methods{gap:10px 18px}.jm-hero-methods span+span:before{margin-right:18px}.jm-hero-editorial h1{font-size:clamp(44px,11.4vw,62px);line-height:1.025}.hero.jm-hero-editorial{padding-top:44px}}
-@media(max-width:340px){.jm-hero-methods span+span:before{content:none}.jm-hero-methods{display:grid;grid-template-columns:1fr 1fr}}
+
+
+
+
+@media(min-width:800px){.hero.jm-hero-editorial{padding:91px 0 51px}.jm-hero-editorial .hero-copy{max-width:970px}.jm-hero-editorial .hero-actions{max-width:590px}}
+@media(max-width:500px){.jm-hero-editorial h1{font-size:clamp(44px,11.4vw,62px);line-height:1.025}.hero.jm-hero-editorial{padding-top:44px}}
+
 
 /* Questions, not hypothetical program cards. */
 .jm-audience-section{background:#EAEFE6;padding:58px 0 64px;scroll-margin-top:12px}
@@ -112,9 +112,8 @@
 
 /* Discoverability: examples are a main navigation destination, not buried on the homepage. */
 .jm-site-nav .jm-nav-examples{font-weight:700}
-.jm-hero-more{font:700 13px/1.5 'DM Sans',Arial,sans-serif;margin:16px 0 0}
-.jm-hero-more a,.jm-audience-example-link{color:#1D478B;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
-.jm-hero-more a:hover,.jm-audience-example-link:hover{color:#C65B44}
+.jm-audience-example-link{color:#1D478B;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
+.jm-audience-example-link:hover{color:#C65B44}
 .jm-audience-example-link{font:600 13px/1.5 'DM Sans',Arial,sans-serif;display:block;width:max-content;max-width:100%;margin-top:14px}
 .jm-audience-example-link span{padding-left:6px}
 /* Remove duplicated legacy CSS-generated wordmark and constrain the mobile header. */
@@ -152,8 +151,11 @@
 }
 .jm-line-arrow path{fill:none;stroke:currentColor;stroke-width:inherit;stroke-linecap:inherit;stroke-linejoin:inherit}
 .jm-line-arrow.jm-arrow-left{margin-inline-start:0;margin-inline-end:.35em}
-.jm-hero-more .jm-line-arrow,.jm-audience-cta .jm-line-arrow,.jm-audience-example-link .jm-line-arrow{width:1.05em;height:1.05em;vertical-align:-.15em}
+.jm-audience-cta .jm-line-arrow,.jm-audience-example-link .jm-line-arrow{width:1.05em;height:1.05em;vertical-align:-.15em}
 .jm-audience-cta .jm-line-arrow{margin-inline-start:.1em}
 .jm-audience-example-link .jm-line-arrow{margin-inline-start:.35em}
 .jm-explorer-next .jm-line-arrow{margin-inline-start:auto;width:17px;height:17px}
 .back-link .jm-line-arrow,.jm-back-link .jm-line-arrow{width:1em;height:1em}
+
+/* Compact handoff from hero to the interest picker, especially on phones. */
+@media(max-width:779px){.hero.jm-hero-editorial{padding-bottom:35px}.jm-interest-section{padding-top:46px}}

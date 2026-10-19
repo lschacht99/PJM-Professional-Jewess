@@ -134,3 +134,26 @@
 .jm-site-nav .header-pro{font-size:10px!important;padding:8px 8px!important}
 }
 @media(min-width:401px) and (max-width:729px){.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:105px!important;height:73px!important}}
+
+/* Shared arrows: always stroked line geometry, never typographic arrow glyphs or solid icons. */
+.jm-line-arrow{
+  display:inline-block;
+  width:1.15em;
+  height:1.15em;
+  flex-shrink:0;
+  vertical-align:-.2em;
+  margin-inline-start:.35em;
+  overflow:visible;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.jm-line-arrow path{fill:none;stroke:currentColor;stroke-width:inherit;stroke-linecap:inherit;stroke-linejoin:inherit}
+.jm-line-arrow.jm-arrow-left{margin-inline-start:0;margin-inline-end:.35em}
+.jm-hero-more .jm-line-arrow,.jm-audience-cta .jm-line-arrow,.jm-audience-example-link .jm-line-arrow{width:1.05em;height:1.05em;vertical-align:-.15em}
+.jm-audience-cta .jm-line-arrow{margin-inline-start:.1em}
+.jm-audience-example-link .jm-line-arrow{margin-inline-start:.35em}
+.jm-explorer-next .jm-line-arrow{margin-inline-start:auto;width:17px;height:17px}
+.back-link .jm-line-arrow,.jm-back-link .jm-line-arrow{width:1em;height:1em}

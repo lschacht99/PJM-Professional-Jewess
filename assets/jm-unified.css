@@ -109,3 +109,28 @@
 .jm-audience-voice p{font:500 clamp(23px,6.2vw,34px)/1.24 'Source Serif 4',Georgia,serif;letter-spacing:-.027em;color:#1D478B;margin:9px 0 0;max-width:600px}
 @media(min-width:780px){.jm-audience-section{padding:89px 0 104px}.jm-audience-layout{grid-template-columns:minmax(0,.72fr) minmax(0,1fr);gap:clamp(50px,8vw,132px)}.jm-audience-voice{padding:22px 0 26px}.jm-audience-voice:first-child{padding-top:7px;border-top:0}.jm-audience-intro h2{font-size:clamp(47px,5.3vw,72px)}.jm-audience-voice p{font-size:clamp(23px,2.4vw,33px)}}
 @media(max-width:390px){.jm-audience-section{padding:50px 0 56px}.jm-audience-voice p{font-size:23px}.jm-audience-intro h2{font-size:40px}}
+
+/* Discoverability: examples are a main navigation destination, not buried on the homepage. */
+.jm-site-nav .jm-nav-examples{font-weight:700}
+.jm-hero-more{font:700 13px/1.5 'DM Sans',Arial,sans-serif;margin:16px 0 0}
+.jm-hero-more a,.jm-audience-example-link{color:#1D478B;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
+.jm-hero-more a:hover,.jm-audience-example-link:hover{color:#C65B44}
+.jm-audience-example-link{font:600 13px/1.5 'DM Sans',Arial,sans-serif;display:block;width:max-content;max-width:100%;margin-top:14px}
+.jm-audience-example-link span{padding-left:6px}
+/* Remove duplicated legacy CSS-generated wordmark and constrain the mobile header. */
+.jm-legacy-page .jm-shared-header .brand::before{content:none!important;display:none!important;background:none!important}
+.jm-legacy-page .jm-shared-header .brand{display:block!important;min-width:0!important;min-height:0!important;width:auto!important;max-width:none!important;height:auto!important;flex:0 0 auto!important}
+.jm-shared-header .header-inner,.jm-legacy-page .jm-shared-header .header-inner{min-width:0;max-width:1160px}
+.jm-shared-header .brand{flex:0 0 auto;min-width:0}
+.jm-shared-header .jm-site-nav{min-width:0;flex:0 1 auto}
+.jm-legacy-page .jm-shared-header .brand img{display:block!important}
+.jm-legacy-page .jm-r-paper-preview{min-width:0;max-width:100%}
+@media(max-width:729px){.jm-site-nav .jm-nav-explore{display:none!important}.jm-site-nav .jm-nav-examples{display:inline!important}}
+@media(max-width:400px){
+.jm-shared-header .header-inner,.jm-legacy-page .jm-shared-header .header-inner{gap:7px;min-height:66px}
+.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:84px!important;height:62px!important;object-fit:contain!important}
+.jm-site-nav{gap:7px}
+.jm-site-nav .jm-nav-examples{font-size:10px!important}
+.jm-site-nav .header-pro{font-size:10px!important;padding:8px 8px!important}
+}
+@media(min-width:401px) and (max-width:729px){.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:105px!important;height:73px!important}}

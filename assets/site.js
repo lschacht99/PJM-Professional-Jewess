@@ -60,7 +60,14 @@ const KEY='sb_publishable_-ydn9Mgc5B0Sqw4Qh6zfdg_46FQy87z';
 const limit=(v,n=500)=>String(v||'').trim().slice(0,n);
 const val=(f,n)=>limit(f.elements.namedItem(n)?.value||'',1800);
 const selected=(f,n)=>[...f.querySelectorAll(`input[name="${n}"]:checked`)].map(x=>x.value);
-const post=async(table,data)=>{const r=await fetch(API+table,{method:'POST',mode:'cors',credentials:'omit',headers:{'apikey':KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(data)}); if(!r.ok)throw Error('Could not save: '+r.status)};
+const post=async(table,data)=>{
+  // Never retry a write automatically: a timed-out response may still have saved.
+  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
+  try{
+    const r=await fetch(API+table,{method:'POST',mode:'cors',credentials:'omit',signal:controller.signal,headers:{'apikey':KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(data)});
+    if(!r.ok)throw Error('Could not save: '+r.status);
+  }finally{clearTimeout(timeout)}
+};
 for(const form of document.querySelectorAll('form[data-preview]')){
 form.removeAttribute('data-preview');
 const status=form.querySelector('.form-state'),button=form.querySelector('[type="submit"]');
@@ -68,7 +75,8 @@ form.addEventListener('submit',async(e)=>{e.preventDefault();if(!form.reportVali
 if(val(form,'website'))return;
 const consent=form.elements.namedItem('privacy_ack');if(!consent?.checked){if(status)status.textContent='Please review the privacy notice and confirm your agreement.';return}
 button.disabled=true;const label=button.innerHTML;button.textContent='Sending…';
-if(status){status.textContent='Saving your message…';status.classList.add('visible')}
+if(status){status.textContent='Saving your information securely…';status.classList.add('visible')}
+const slowNotice=setTimeout(()=>{if(status)status.textContent='This is taking longer than expected. Please keep this page open; do not submit again.'},6000);
 try{
 if(form.hasAttribute('data-contact-form')){
 const name=limit(form.querySelector('#cname')?.value,150),email=limit(form.querySelector('#cemail')?.value,254),subject=limit(form.querySelector('#csubject')?.value,120),message=limit(form.querySelector('#cmessage')?.value,1400);
@@ -92,9 +100,18 @@ const needed=receiving?limit(`Fields: ${[...fields,other].filter(Boolean).join('
 const offered=giving?limit(`Organization: ${organization}. Professional role: ${expert}. Contributions: ${offerTypes.join(', ')}. Offer: ${offer}`,1450):null;
 await post('pj_applications',{role:role==='both'?'both':receiving?'mentee':'mentor',first_name:limit(first,100),last_name:limit(last,100),email:limit(email,254),community:limit(city,190)||null,field:limit([fields[0],other,expert].filter(Boolean).join(' / '),195)||null,stage:limit(stage,95)||null,preferred_contact:'email',phone:null,whatsapp:null,help_needed:needed,help_offered:offered,mentor_capacity:giving?'As availability permits':null,goals:limit(`Path: ${role}. ${needed||''} ${offered||''} Contact preference: ${contact}.`,2900),privacy_ack:true,source:'jewish-mutual-site-2026'});
 }}
-form.reset();if(status)status.textContent='Thank you—your information has been saved. We’ll be in touch if there’s a relevant next step.';
-}catch(err){console.error('Submission failed',err);if(status)status.textContent='We couldn’t save this just now. Please try again.';}
-finally{button.disabled=false;button.innerHTML=label;if(status){status.classList.add('visible');status.setAttribute('tabindex','-1');status.focus()}}
+form.reset();
+if(status)status.textContent=form.hasAttribute('data-contact-form')?
+  'Your message has been received. We’ll reply by email.':
+  form.closest('#inquiry')?
+  'Thank you—your offer has been received. We’ll email you to discuss next steps.':
+  'Thank you for registering. Your interest has been received. We’ll email you about next steps.';
+}catch(err){
+  console.error('Submission failed',err);
+  if(status)status.textContent=err.name==='AbortError'?
+    'We couldn’t confirm whether your information was received. Please don’t submit again immediately; contact us if you are unsure.':
+    'We couldn’t save this just now. Please check your connection and try again.';
+}finally{clearTimeout(slowNotice);button.disabled=false;button.innerHTML=label;if(status){status.classList.add('visible');status.setAttribute('tabindex','-1');status.focus()}}
 });
 }
 })();

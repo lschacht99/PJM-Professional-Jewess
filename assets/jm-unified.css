@@ -234,3 +234,15 @@
 @media(max-width:729px){.jm-shared-header .jm-site-nav{display:none!important}.jm-mobile-menu{display:block}.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:104px!important;height:73px!important}}
 @media(max-width:400px){.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:92px!important;height:65px!important}}
 @media(min-width:730px){.jm-mobile-menu{display:none!important}}
+
+/* Keep the human questions beside the main promise; leave the resource guide as a concise follow-up. */
+.jm-hero-prompts{margin:24px 0 25px;padding:16px 0 4px;border-top:1px solid #1D478B33}
+.jm-hero-prompts>p{font:700 10px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.12em;color:#9E584B;margin:0 0 12px}
+.jm-hero-prompts ul{padding:0;margin:0;list-style:none;display:grid;gap:10px}
+.jm-hero-prompts li{font:500 clamp(14px,3.7vw,17px)/1.55 'Source Serif 4',Georgia,serif;color:#1D478B;padding-left:18px;position:relative}
+.jm-hero-prompts li:before{content:'';width:7px;height:7px;border-top:1.5px solid #C65F48;border-right:1.5px solid #C65F48;transform:rotate(45deg);position:absolute;top:9px;left:0}
+.jm-resources-teaser{padding:48px 0 52px;background:#EAEFE6}
+.jm-resources-teaser-inner{display:grid;gap:20px;align-items:center}
+.jm-resources-teaser h2{font:600 clamp(31px,7vw,44px)/1.13 'Source Serif 4',Georgia,serif;letter-spacing:-.038em;color:#1D478B;margin:0 0 11px}
+.jm-resources-teaser p:not(.eyebrow){font:400 13px/1.73 'DM Sans',Arial,sans-serif;color:#4D6476;max-width:680px;margin:0}
+@media(min-width:750px){.jm-hero-prompts ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}.jm-hero-prompts li{font-size:16px}.jm-resources-teaser-inner{grid-template-columns:1.25fr .6fr;gap:50px}.jm-resources-teaser .jm-section-link{justify-self:end}.jm-hero-editorial .hero-copy{max-width:1030px}}

@@ -215,3 +215,22 @@
 @media(min-width:720px){.jm-section-top{grid-template-columns:1fr .6fr;gap:46px;align-items:end}.jm-format-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.jm-steps-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:25px}}
 @media(min-width:850px){.jm-pilot-grid{grid-template-columns:1.06fr .84fr;gap:70px}.jm-formats-section{padding:81px 0 88px}.jm-pilot-section{padding:90px 0 100px}.jm-steps-section{padding:76px 0 85px}.jm-op-featured-grid{grid-template-columns:1.2fr .77fr;gap:72px}}
 @media(max-width:500px){.jm-format-art{height:120px}.jm-format-art svg{height:106px}.jm-pilot-copy .button{width:100%}.jm-pilot-drawing-label{font-size:8px}}
+
+
+/* Responsive full-site menu. Native details keeps links available without JavaScript. */
+.jm-shared-header{position:relative;z-index:30}
+.jm-mobile-menu{display:none;position:relative;margin-left:auto;flex:0 0 auto}
+.jm-mobile-menu summary{list-style:none;display:flex;align-items:center;justify-content:center;gap:9px;min-height:42px;padding:8px 13px;border:1.5px solid #1D478B;border-radius:24px;background:#F8F4ED;cursor:pointer;font:700 12px/1.2 'DM Sans',Arial,sans-serif;color:#1D478B;user-select:none}
+.jm-mobile-menu summary::-webkit-details-marker{display:none}
+.jm-mobile-menu summary::marker{content:''}
+.jm-mobile-menu summary svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;fill:none}
+.jm-mobile-menu summary:focus-visible{outline:3px solid #E56B51;outline-offset:3px}
+.jm-mobile-menu[open] summary{background:#E6EDE2}
+.jm-mobile-menu nav{position:absolute;z-index:40;right:0;top:calc(100% + 12px);width:min(300px,calc(100vw - 38px));padding:9px 15px;background:#FFFCF6;border:1px solid #B3BFC1;border-radius:12px;box-shadow:0 12px 30px #1936571f;display:flex;flex-direction:column}
+.jm-mobile-menu nav a{display:block;padding:12px 5px;border-bottom:1px solid #1D478B1c;text-align:left;font:700 13px/1.3 'DM Sans',Arial,sans-serif;color:#1D478B;text-decoration:none}
+.jm-mobile-menu nav a:last-child{border:0}
+.jm-mobile-menu nav a:hover{text-decoration:underline;text-underline-offset:3px}
+.jm-mobile-menu nav a:focus-visible{outline:2px solid #E56B51;outline-offset:1px}
+@media(max-width:729px){.jm-shared-header .jm-site-nav{display:none!important}.jm-mobile-menu{display:block}.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:104px!important;height:73px!important}}
+@media(max-width:400px){.jm-shared-header .brand img,.jm-legacy-page .jm-shared-header .brand img{width:92px!important;height:65px!important}}
+@media(min-width:730px){.jm-mobile-menu{display:none!important}}

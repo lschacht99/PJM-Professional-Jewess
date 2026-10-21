@@ -352,3 +352,41 @@
 .jm-about-origin-action .button{margin:3px 0 0;min-width:0;max-width:100%;padding-inline:22px}
 .jm-about-origin .jm-about-pro-link{font:700 13px/1.4 'DM Sans',Arial,sans-serif;color:#1D478B;text-decoration:underline;text-underline-offset:4px;margin:5px 0 0;display:inline-flex;align-items:center;gap:3px}
 @media(min-width:800px){.jm-about-origin{padding:66px 0 74px}.jm-about-origin-grid{gap:65px;grid-template-columns:minmax(0,1fr) minmax(0,.78fr)}.jm-about-origin-action{padding:7px 0 7px 37px;border-top:0;border-left:1px solid #1D478B35}}
+
+/* About page, clear mission and structure (2026) */
+.jm-about-page{background:#F8F4ED}
+.jm-about-narrow{max-width:1160px}
+.jm-about-page .eyebrow{font-size:10px;letter-spacing:.13em;margin-bottom:17px}
+.jm-about-hero{background:#F3E9DC;padding:51px 0 60px}
+.jm-about-hero h1{color:#1D478B;max-width:850px;font:600 clamp(39px,8vw,65px)/1.08 'Source Serif 4',Georgia,serif;letter-spacing:-.043em;margin:0 0 19px}
+.jm-about-hero .jm-about-deck{font:400 clamp(16px,3.5vw,19px)/1.56 'DM Sans',Arial,sans-serif;color:#42596E;max-width:750px;margin:0}
+.jm-about-two{display:grid;grid-template-columns:minmax(0,1fr);gap:15px}
+.jm-about-page h2{color:#1D478B;font:600 clamp(29px,6.8vw,43px)/1.16 'Source Serif 4',Georgia,serif;letter-spacing:-.035em;margin:0}
+.jm-about-copy p{font:400 14px/1.73 'DM Sans',Arial,sans-serif;color:#455D70;margin:0 0 14px;max-width:650px}
+.jm-about-copy p:last-child{margin-bottom:0}
+.jm-about-purpose{background:#FFFCF6;padding:54px 0 56px}
+.jm-about-ways{background:#F8F4ED;padding:53px 0 61px}
+.jm-about-ways h2{margin:0 0 26px;max-width:600px}
+.jm-about-ways-grid{display:grid;grid-template-columns:1fr;gap:22px}
+.jm-about-way{border-top:1px solid #1D478B40;padding-top:15px}
+.jm-about-index{display:block;color:#BA624D;font:600 17px/1 'Source Serif 4',Georgia,serif}
+.jm-about-way h3{color:#1D478B;font:600 26px/1.2 'Source Serif 4',Georgia,serif;letter-spacing:-.025em;margin:15px 0 9px}
+.jm-about-way p{color:#506577;font:400 13px/1.65 'DM Sans',Arial,sans-serif;margin:0;max-width:360px}
+.jm-about-community{background:#E9EEE4;padding:54px 0 61px}
+.jm-about-now{background:#FFFCF6;padding:54px 0 58px}
+.jm-about-inline-link{display:inline-flex;gap:5px;align-items:center;color:#1D478B;font:700 13px/1.5 'DM Sans',Arial,sans-serif;text-decoration:underline;text-underline-offset:4px;margin:5px 0 14px}
+.jm-about-page .jm-about-smallnote{font:400 11px/1.55 'DM Sans',Arial,sans-serif;color:#667785;max-width:560px}
+.jm-about-join{background:#1D478B;padding:51px 0 58px}
+.jm-about-join-inner{display:grid;grid-template-columns:1fr;gap:22px}
+.jm-about-join .eyebrow{color:#EEC2A1}
+.jm-about-join h2{color:#FFF9F0;max-width:620px}
+.jm-about-join p:not(.eyebrow){color:#F1F1ED;font:400 14px/1.63 'DM Sans',Arial,sans-serif;max-width:610px;margin:16px 0 0}
+.jm-about-actions{display:flex;flex-direction:column;gap:10px;align-items:stretch;justify-content:center}
+.jm-about-actions .button{width:100%;min-width:0;margin:0}
+.jm-about-actions .button-primary{background:#FFF9F0;color:#1D478B;border-color:#FFF9F0}
+.jm-about-actions .button-primary:hover{background:#EAEFE6;border-color:#EAEFE6}
+.jm-about-actions .button-secondary{border-color:#FFF9F0;color:#FFF9F0}
+.jm-about-actions .button-secondary:hover{background:#ffffff20}
+@media(min-width:750px){.jm-about-two{grid-template-columns:minmax(0,.81fr) minmax(0,1fr);gap:clamp(40px,7vw,98px)}.jm-about-ways-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}.jm-about-join-inner{grid-template-columns:minmax(0,1fr) minmax(230px,.62fr);gap:54px;align-items:center}}
+@media(min-width:900px){.jm-about-hero{padding:75px 0 78px}.jm-about-purpose,.jm-about-community,.jm-about-now{padding:69px 0 74px}.jm-about-ways{padding:68px 0 78px}.jm-about-join{padding:66px 0 73px}}
+@media(max-width:500px){.jm-about-hero{padding:35px 0 43px}.jm-about-purpose,.jm-about-community,.jm-about-now{padding:44px 0 49px}.jm-about-ways{padding:45px 0 52px}.jm-about-join{padding:45px 0 52px}.jm-about-ways-grid{gap:18px}.jm-about-ways h2{margin-bottom:19px}.jm-about-hero h1{font-size:clamp(38px,10vw,48px)}}

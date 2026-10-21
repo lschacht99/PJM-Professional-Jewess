@@ -246,3 +246,22 @@
 .jm-resources-teaser h2{font:600 clamp(31px,7vw,44px)/1.13 'Source Serif 4',Georgia,serif;letter-spacing:-.038em;color:#1D478B;margin:0 0 11px}
 .jm-resources-teaser p:not(.eyebrow){font:400 13px/1.73 'DM Sans',Arial,sans-serif;color:#4D6476;max-width:680px;margin:0}
 @media(min-width:750px){.jm-hero-prompts ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}.jm-hero-prompts li{font-size:16px}.jm-resources-teaser-inner{grid-template-columns:1.25fr .6fr;gap:50px}.jm-resources-teaser .jm-section-link{justify-self:end}.jm-hero-editorial .hero-copy{max-width:1030px}}
+
+
+/* Refinement: consistent restrained editorial illustrations and a fourth conversation format. */
+.jm-format-grid{gap:17px}
+.jm-format-card{background:#FFFCF8;border-color:#D7D7D0;box-shadow:0 2px 5px rgba(31,58,87,.035)}
+.jm-format-art{height:137px;overflow:hidden}
+.jm-format-art svg{width:min(260px,95%);height:122px}
+.jm-format-art-build{background:#EFE3D5}
+.jm-format-art-visit{background:#E3EBE2}
+.jm-format-art-online{background:#E7ECEE}
+.jm-format-art-mentor{background:#EFE7DE}
+.jm-format-card-body{padding:21px 22px 23px}
+.jm-format-card h3{font-size:clamp(25px,5.6vw,30px)}
+.jm-pilot-drawing{transform:none;background:#F8F4ED;border-color:#C9D3CE;box-shadow:0 2px 6px rgba(31,58,87,.045);padding:15px}
+.jm-pilot-drawing-label{top:14px;right:14px;font-size:9px;letter-spacing:.09em;background:rgba(248,244,237,.88);padding:3px}
+.jm-section-link .jm-line-arrow{vertical-align:-.12em;margin-left:.2em}
+.jg-further-links .jm-line-arrow{width:12px;height:12px;vertical-align:-.18em}
+@media(min-width:720px){.jm-format-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.jm-format-art{height:145px}}
+@media(max-width:500px){.jm-format-art{height:110px}.jm-format-art svg{height:106px}.jm-format-card-body{padding:18px 20px 20px}}

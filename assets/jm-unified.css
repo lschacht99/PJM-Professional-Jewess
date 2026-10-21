@@ -340,3 +340,15 @@
   .jm-mobile-menu nav a small{font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){.jm-mobile-menu nav a{transition:none}}
+
+/* About page: human founder context, shorter mobile section, clearly separated invitation. */
+.jm-about-origin{padding:48px 0 55px}
+.jm-about-origin-grid{gap:26px}
+.jm-about-origin-story h2{font-size:clamp(28px,6.5vw,39px);line-height:1.12}
+.jm-about-origin-story p:not(.eyebrow){line-height:1.65;margin-bottom:13px}
+.jm-about-origin-action{align-items:flex-start;gap:12px;padding-top:23px;border-top:1px solid #1D478B35}
+.jm-about-origin-action h2{font-size:clamp(27px,6.2vw,35px);line-height:1.15;margin:0}
+.jm-about-origin-action p{line-height:1.65;margin:0 0 4px}
+.jm-about-origin-action .button{margin:3px 0 0;min-width:0;max-width:100%;padding-inline:22px}
+.jm-about-origin .jm-about-pro-link{font:700 13px/1.4 'DM Sans',Arial,sans-serif;color:#1D478B;text-decoration:underline;text-underline-offset:4px;margin:5px 0 0;display:inline-flex;align-items:center;gap:3px}
+@media(min-width:800px){.jm-about-origin{padding:66px 0 74px}.jm-about-origin-grid{gap:65px;grid-template-columns:minmax(0,1fr) minmax(0,.78fr)}.jm-about-origin-action{padding:7px 0 7px 37px;border-top:0;border-left:1px solid #1D478B35}}

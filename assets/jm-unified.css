@@ -265,3 +265,17 @@
 .jg-further-links .jm-line-arrow{width:12px;height:12px;vertical-align:-.18em}
 @media(min-width:720px){.jm-format-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.jm-format-art{height:145px}}
 @media(max-width:500px){.jm-format-art{height:110px}.jm-format-art svg{height:106px}.jm-format-card-body{padding:18px 20px 20px}}
+
+/* Approved vignette artwork, cropped from a single compressed asset.
+   Original editorial scenes: tools/prototype, studio, video session, mentorship.
+   Responsive layout and website copy remain unchanged. */
+.jm-format-art{
+  background-image:url('career-experience-vignettes.webp');
+  background-size:100% 400%;
+  background-repeat:no-repeat;
+  background-color:#F4EEE3;
+}
+.jm-format-art-build{background-position:center 0%}
+.jm-format-art-visit{background-position:center 33.3333%}
+.jm-format-art-online{background-position:center 66.6667%}
+.jm-format-art-mentor{background-position:center 100%}

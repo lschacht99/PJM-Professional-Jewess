@@ -279,3 +279,7 @@
 .jm-format-art-visit{background-position:center 33.3333%}
 .jm-format-art-online{background-position:center 66.6667%}
 .jm-format-art-mentor{background-position:center 100%}
+
+/* Engineering pilot: editorial workbench artwork replaces the old placeholder diagram. */
+.jm-pilot-drawing{padding:0;overflow:hidden;transform:none}
+.jm-pilot-drawing img{display:block;width:100%;height:auto;aspect-ratio:640/450;object-fit:cover}

@@ -290,11 +290,6 @@
 .jm-hero-editorial .hero-intro{max-width:690px;margin:0 0 22px;line-height:1.48}
 .jm-hero-editorial .hero-actions{margin:0;gap:10px}
 .jm-hero-editorial .jm-hero-status{font-size:11px;line-height:1.5;margin:13px 0 0;max-width:540px}
-.jm-steps-questions{border-top:1px solid #1D478B35;padding-top:20px;margin-top:35px}
-.jm-steps-questions>p{font:700 10px/1.45 'DM Sans',Arial,sans-serif;letter-spacing:.11em;color:#9E584B;margin:0 0 12px}
-.jm-steps-questions ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.jm-steps-questions li{color:#1D478B;font:500 clamp(15px,3.5vw,19px)/1.38 'Source Serif 4',Georgia,serif;padding-left:17px;position:relative}
-.jm-steps-questions li:before{content:'›';position:absolute;left:0;top:-1px;color:#C65F48;font:500 22px/1 Georgia,serif}
 @media(max-width:599px){
  .hero.jm-hero-editorial{padding:26px 0 30px}
  .jm-hero-editorial h1{font-size:clamp(41px,10.5vw,51px);line-height:1.02;margin-bottom:18px}
@@ -303,6 +298,14 @@
  .jm-hero-editorial .hero-actions .button{min-height:48px;padding:11px 16px}
  .jm-hero-editorial .jm-hero-status{margin-top:11px}
 }
-@media(min-width:600px){
- .jm-steps-questions ul{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-}
+
+/* Integrated questions + resource preview: one editorial section, not an appendix to the steps. */
+.jm-steps-section{padding-bottom:58px}
+.jm-resources-teaser{padding:45px 0 55px}
+.jm-resources-teaser-inner{display:grid;grid-template-columns:minmax(0,1fr);gap:25px;align-items:start}
+.jm-resources-teaser-intro>p:not(.eyebrow){font-size:13px;line-height:1.65;max-width:490px;margin:0}
+.jm-resource-questions>p{font:700 10px/1.45 'DM Sans',Arial,sans-serif;letter-spacing:.1em;color:#9E584B;margin:0 0 10px}
+.jm-resource-questions blockquote{font:500 clamp(17px,4.5vw,21px)/1.34 'Source Serif 4',Georgia,serif;letter-spacing:-.015em;color:#1D478B;margin:0;padding:12px 0;border-top:1px solid rgba(29,71,139,.2)}
+.jm-resource-questions blockquote:last-of-type{border-bottom:1px solid rgba(29,71,139,.2)}
+.jm-resources-teaser .jm-resource-aside .jm-section-link{display:inline-flex;align-items:center;justify-self:start;margin-top:19px;text-decoration:underline;text-decoration-thickness:1.2px;text-underline-offset:4px}
+@media(min-width:750px){.jm-resources-teaser-inner{grid-template-columns:minmax(0,.91fr) minmax(0,1fr);gap:clamp(36px,6vw,90px);align-items:center}.jm-resource-questions blockquote{padding:13px 0}}

@@ -1,34 +1,191 @@
 /* Discovery explorer: browsing and saved ideas happen locally; email is submitted only with consent. */
 (()=>{'use strict';
 const catalog={
- cross:{label:'TEAM CHALLENGES',ideas:[
- {id:'team-lab',name:'The 90-Minute Rescue',hook:'The community event is falling apart. You have 90 minutes, a team, and a very inconvenient budget.',detail:'Split into design, engineering, research and business roles. Diagnose a fictional event crisis, build one practical solution, then present a rescue plan everyone can defend.'},
- {id:'community-redesign',name:'The Tiny-Space Takeover',hook:'One little room. Three wildly different uses. Make every square foot earn its keep.',detail:'Rearrange a fictional small community space for learning, social gatherings and accessible use. Sketch a to-scale floor plan, prototype movable furniture, and pitch the tradeoffs.'}
- ]},
- tech:{label:'TECHNOLOGY & DATA',ideas:[
- {id:'data-detective',name:'The Spreadsheet Is Lying',hook:'The graph looks great. Unfortunately, the numbers have other plans.',detail:'Take apart a messy fictional attendance dataset, find the missing information and rebuild the chart to tell an honest story. Finish with one decision backed by evidence.'},
- {id:'product-sprint',name:'The App Everyone Hates',hook:'Users abandon the app in seven seconds. You are the emergency redesign team.',detail:'Read sample user complaints, sketch a better first screen, test it with a partner and give the product team a three-minute pitch.'}
- ]},
- engineering:{label:'ENGINEERING & MAKING',ideas:[
- {id:'impossible-sukkah',name:'The Impossible Sukkah',hook:'A tiny courtyard. Almost no storage. Could your fold-up sukkah survive the fan test?',detail:'Sketch a foldable frame, prototype a joint with cardboard or simple household materials, test a scale model against wind, and estimate materials and cost. Discuss sukkah requirements with a knowledgeable advisor before any real-world build.'},
- {id:'fix-failure',name:'Prototype Down!',hook:'It worked perfectly—until it snapped. Welcome to engineering.',detail:'Investigate a fictional failed mechanism, identify two plausible causes, redesign its weakest point and run a small physical test to compare fixes.'}
- ]},
- health:{label:'HEALTH & SCIENCE',ideas:[
- {id:'care-team',name:'The Missing Handoff',hook:'Five healthcare professionals. One patient. An important detail that nobody passed along.',detail:'Trace a fictional care journey, find where communication failed, and design a clearer handoff between healthcare roles. Present your fix in a simulated team huddle.'},
- {id:'health-research',name:'Headline vs. Evidence',hook:'A health claim is going viral. The research is less enthusiastic.',detail:'Compare a sensational headline with sample research summaries, spot what the studies can and cannot prove, and produce a short evidence-based explainer.'}
- ]},
- business:{label:'BUSINESS & ENTREPRENEURSHIP',ideas:[
- {id:'idea-business',name:'Will Anyone Buy It?',hook:'Your brilliant product has met its first skeptical customer. Now what?',detail:'Interview a pretend customer, decide what to build first, estimate the price and pitch a tiny real-world-style pilot.'},
- {id:'budget-rescue',name:'Budget vs. Reality',hook:'The dream event is $2,000 over budget. Which brilliant idea survives?',detail:'Work from a fictional event spreadsheet, renegotiate expenses, defend what stays, and present a version people would actually pay for.'}
- ]},
- law:{label:'LAW & COMMUNICATION',ideas:[
- {id:'be-lawyer',name:'Objection!',hook:'One bizarre case. Two convincing arguments. You get three minutes to make yours.',detail:'Read a fictional case file, sift useful evidence from red herrings, build your argument and deliver a mini closing statement.'},
- {id:'negotiation',name:'The Dealbreaker',hook:'Three teams want the same contract. None will accept the first offer.',detail:'Represent a different stakeholder in a mock negotiation. Trade deadlines, cost and control to reach a deal—or explain why walking away wins.'}
- ]},
- college:{label:'COLLEGE & CAREERS',ideas:[
- {id:'college-decoded',name:'Major Plot Twist',hook:'Two majors, one internship, tuition to consider—and Shabbos is not negotiable.',detail:'Build a sample semester and career path for a fictional student, compare options, and craft the questions you would want to ask a real graduate.'},
- {id:'internship',name:'The Internship Audition',hook:'“Tell me about yourself.” You have 45 seconds. Go.',detail:'Pick an internship brief, craft a short introduction, practice a realistic interview question and revise your pitch based on peer feedback.'}
- ]}};
+ "conversations": {
+  "label": "CAREER CONVERSATIONS",
+  "ideas": [
+   {
+    "id": "inside-an-engineers-day",
+    "name": "Beyond the Blueprint",
+    "format": "Professional Q&A",
+    "hook": "What does an engineer actually do between the first sketch and the finished product?",
+    "pro": "Ask a working engineer about projects, mistakes, team decisions, and a typical workday.",
+    "detail": "Come with questions; trace a product from design brief to testing through an engineer's perspective. Discuss what they studied, what surprised them, and how they work with other specialists.",
+    "takeaway": "A sharper picture of engineering work—and questions worth asking before choosing the field."
+   },
+   {
+    "id": "career-interview",
+    "name": "The Questions You Can't Google",
+    "format": "Professional interview",
+    "hook": "The job title sounds interesting. What's the reality nobody mentions?",
+    "pro": "Interview a professional about career turns, daily responsibilities, and what they wish they'd known.",
+    "detail": "Start with your assumptions, prepare five good questions, and use a guided conversation to compare expectations with lived professional experience—including balancing a career with Jewish life where relevant.",
+    "takeaway": "An honest career snapshot and your next three questions to explore."
+   }
+  ]
+ },
+ "cross": {
+  "label": "TEAM EXPERIENCES",
+  "ideas": [
+   {
+    "id": "team-lab",
+    "name": "The 90-Minute Rescue",
+    "format": "Team project + professional feedback",
+    "hook": "A community event is going off course. Make the case for your rescue plan.",
+    "pro": "Present your proposed solution to a working project manager or organizer and ask how they'd prioritize.",
+    "detail": "Split into research, project management, design and budget roles. Triage a fictional event crisis, plan a workable solution, and prepare a short brief a project manager could actually use.",
+    "takeaway": "A real-world style project brief and insight into how teams make tradeoffs."
+   },
+   {
+    "id": "community-redesign",
+    "name": "The Tiny-Space Takeover",
+    "format": "Design brief + professional Q&A",
+    "hook": "One small room needs three different layouts. Can you make the space work?",
+    "pro": "Ask an architect or designer how they balance safety, usability, budget and client feedback.",
+    "detail": "Sketch a scaled layout for a community space, check accessibility and create a model or movable furniture plan. Explain your design choices to a professional reviewer.",
+    "takeaway": "A space-planning concept and better questions about architecture/design careers."
+   }
+  ]
+ },
+ "tech": {
+  "label": "TECHNOLOGY & DATA",
+  "ideas": [
+   {
+    "id": "data-detective",
+    "name": "The Spreadsheet Is Lying",
+    "format": "Data challenge + analyst discussion",
+    "hook": "The graph looks excellent. Unfortunately, the numbers have other plans.",
+    "pro": "Ask a data analyst how they catch flawed assumptions and explain findings to clients.",
+    "detail": "Audit a fictional community dataset, find what was excluded, rebuild a trustworthy chart, and prepare one decision backed by evidence. Discuss your approach with a practitioner.",
+    "takeaway": "A concise data story and a realistic view of analytical work."
+   },
+   {
+    "id": "product-sprint",
+    "name": "Behind the App",
+    "format": "Product professional interview",
+    "hook": "Who decides what an app should do—and what gets cut?",
+    "pro": "Interview a product manager or UX designer about user research, priorities and their career path.",
+    "detail": "Review a short sample product brief and bring questions to a guided conversation about how technology teams collaborate. Compare how design, software and business roles approach the same user problem.",
+    "takeaway": "A clearer comparison of product, software and design careers."
+   }
+  ]
+ },
+ "engineering": {
+  "label": "ENGINEERING & MAKING",
+  "ideas": [
+   {
+    "id": "impossible-sukkah",
+    "name": "The Impossible Sukkah",
+    "format": "Prototype + engineer review",
+    "hook": "A tiny courtyard. Almost no storage. Can you design a fold-up sukkah?",
+    "pro": "Ask an engineer how they'd test stability, mechanisms and tradeoffs in a real prototype.",
+    "detail": "Sketch a compact frame, prototype a moving joint and fan-test a scale model. Share your reasoning with an engineer and learn how engineers evaluate failure, materials and usability. Any real sukkah would need appropriate safety and halachic review.",
+    "takeaway": "A physical model, design decisions and an engineer's perspective on the process."
+   },
+   {
+    "id": "fix-failure",
+    "name": "Behind the Drawings",
+    "format": "Engineer career conversation",
+    "hook": "CAD is one part of the job. What happens when a design leaves the screen?",
+    "pro": "Ask a mechanical engineer about testing, teamwork, manufacturing and their route into the field.",
+    "detail": "Use a fictional product problem as a conversation starter, then interview an engineer about how their team resolves it, what tools they use and what an ordinary workday looks like.",
+    "takeaway": "First-hand context for engineering roles and the skills to explore next."
+   }
+  ]
+ },
+ "health": {
+  "label": "HEALTH & SCIENCE",
+  "ideas": [
+   {
+    "id": "care-team",
+    "name": "The Missing Handoff",
+    "format": "Care-team simulation + professional Q&A",
+    "hook": "One patient, five healthcare roles and a handoff that didn't go to plan.",
+    "pro": "Ask a healthcare professional how their real team communicates and handles uncertainty.",
+    "detail": "Map a fictional patient journey, find an information gap and propose a safer handoff. Use a practitioner conversation to explore where nursing, medicine, research and operations responsibilities differ.",
+    "takeaway": "A process improvement and a better sense of the different jobs in healthcare."
+   },
+   {
+    "id": "health-research",
+    "name": "Beyond the Scrubs",
+    "format": "Healthcare professional interview",
+    "hook": "What does a hospital shift actually look like, beyond television?",
+    "pro": "Ask a nurse or allied-health professional about decisions, training, teamwork and daily routines.",
+    "detail": "Prepare questions about patient contact, the pace of a typical day, ethical tradeoffs and career pathways. Use an interview to compare assumptions with first-hand experience.",
+    "takeaway": "A realistic picture of a healthcare role and what to investigate further."
+   }
+  ]
+ },
+ "business": {
+  "label": "BUSINESS & ENTREPRENEURSHIP",
+  "ideas": [
+   {
+    "id": "idea-business",
+    "name": "Will Anyone Buy It?",
+    "format": "Business challenge + founder feedback",
+    "hook": "You love your product idea. What would an actual customer think?",
+    "pro": "Ask an entrepreneur how they test demand, set prices and decide what not to build.",
+    "detail": "Make a simple customer profile, estimate costs and design a small market test. Compare your plan with a founder's experience getting a product off the ground.",
+    "takeaway": "A lean launch outline and a clearer understanding of entrepreneurship."
+   },
+   {
+    "id": "budget-rescue",
+    "name": "The Decisions Behind the Business",
+    "format": "Founder or finance professional Q&A",
+    "hook": "Which tradeoffs keep a good idea alive when money gets tight?",
+    "pro": "Interview a business owner or finance professional about real budgeting and difficult decisions.",
+    "detail": "Walk through a sample operating budget and prepare questions about revenue, risk, priorities and the day-to-day responsibility of running a business.",
+    "takeaway": "An informed view of business and finance work, not just a spreadsheet exercise."
+   }
+  ]
+ },
+ "law": {
+  "label": "LAW & POLICY",
+  "ideas": [
+   {
+    "id": "be-lawyer",
+    "name": "Objection!",
+    "format": "Legal case + lawyer discussion",
+    "hook": "One strange case. Two good arguments. What would you tell your client?",
+    "pro": "Ask a practicing lawyer how they'd research, advise and prepare the case.",
+    "detail": "Read a fictional case file, choose relevant facts and give a short argument. Use a professional discussion to learn what lawyers do before and after they enter a courtroom.",
+    "takeaway": "A legal argument and a more realistic picture of legal practice."
+   },
+   {
+    "id": "negotiation",
+    "name": "Beyond the Courtroom",
+    "format": "Lawyer career interview",
+    "hook": "Most legal work never gets a dramatic courtroom scene. So what fills the day?",
+    "pro": "Interview a lawyer about contracts, client meetings, research and career paths.",
+    "detail": "Bring questions about different legal specialties, the first years of practice, work routines and the challenges clients never see. Work through one simple example of advice a client might need.",
+    "takeaway": "A clearer map of legal careers and which questions to ask next."
+   }
+  ]
+ },
+ "college": {
+  "label": "COLLEGE & CAREERS",
+  "ideas": [
+   {
+    "id": "college-decoded",
+    "name": "Major Plot Twist",
+    "format": "Planning lab + graduate Q&A",
+    "hook": "Two majors, one internship and some very real tradeoffs.",
+    "pro": "Ask a recent graduate how they chose classes, internships and professional direction.",
+    "detail": "Build a sample semester around study, costs, Jewish commitments and goals. Compare your choices with a graduate's first-hand experience.",
+    "takeaway": "A more informed set of choices and a practical question list."
+   },
+   {
+    "id": "internship",
+    "name": "The Unfiltered First Job",
+    "format": "Early-career professional interview",
+    "hook": "What did your first job teach you that school didn't?",
+    "pro": "Interview an early-career professional about applying, interviewing, adjusting and asking for help.",
+    "detail": "Write five questions, practice a short introduction and explore what entry-level work, office expectations and a supportive first manager actually look like.",
+    "takeaway": "A realistic picture of the first year at work and a stronger next step."
+   }
+  ]
+ }
+};
 const all=new Map(Object.values(catalog).flatMap(group=>group.ideas.map(idea=>[idea.id,idea])));
 const KEY='jm:interests:v2', MAX=12;
 const load=()=>{try{const a=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(a)?a.filter(id=>all.has(id)).slice(0,MAX):[]}catch{return []}};
@@ -36,13 +193,17 @@ const saved=new Set(load());const persist=()=>{try{localStorage.setItem(KEY,JSON
 const root=document.querySelector('[data-jd-home]');if(!root)return;
 const tabs=[...root.querySelectorAll('[data-jd-tab]')],grid=root.querySelector('#jd-ideas'),categoryName=root.querySelector('#jd-category-name');
 const bar=document.querySelector('#jd-shortlist-bar'),counter=document.querySelector('#jd-shortlist-count'),review=document.querySelector('#jd-review'),sheet=document.querySelector('#jd-sheet'),selection=document.querySelector('#jd-selection'),form=document.querySelector('#jd-mail-form'),state=document.querySelector('#jd-mail-state'),send=form.querySelector('[type=submit]'),close=sheet.querySelector('.jd-sheet-close');
-let current='cross',mode='saved',oneId=null,priorFocus=null;
+let current='conversations',mode='saved',oneId=null,priorFocus=null;
 const el=(tag,klass,content)=>{const node=document.createElement(tag);if(klass)node.className=klass;if(content!==undefined)node.textContent=content;return node};
 function updateBar(){const n=saved.size;bar.hidden=n===0;counter.textContent=n+' saved '+(n===1?'idea':'ideas');review.textContent='Review →';root.querySelectorAll('.jd-save').forEach(button=>{const on=saved.has(button.dataset.id);button.setAttribute('aria-pressed',String(on));button.textContent=on?'Saved ✓':'Add to shortlist +'})}
 function toggle(id){if(saved.has(id))saved.delete(id);else if(saved.size<MAX)saved.add(id);else{openSheet('saved');state.textContent='You can keep up to '+MAX+' ideas. Remove one to save another.';return}persist();updateBar();if(sheet.open&&mode==='saved')renderSelection()}
 function card(item,i){
- const article=el('article','jd-idea');article.append(el('p','jd-idea-kicker','CHALLENGE '+String(i+1).padStart(2,'0')),el('h3','',item.name),el('p','jd-idea-description',item.hook));
- const details=el('details','');const summary=el('summary','','See your mission'),body=el('p','',item.detail);details.append(summary,body);article.append(details);
+ const article=el('article','jd-idea');
+ article.append(el('p','jd-idea-kicker',item.format),el('h3','',item.name),el('p','jd-idea-description',item.hook));
+ const pro=el('p','jd-idea-pro');pro.append(el('strong','','With a professional: '),document.createTextNode(item.pro));article.append(pro);
+ const details=el('details','');const summary=el('summary','','What the experience involves'),body=el('p','',item.detail);
+ const takeaway=el('p','jd-idea-outcome');takeaway.append(el('strong','','You take away: '),document.createTextNode(item.takeaway));
+ details.append(summary,body,takeaway);article.append(details);
  const actions=el('div','jd-idea-actions'),save=el('button','jd-save'),interest=el('button','jd-interest-now',"I'd try this →");
  save.type='button';save.dataset.id=item.id;save.setAttribute('aria-label','Save '+item.name);
  save.addEventListener('click',()=>toggle(item.id));

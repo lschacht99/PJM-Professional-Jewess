@@ -147,3 +147,11 @@ body:has(.jd-sheet[open]){overflow:hidden}
 .jd-home .jd-feature-lead{font-size:13px;line-height:1.62;margin-bottom:15px}
 @media(min-width:760px){.jd-hero-actions .jd-btn{width:auto;min-width:185px;max-width:none}.jd-feature-missions{grid-template-columns:1fr 1fr;column-gap:16px}.jd-feature-missions>div{min-height:65px}}
 @media(max-width:420px){.jd-hero-actions{gap:8px}.jd-hero-actions .jd-btn{min-height:45px}.jd-feature-top{margin-bottom:9px}.jd-feature h2{margin-bottom:9px}.jd-hero h1{margin-bottom:12px}.jd-intro{margin-bottom:18px}}
+
+/* Career outcomes and professional interaction are visible without opening each brief. */
+.jd-idea-pro{border-left:3px solid #7d9b90;padding:7px 0 7px 11px;margin:3px 0 14px!important;font-size:12px;line-height:1.55;color:#38556d}
+.jd-idea-pro strong,.jd-idea-outcome strong{font-weight:800;color:#1d478b}
+.jd-idea .jd-idea-kicker{font-size:10px;line-height:1.45;letter-spacing:.055em}
+.jd-idea details p.jd-idea-outcome{background:#f0f3ec;border-radius:5px;padding:10px 11px;margin-top:12px}
+.jd-hero .jd-intro{font-size:15px;line-height:1.6}
+@media(min-width:760px){.jd-hero .jd-intro{font-size:17px}}

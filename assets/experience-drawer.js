@@ -142,12 +142,13 @@ async function post(table,data){
 form.addEventListener('submit',async e=>{
  e.preventDefault();if(!form.reportValidity())return;
  if(form.elements.namedItem('website')?.value)return;
- const first=limited(form.elements.first.value,100),last=limited(form.elements.last.value,100),email=limited(form.elements.email.value,254);
+ const first=limited(form.elements.namedItem('first').value,100),last=limited(form.elements.namedItem('last').value,100),email=limited(form.elements.namedItem('email').value,254);
  if(!first||!last||!email)return;
- const region=limited(form.elements.region.value,150),availability=limited(form.elements.availability.value,80),notes=limited(form.elements.notes.value,650);
+ const region=limited(form.elements.namedItem('region').value,150),availability=limited(form.elements.namedItem('availability').value,80),notes=limited(form.elements.namedItem('notes').value,650);
  const select=form.elements.namedItem('area'),area=select?limited(select.value,120):'';
  const checked=[...form.querySelectorAll('input[name=areas]:checked')].map(x=>x.value);
  const wantsVolunteer=!!form.querySelector('input[name=also_volunteer]:checked');
+ if(['workplace','volunteer','professional'].includes(activeType)&&checked.length===0){status.dataset.error='true';status.textContent='Please select at least one field or way you could help.';areaWrap.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
  submit.disabled=true;submit.textContent='Saving…';status.textContent='Saving your interest…';status.dataset.error='false';
  try{
   if(activeType==='volunteer'||activeType==='professional'){

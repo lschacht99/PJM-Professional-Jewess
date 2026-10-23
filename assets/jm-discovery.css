@@ -1,0 +1,116 @@
+/* Jewish Mutual discovery homepage — mobile-first, scoped to .jd-home */
+.jd-home{background:#faf7f0;color:#243f5d}
+.jd-home .jd-wrap{width:min(calc(100% - 38px),1130px);margin-inline:auto}
+.jd-home h1,.jd-home h2,.jd-home h3{font-family:'Source Serif 4',Georgia,serif;letter-spacing:-.035em;color:#1d478b}
+.jd-home .jd-eyebrow{margin:0 0 13px;font:800 10px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#9b5c43}
+.jd-home a:focus-visible,.jd-home button:focus-visible,.jd-home summary:focus-visible{outline:3px solid #d97855;outline-offset:3px}
+.jd-hero{padding:40px 0 45px}
+.jd-hero-grid{display:grid;gap:24px}
+.jd-hero h1{font-size:clamp(41px,11.5vw,76px);line-height:1.055;max-width:720px;margin:0 0 15px}
+.jd-hero h1 em{font-weight:500;color:#c66a4a}
+.jd-intro{font-size:15px;line-height:1.62;color:#455e73;max-width:515px;margin:0 0 24px}
+.jd-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;min-height:50px;background:#1d478b;color:#fff;border:1.5px solid #1d478b;border-radius:7px;text-decoration:none;font:800 13px/1.25 'DM Sans',Arial,sans-serif;cursor:pointer}
+.jd-btn:hover{background:#113667;color:#fff}
+.jd-btn-outline{background:transparent;color:#1d478b}
+.jd-btn-outline:hover{background:#e5ecf0;color:#1d478b}
+.jd-hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.jd-hero-actions .jd-btn{width:100%;max-width:340px}
+.jd-hero-hint{margin:13px 0 0;font-size:12px;line-height:1.4;color:#6b7b81}
+.jd-feature{position:relative;background:#fffdf8;padding:20px 19px 19px;border:1px solid #d9ddd5;border-radius:12px;box-shadow:0 9px 30px rgba(22,59,96,.09)}
+.jd-feature-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+.jd-feature-number{font:800 10px/1.3 'DM Sans',Arial,sans-serif;letter-spacing:.1em;color:#1d478b}
+.jd-feature-top .jd-feature-kind{font:600 10px/1.3 'DM Sans',Arial,sans-serif;color:#a35b42}
+.jd-feature h2{font-size:clamp(26px,7.6vw,35px);line-height:1.12;margin:0 0 11px}
+.jd-feature-lead{margin:0 0 17px;font-size:13px;line-height:1.65;color:#415c6e}
+.jd-feature-constraint{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 15px}
+.jd-feature-constraint span{border-radius:40px;padding:7px 10px;background:#edf1e9;color:#43604f;font-size:10px;font-weight:700}
+.jd-feature-dossier{border-top:1px solid #dde4dc;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.jd-feature-dossier a{font-size:12px;font-weight:800;text-decoration:underline;text-underline-offset:4px;color:#1d478b}
+.jd-feature-dossier span{font:700 10px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.04em;color:#6e7b82}
+.jd-challenge{background:#eef2eb;padding:43px 0 49px;scroll-margin-top:20px}
+.jd-challenge-head{max-width:740px;margin-bottom:21px}
+.jd-challenge h2,.jd-process h2,.jd-explore h2,.jd-why h2,.jd-closing h2{font-size:clamp(30px,8vw,47px);line-height:1.1;margin:0 0 12px}
+.jd-challenge-head>p:last-child,.jd-explore-head>p:last-child{max-width:670px;font-size:14px;line-height:1.64;color:#4b6672;margin:0}
+.jd-case{display:grid;grid-template-columns:1fr;gap:12px}
+.jd-case-brief,.jd-case-prompt{padding:19px;background:#fffdf8;border:1px solid #d8dfd8;border-radius:10px}
+.jd-case-brief h3,.jd-case-prompt h3{font-size:22px;line-height:1.15;margin:0 0 11px}
+.jd-case-brief p,.jd-case-prompt p{font-size:13px;line-height:1.65;color:#445f70;margin:0 0 12px}
+.jd-case-brief strong{font-weight:800;color:#1d478b}
+.jd-role-chips{display:flex;flex-wrap:wrap;gap:7px}
+.jd-role-chips span{font-size:10px;font-weight:700;padding:7px 10px;border-radius:20px;border:1px solid #d5dcd6;background:#f5f5f1;color:#42604c}
+.jd-case-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.jd-case-cta .jd-btn{width:100%;max-width:345px}
+.jd-case-cta a:not(.jd-btn){font-size:12px;font-weight:800;color:#1d478b;text-underline-offset:3px}
+.jd-process{padding:44px 0 46px;background:#fffaf2}
+.jd-process>div>p{font-size:14px;line-height:1.6;color:#4c6575;max-width:690px}
+.jd-steps{display:grid;grid-template-columns:1fr;gap:0;margin-top:19px}
+.jd-step{border-top:1px solid #d9dfd9;padding:16px 0;display:grid;grid-template-columns:32px 1fr;gap:0 11px}
+.jd-step b{font-size:12px;color:#af664b;grid-row:span 2;padding-top:1px}
+.jd-step h3{font:800 14px/1.3 'DM Sans',Arial,sans-serif;letter-spacing:0;margin:0 0 4px}
+.jd-step p{font-size:12px;line-height:1.6;margin:0;color:#536a78}
+.jd-explore{padding:46px 0 60px;background:#fffdf9;scroll-margin-top:18px}
+.jd-explore-head{max-width:740px}
+.jd-field-tabs{display:flex;gap:9px;overflow-x:auto;scroll-snap-type:x proximity;padding:14px 2px 14px;margin:7px -19px 10px 0;scrollbar-width:thin}
+.jd-field-tabs button{flex:none;scroll-snap-align:start;min-height:44px;border-radius:25px;border:1.5px solid #b6c4c6;padding:10px 15px;font:800 12px/1.2 'DM Sans',Arial,sans-serif;color:#1d478b;background:#fff;cursor:pointer}
+.jd-field-tabs button[aria-selected=true]{color:white;background:#1d478b;border-color:#1d478b}
+.jd-explore-panel{background:#f3f5ef;border-radius:13px;padding:15px;border:1px solid #e1e4dc}
+.jd-explore-panel-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.jd-explore-panel-top strong{font-size:10px;letter-spacing:.095em;text-transform:uppercase;color:#456a55}
+.jd-explore-panel-top span{font-size:11px;color:#647986}
+.jd-ideas{display:grid;gap:11px}
+.jd-idea{background:#fffefa;border:1px solid #dae1dd;border-radius:10px;padding:18px;min-width:0}
+.jd-idea-kicker{font:800 10px/1.2 'DM Sans',Arial,sans-serif;color:#ba644a;letter-spacing:.08em;margin:0 0 10px}
+.jd-idea h3{font-size:24px;line-height:1.2;margin:0 0 9px}
+.jd-idea-description{font-size:12.5px;line-height:1.62;margin:0 0 15px;color:#4b6676}
+.jd-idea details{border-top:1px solid #e2e6e0;padding-top:12px}
+.jd-idea summary{display:flex;align-items:center;justify-content:space-between;font:800 12px/1.4 'DM Sans',Arial,sans-serif;color:#1d478b;cursor:pointer;list-style:none}
+.jd-idea summary::-webkit-details-marker{display:none}
+.jd-idea summary::after{content:'+';font-size:20px;font-weight:400}
+.jd-idea details[open] summary::after{content:'–'}
+.jd-idea details p{font-size:12px;line-height:1.65;margin:10px 0 0;color:#526979}
+.jd-idea-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.jd-save,.jd-interest-now{flex:1;min-height:41px;min-width:115px;font-size:11.5px;font-weight:800;border-radius:7px;cursor:pointer;padding:9px 11px}
+.jd-save{background:#fff;border:1.5px solid #1d478b;color:#1d478b}
+.jd-save[aria-pressed=true]{background:#e5f0e5;border-color:#699278;color:#28553e}
+.jd-interest-now{background:#1d478b;border:1.5px solid #1d478b;color:white}
+.jd-explore-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-top:15px}
+.jd-explore-foot p{font-size:11.5px;line-height:1.6;color:#64717a;margin:0}
+.jd-explore-foot a{font-size:12px;font-weight:800;color:#1d478b;text-decoration:underline;text-underline-offset:3px}
+.jd-why{background:#f5e8db;padding:47px 0}
+.jd-why h2{max-width:650px}
+.jd-why p{max-width:685px;font-size:13px;line-height:1.72;color:#42596e;margin:0 0 13px}
+.jd-why a{font-size:12px;font-weight:800;color:#1d478b;text-underline-offset:3px}
+.jd-closing{padding:46px 0 54px;background:#eaf0e8}
+.jd-closing p{font-size:13px;line-height:1.65;color:#526779;max-width:640px}
+.jd-closing .jd-btn{width:100%;max-width:350px}
+.jd-shortlist-bar:not([hidden]){position:fixed;inset:auto 0 0;background:#1d478b;color:#fff;z-index:40;padding:12px 0 calc(12px + env(safe-area-inset-bottom));box-shadow:0 -10px 33px #112d4b40}
+.jd-shortlist-inner{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.jd-shortlist-inner strong{font-size:13px}
+.jd-shortlist-inner button{background:white;color:#1d478b;border:0;border-radius:7px;padding:10px 14px;font-size:12px;font-weight:800;cursor:pointer}
+.jd-sheet[open]{position:fixed;inset:auto 0 0;width:min(550px,100vw);height:min(92dvh,890px);max-height:92dvh;margin:0;padding:0;border:0;border-radius:17px 17px 0 0;background:#fffaf3;box-shadow:0 -15px 45px #112d4b2c;overflow:hidden;color:#243f5d}
+.jd-sheet::backdrop{background:#12284392}
+.jd-sheet-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+.jd-sheet-head{display:flex;justify-content:space-between;align-items:start;gap:15px;padding:19px 20px;background:#e9eee8;border-bottom:1px solid #d3dbd1}
+.jd-sheet-head h2{font-size:29px;line-height:1.13;margin:2px 0 0}
+.jd-sheet-close{min-width:42px;min-height:42px;border:1px solid #95a7ad;border-radius:50%;background:#fffefa;color:#1d478b;font-size:21px;cursor:pointer}
+.jd-sheet-content{flex:1;min-height:0;overflow:auto;padding:20px 20px calc(24px + env(safe-area-inset-bottom))}
+.jd-sheet-explainer{font-size:12px;color:#536879;line-height:1.65;margin:0 0 16px}
+.jd-selected{display:grid;gap:8px;margin-bottom:19px}
+.jd-selected-item{display:flex;align-items:center;justify-content:space-between;gap:13px;padding:12px 13px;border:1px solid #d8dfd9;border-radius:8px;background:white;font-size:13px;color:#1d478b;font-weight:700}
+.jd-selected-item button{padding:7px;border:0;background:none;text-decoration:underline;color:#92543d;font-size:11px;font-weight:800}
+.jd-mail-form{border-top:1px solid #dfe4dc;padding-top:17px}
+.jd-mail-form h3{font-size:24px;line-height:1.2;margin:0 0 9px}
+.jd-mail-form p{color:#566e7b;line-height:1.6;font-size:12px;margin:0 0 14px}
+.jd-mail-form label{display:block;font-size:12px;font-weight:800;margin-bottom:7px}
+.jd-mail-form input[type=email]{width:100%;min-height:46px;border:1.5px solid #a4b4bb;border-radius:7px;padding:11px 12px;font-size:16px;background:#fff;color:#243f5d}
+.jd-mail-form .jd-consent{display:flex;align-items:start;gap:9px;font-size:11px;line-height:1.5;font-weight:400;color:#526a76;margin:15px 0}
+.jd-consent input{width:17px;height:17px;flex:none;margin-top:2px;accent-color:#1d478b}
+.jd-mail-form .jd-btn{width:100%}
+.jd-mail-form a{color:#1d478b;text-decoration:underline}
+.jd-mail-state{min-height:20px;margin:10px 0 0!important;color:#33624b!important;font-weight:600}
+.jd-mail-state[data-error=true]{color:#993f37!important}
+.jd-device-note{font-size:11px;color:#6b7a80;line-height:1.55;margin:12px 0}
+.jd-home .jd-hidden{position:absolute!important;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+@media(min-width:760px){.jd-hero{padding:78px 0 84px}.jd-hero-grid{grid-template-columns:1.06fr .94fr;align-items:center;gap:58px}.jd-intro{font-size:17px}.jd-hero-actions .jd-btn{width:auto;min-width:240px}.jd-feature{padding:27px}.jd-feature h2{font-size:33px}.jd-challenge{padding:65px 0}.jd-case{grid-template-columns:1.04fr .96fr}.jd-process{padding:65px 0}.jd-steps{grid-template-columns:repeat(3,1fr);gap:18px}.jd-step{display:block}.jd-step b{display:block;margin-bottom:11px}.jd-step p{font-size:13px}.jd-explore{padding:78px 0}.jd-explore-panel{padding:22px}.jd-ideas{grid-template-columns:repeat(2,minmax(0,1fr))}.jd-idea{padding:23px}.jd-why{padding:63px 0}.jd-closing{padding:60px 0}.jd-sheet[open]{inset:0 0 0 auto;height:100dvh;max-height:100dvh;border-radius:0;box-shadow:-16px 0 50px #112d4b32}.jd-sheet-head{padding:24px}.jd-sheet-content{padding:24px 24px 35px}}
+@media(max-width:420px){.jd-hero{padding-top:29px}.jd-feature{padding:17px}.jd-field-tabs{scroll-padding-inline:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

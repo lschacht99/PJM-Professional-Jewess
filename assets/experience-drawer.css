@@ -67,3 +67,8 @@ body.jm-drawer-open{overflow:hidden}
 @keyframes jm-slide-in{from{transform:translateX(26px);opacity:.7}to{transform:translateX(0);opacity:1}}
 @keyframes jm-rise-in{from{transform:translateY(35px);opacity:.7}to{transform:translateY(0);opacity:1}}
 @media(prefers-reduced-motion:reduce){.jm-drawer[open]{animation:none}}
+
+/* Fallback overlay for browsers without native HTMLDialogElement support. */
+.jm-drawer-shade:not([hidden]){position:fixed;inset:0;z-index:9998;background:rgba(14,31,52,.52)}
+.jm-drawer[open]{z-index:9999}
+.jm-drawer[hidden],.jm-drawer-shade[hidden]{display:none!important}

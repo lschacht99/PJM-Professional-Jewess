@@ -1,0 +1,69 @@
+/* The Jewish Mutual: experience catalog, volunteer CTA and accessible slide-in drawer. */
+.jm-launch{padding:62px 0 70px;background:#fffaf2}
+.jm-launch h2,.jm-op-page h1,.jm-op-page h2,.jm-volunteer-banner h2{font-family:'Source Serif 4',Georgia,serif;color:#1D478B;letter-spacing:-.035em}
+.jm-launch h2{font-size:clamp(33px,7vw,47px);line-height:1.1;margin:0 0 10px}
+.jm-launch-head{max-width:780px;margin-bottom:24px}
+.jm-launch-head p:not(.eyebrow){font-size:15px;line-height:1.6;color:#42596e}
+.jm-experience-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.jm-experience-card{display:flex;flex-direction:column;min-width:0;padding:22px;border:1px solid #d6d9d5;border-radius:13px;background:#fffcf7;box-shadow:0 2px 8px #1D478B09}
+.jm-experience-card:hover{border-color:#7d95b4}
+.jm-experience-meta{font:700 10px/1.5 'DM Sans',Arial,sans-serif;letter-spacing:.075em;text-transform:uppercase;color:#a14e3c;margin-bottom:12px}
+.jm-experience-card h3{font:600 clamp(23px,5vw,28px)/1.16 'Source Serif 4',Georgia,serif;letter-spacing:-.025em;color:#1D478B;margin:0 0 12px}
+.jm-experience-card p{font-size:13px;line-height:1.6;color:#455e70;margin:0 0 12px}
+.jm-experience-card .jm-card-footer{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:auto;padding-top:12px}
+.jm-experience-card .jm-card-location{font:500 11px/1.4 'DM Sans',Arial,sans-serif;color:#657586}
+.jm-experience-card .jm-card-action{display:inline-flex;align-items:center;min-height:41px;padding:9px 16px;font:700 12px/1.3 'DM Sans',Arial,sans-serif;border-radius:25px;background:#1D478B;color:white;text-decoration:none}
+.jm-experience-card .jm-card-action:hover{background:#14376c}
+.jm-launch-after{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:24px}
+.jm-launch-after a{font-weight:700;color:#1D478B;text-decoration:underline;text-underline-offset:4px}
+.jm-launch-after p{font-size:12px;line-height:1.5;color:#526578;margin:0}
+.jm-volunteer-banner{padding:53px 0;background:#e8eee5}
+.jm-volunteer-inner{display:flex;flex-direction:column;gap:19px}
+.jm-volunteer-banner h2{font-size:clamp(31px,6.5vw,44px);line-height:1.13;margin:0 0 10px}
+.jm-volunteer-banner p:not(.eyebrow){max-width:740px;color:#42596e;font-size:15px;line-height:1.6;margin:0}
+.jm-volunteer-inner .button{max-width:320px}
+.jm-op-page .jm-op-intro{background:#f3e9dc;padding:42px 0 48px}
+.jm-op-page .jm-op-intro h1{font-size:clamp(42px,9vw,69px);line-height:1.07;max-width:900px;margin:0 0 14px}
+.jm-op-page .jm-op-intro p:not(.eyebrow){font-size:16px;line-height:1.6;max-width:800px;color:#42596e}
+.jm-op-group{padding:57px 0 65px;background:#fffaf2}
+.jm-op-group:nth-child(even){background:#f8f4ed}
+.jm-op-group h2{font-size:clamp(33px,7vw,46px);line-height:1.12;margin:0 0 13px}
+.jm-op-group-head{max-width:790px;margin-bottom:24px}
+.jm-op-group-head p{font-size:14px;line-height:1.6;color:#526678}
+.jm-op-filter{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:23px;align-items:center}
+.jm-op-filter label{font-weight:700;font-size:13px;color:#1D478B}
+.jm-op-filter select{border:1.5px solid #95a5af;background:white;border-radius:8px;color:#264e7d;font:500 14px 'DM Sans',Arial,sans-serif;padding:11px 34px 11px 13px;min-height:44px;max-width:100%}
+.jm-workplace-grid{display:grid;gap:12px;grid-template-columns:1fr}
+.jm-workplace-panel{border:1px solid #d4dbd5;border-radius:12px;padding:22px;background:#f9fcf8}
+.jm-workplace-panel h3{font:600 26px/1.2 'Source Serif 4',Georgia,serif;color:#1D478B;margin:0 0 9px}
+.jm-workplace-panel p{font-size:14px;line-height:1.6;color:#42596e}
+.jm-workplace-panel .button{margin-top:11px}
+.jm-drawer[open]{position:fixed;inset:0 0 0 auto;display:flex;flex-direction:column;width:min(530px,100vw);max-width:100vw;height:100dvh;max-height:100dvh;margin:0;padding:0;background:#fffaf3;border:0;border-left:1px solid #d1d6d8;box-shadow:-20px 0 50px #112d4b2a;color:#334c6b;overflow:hidden;overscroll-behavior:contain;animation:jm-slide-in .23s ease-out}
+.jm-drawer::backdrop{background:rgba(14,31,52,.52)}
+.jm-drawer-shell{display:flex;flex-direction:column;min-height:0;max-height:100%;height:100%}
+.jm-drawer-header{padding:21px 22px 17px;background:#f3e9dc;display:flex;align-items:start;justify-content:space-between;gap:16px;border-bottom:1px solid #d7d7ce}
+.jm-drawer-header h2{font:600 clamp(27px,6vw,37px)/1.12 'Source Serif 4',Georgia,serif;letter-spacing:-.035em;color:#1D478B;margin:5px 0 0}
+.jm-drawer-close{border:1px solid #8d9db0;background:#fffaf3;color:#1D478B;width:43px;height:43px;border-radius:50%;font-size:23px;line-height:1;cursor:pointer;flex:none}
+.jm-drawer-content{padding:22px;overflow:auto;overscroll-behavior:contain;flex:1;min-height:0}
+.jm-drawer-content form{display:grid;gap:13px}
+.jm-drawer-copy{color:#526779;font-size:13px;line-height:1.6;margin:0 0 5px}
+.jm-drawer-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.jm-drawer-field label,.jm-drawer-field legend{font-size:12px;font-weight:700;line-height:1.45;color:#1D478B}
+.jm-drawer-field input:not([type=checkbox]),.jm-drawer-field select,.jm-drawer-field textarea{width:100%;min-height:47px;border:1.5px solid #a4b1b8;border-radius:7px;padding:10px 12px;color:#203e5c;background:white;font:400 16px 'DM Sans',Arial,sans-serif}
+.jm-drawer-field textarea{min-height:85px;resize:vertical}
+.jm-drawer-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.jm-drawer-choices{display:grid;grid-template-columns:1fr;gap:7px}
+.jm-drawer-choices label,.jm-drawer-consent{display:flex;align-items:flex-start;gap:9px;font:400 13px/1.5 'DM Sans',Arial,sans-serif;color:#35516d}
+.jm-drawer-choices input,.jm-drawer-consent input{width:18px;height:18px;flex:none;margin:1px 0 0;accent-color:#1D478B}
+.jm-drawer-consent a{text-decoration:underline;color:#1D478B}
+.jm-drawer-content .button{width:100%;min-height:49px}
+.jm-drawer-state{min-height:18px;font-size:13px;line-height:1.55;color:#1D478B}
+.jm-drawer-state[data-error=true]{color:#8d3232}
+.jm-drawer-content a:focus-visible,.jm-drawer-content input:focus-visible,.jm-drawer-content select:focus-visible,.jm-drawer-content textarea:focus-visible,.jm-drawer-close:focus-visible{outline:3px solid #e56b51;outline-offset:2px}
+body.jm-drawer-open{overflow:hidden}
+@media(min-width:730px){.jm-experience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.jm-workplace-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.jm-volunteer-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:45px}}
+@media(min-width:1040px){.jm-experience-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:599px){.jm-launch,.jm-op-group{padding:43px 0 50px}.jm-drawer[open]{inset:auto 0 0;width:100%;height:min(94dvh,850px);max-height:94dvh;border:0;border-radius:18px 18px 0 0;box-shadow:0 -16px 48px #112d4b33;animation:jm-rise-in .24s ease-out}.jm-drawer-header{padding:17px 19px 14px}.jm-drawer-content{padding:18px 19px calc(22px + env(safe-area-inset-bottom))}.jm-drawer-pair{grid-template-columns:1fr 1fr}.jm-experience-card{padding:19px}}
+@keyframes jm-slide-in{from{transform:translateX(26px);opacity:.7}to{transform:translateX(0);opacity:1}}
+@keyframes jm-rise-in{from{transform:translateY(35px);opacity:.7}to{transform:translateY(0);opacity:1}}
+@media(prefers-reduced-motion:reduce){.jm-drawer[open]{animation:none}}

@@ -58,8 +58,28 @@ if(libraryRoot){
  };
  filter?.addEventListener('change',render);render();
 }
-if(typeof HTMLDialogElement==='undefined'||typeof HTMLDialogElement.prototype.showModal!=='function')return;
-const dialog=document.createElement('dialog');dialog.className='jm-drawer';dialog.setAttribute('aria-labelledby','jm-drawer-title');
+// Keep the in-page form usable even when a browser or preview tool lacks native dialog support.
+const nativeDialog=typeof HTMLDialogElement!=='undefined'&&typeof HTMLDialogElement.prototype.showModal==='function';
+const dialog=document.createElement(nativeDialog?'dialog':'div');dialog.className='jm-drawer';dialog.setAttribute('aria-labelledby','jm-drawer-title');
+let shade=null,lastTrigger=null;
+if(!nativeDialog){
+ dialog.setAttribute('role','dialog');dialog.setAttribute('aria-modal','true');dialog.hidden=true;
+ shade=document.createElement('div');shade.className='jm-drawer-shade';shade.hidden=true;
+ document.body.append(shade);
+ dialog.showModal=()=>{dialog.hidden=false;dialog.setAttribute('open','');shade.hidden=false;};
+ dialog.close=()=>{dialog.hidden=true;dialog.removeAttribute('open');shade.hidden=true;dialog.dispatchEvent(new Event('close'));};
+ shade.addEventListener('click',()=>dialog.close());
+ document.addEventListener('keydown',event=>{
+  if(!dialog.hasAttribute('open'))return;
+  if(event.key==='Escape'){event.preventDefault();dialog.close();return;}
+  if(event.key==='Tab'){
+   const els=[...dialog.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled])')].filter(el=>el.getClientRects().length);
+   if(!els.length)return;
+   if(event.shiftKey&&document.activeElement===els[0]){event.preventDefault();els[els.length-1].focus();}
+   else if(!event.shiftKey&&document.activeElement===els[els.length-1]){event.preventDefault();els[0].focus();}
+  }
+ });
+}
 dialog.innerHTML=[
 '<div class="jm-drawer-shell"><header class="jm-drawer-header"><div>',
 '<p class="eyebrow" id="jm-drawer-eyebrow">THE JEWISH MUTUAL</p><h2 id="jm-drawer-title">Express your interest</h2>',
@@ -84,7 +104,7 @@ document.body.append(dialog);
 const form=dialog.querySelector('#jm-drawer-form'),submit=form.querySelector('[type=submit]'),status=form.querySelector('.jm-drawer-state'),areaWrap=form.querySelector('#jm-area-wrap');
 dialog.querySelector('.jm-drawer-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
-dialog.addEventListener('close',()=>document.body.classList.remove('jm-drawer-open'));
+dialog.addEventListener('close',()=>{document.body.classList.remove('jm-drawer-open');lastTrigger?.focus({preventScroll:true});});
 let activeType='experience',activeId='',activeTitle='';
 function selectField(label,options){
  areaWrap.replaceChildren();
@@ -130,7 +150,7 @@ function show(type,id){
 }
 document.addEventListener('click',e=>{
  const a=e.target.closest('[data-jm-drawer]');if(!a)return;
- e.preventDefault();show(a.dataset.jmDrawer,a.dataset.jmExperience||a.dataset.jmTitle||'');
+ e.preventDefault();lastTrigger=a;show(a.dataset.jmDrawer,a.dataset.jmExperience||a.dataset.jmTitle||'');
 });
 const limited=(s,n)=>String(s||'').trim().slice(0,n);
 async function post(table,data){
@@ -140,6 +160,7 @@ async function post(table,data){
   if(!result.ok)throw Error('Request failed ('+result.status+')');
  }finally{clearTimeout(timer)}
 }
+document.documentElement.dataset.jmDrawerReady='true';
 form.addEventListener('submit',async e=>{
  e.preventDefault();if(!form.reportValidity())return;
  if(form.elements.namedItem('website')?.value)return;

@@ -10,32 +10,32 @@ const featured=[
  ['engineering-challenge','The Engineering Design Challenge','Online-first idea','Research a problem, create and test a prototype, and learn how engineers approach design.','Online first']
 ];
 const library=[
- ["design-for-everyone","Engineering","One Hand, No Problem","Try using an everyday object with one hand. Then redesign the annoying part.","Accessibility lab","Sketch two solutions, build a quick cardboard mockup, and test one with another person."],
- ["fix-the-failure","Engineering","The Product That Snapped","A beloved gadget fails spectacularly. You get the incident report.","Failure investigation","Study sample photos and forces, explain the weak spot, and propose a part you could test."],
- ["break-the-bridge","Engineering","Bridge vs. Gravity","Build it light. Make it strong. Then see what the weights say.","Build-and-test lab","Design a paper bridge under a material budget, load it until failure, then revise the structure."],
- ["engineering-design","Engineering","The Great Gadget Hack","Take one frustrating everyday object and invent a better version.","Design sprint","Prototype a mechanism with household materials and explain how you would test durability."],
- ["team-challenge-lab","Business","The Impossible Sukkah","A tiny courtyard. Almost no storage. Build a sukkah that folds and stays standing.","Engineering + enterprise","Sketch a folding frame, fan-test a scale model, and compare costs; consult an expert on sukkah requirements."],
- ["business-idea","Business","Will Anyone Buy It?","You love your idea. Your first customer is less convinced.","Startup experiment","Interview a fictional buyer, choose a test price, and pitch a tiny viable launch."],
- ["marketing-challenge","Business","The Campaign That Has to Work","One product. Three audiences. A budget of almost nothing.","Marketing brief","Pick an audience, write three campaign headlines, and defend your launch choice."],
- ["save-the-budget","Business","Budget vs. Reality","The dream event is $2,000 over budget. Something has to give.","Finance rescue","Rebuild a sample event budget, negotiate tradeoffs, and present a plan that adds up."],
- ["real-estate-deal","Business","The Apartment Deal Detective","The listing looks perfect. Then you open the expense sheet.","Real-estate case","Compare fictional rent, taxes, maintenance, and repairs; recommend buy, rent, or pass."],
- ["software-sprint","Technology","The 48-Hour Product Sprint","An idea lands Friday. The prototype is due Monday.","Product sprint","Choose one user problem, write a tiny feature brief, and mock up the opening screen."],
- ["data-detective","Technology","The Spreadsheet Is Lying","The chart looks impressive. Its data is hiding a detail.","Data investigation","Audit sample attendance figures, find missing context, and rebuild an honest chart."],
- ["cybersecurity-crisis","Technology","Someone Clicked the Link","A suspicious office email. One click. Now what?","Cyber incident room","Sort fictional alerts, prioritize containment, and write a short incident briefing."],
- ["trust-the-algorithm","Technology","AI on Trial","The model says 94% accuracy. One group keeps getting the wrong answer.","AI audit","Compare sample error rates and recommend what must change before deployment."],
- ["build-an-app","Technology","The App Everyone Hates","Users quit after seven seconds. Give them a reason to stay.","UX rescue","Turn fictional complaints into a clearer flow and test a clickable mockup."],
- ["inside-care-team","Healthcare","The Missing Handoff","Five people cared for a patient. A key detail vanished between them.","Care-team simulation","Map a fictional patient journey and design a safer handoff between professional roles."],
- ["stop-the-outbreak","Healthcare","Patient Zero?","The fictional outbreak map is growing. Which clue matters first?","Public-health puzzle","Interpret sample case counts, pick a response, and explain the uncertainty."],
- ["you-be-the-lawyer","Law","Objection!","One strange case. Two sides. Three minutes to persuade the room.","Mock case","Sort a fictional case file, build an argument, and deliver a short closing statement."],
- ["negotiation-table","Law","The Dealbreaker","Three teams need a deal. None will accept the first offer.","Negotiation room","Represent a stakeholder and trade concessions to negotiate—or walk away."],
- ["design-a-space","Design","300 Square Feet","A tiny room must work for three completely different uses.","Architecture puzzle","Draw a scaled layout, test accessible routes, and propose movable furniture."],
- ["ux-redesign","Design","The Seven-Second Website","Visitors arrive, look around, and leave. Fix the first impression.","Web UX sprint","Audit a confusing screen, rearrange the priorities, and test your redesign."],
- ["newsroom-challenge","Design","Rumor Has It","A headline is spreading. Is it true—or just very shareable?","Media fact-check","Trace a fictional claim, check the evidence, and write a careful 100-word news update."],
- ["psychologist","Education","What Would You Click?","Two buttons. One strange choice. Design an experiment to explain it.","Psychology experiment","Write an ethical mini-study, identify confounding factors, and interpret sample responses."],
- ["teach-it-better","Education","Teach It in Three Minutes","Explain a hard concept to a beginner. Go.","Teaching lab","Design a three-minute lesson, try it on a peer, and improve it from feedback."],
- ["sunday-workroom","College","The Workroom","Bring the assignment you have been avoiding. Leave with actual progress.","Online coworking","Join a focused work sprint, set a goal, and report what got done."],
- ["choose-your-major","College","Major Plot Twist","Two majors. One internship. Shabbos is not negotiable.","College decision lab","Compare courses, costs, and internships and build a realistic semester plan."],
- ["college-life","College","The Impossible Semester","Classes, work, holidays, friends. Somehow it all has to fit.","Schedule challenge","Stress-test a fictional student calendar and decide what to prioritize."]
+ ["design-for-everyone","Engineering","One Hand, No Problem","Try using an everyday object with one hand. Then redesign the annoying part.","Accessibility lab","Sketch two solutions, build a quick cardboard mockup, and test one with another person.","Ask a product designer or rehabilitation engineer how they learn from users and test accessibility.","project"],
+ ["fix-the-failure","Engineering","The Product That Snapped","A beloved gadget fails spectacularly. You get the incident report.","Failure investigation","Study sample photos and forces, explain the weak spot, and propose a part you could test.","Ask a mechanical or reliability engineer how they trace failures and defend a redesign.","project"],
+ ["break-the-bridge","Engineering","Bridge vs. Gravity","Build it light. Make it strong. Then see what the weights say.","Build-and-test lab","Design a paper bridge under a material budget, load it until failure, then revise the structure.","Ask a structural engineer how they test loads, investigate failures and balance safety with cost.","project"],
+ ["engineering-conversation","Engineering","Beyond the Blueprint","What does an engineer actually do between the sketch and the finished product?","Career conversation","Interview a working engineer about testing, manufacturing, teamwork, mistakes and the route they took into the profession.","Ask about a typical project, what happens when a prototype fails and which parts of the job they enjoy most.","conversation"],
+ ["team-challenge-lab","Business","The Impossible Sukkah","A tiny courtyard. Almost no storage. Build a sukkah that folds and stays standing.","Engineering + enterprise","Sketch a folding frame, fan-test a scale model, and compare costs; consult an expert on sukkah requirements.","Ask an engineer how they'd prototype a folding mechanism, test its stability and plan for safe assembly.","project"],
+ ["business-idea","Business","Will Anyone Buy It?","You love your idea. Your first customer is less convinced.","Startup experiment","Interview a fictional buyer, choose a test price, and pitch a tiny viable launch.","Ask a founder what evidence would convince them that people will actually buy it.","project"],
+ ["marketing-challenge","Business","The Campaign That Has to Work","One product. Three audiences. A budget of almost nothing.","Marketing brief","Pick an audience, write three campaign headlines, and defend your launch choice.","Ask a marketing professional how they choose a target audience and measure results.","project"],
+ ["save-the-budget","Business","Budget vs. Reality","The dream event is $2,000 over budget. Something has to give.","Finance rescue","Rebuild a sample event budget, negotiate tradeoffs, and present a plan that adds up.","Ask a finance professional how they weigh budgets against what matters to customers.","project"],
+ ["business-conversation","Business","The Founder Interview","Everyone loves a success story. What did the first year really look like?","Career conversation","Bring questions to an entrepreneur about risk, customers, cash flow and the choices behind a growing business.","Ask about daily responsibilities, early mistakes and how they knew their idea was worth pursuing.","conversation"],
+ ["technology-conversation","Technology","Behind the App","Who decides what the product should do—and what gets left out?","Career conversation","Interview a product manager or software professional about user research, team roles, deadlines and how ideas become features.","Ask how engineers, designers and business partners resolve disagreements.","conversation"],
+ ["data-detective","Technology","The Spreadsheet Is Lying","The chart looks impressive. Its data is hiding a detail.","Data investigation","Audit sample attendance figures, find missing context, and rebuild an honest chart.","Ask a data analyst how they catch misleading charts and explain findings to decision-makers.","project"],
+ ["cybersecurity-crisis","Technology","Someone Clicked the Link","A suspicious office email. One click. Now what?","Cyber incident room","Sort fictional alerts, prioritize containment, and write a short incident briefing.","Ask a security analyst what their first steps look like during a real incident.","project"],
+ ["trust-the-algorithm","Technology","AI on Trial","The model says 94% accuracy. One group keeps getting the wrong answer.","AI audit","Compare sample error rates and recommend what must change before deployment.","Ask a data scientist how they evaluate bias and decide whether a model is ready.","project"],
+ ["build-an-app","Technology","The App Everyone Hates","Users quit after seven seconds. Give them a reason to stay.","UX rescue","Turn fictional complaints into a clearer flow and test a clickable mockup.","Ask a product designer how they observe users and decide which changes to make.","project"],
+ ["inside-care-team","Healthcare","The Missing Handoff","Five people cared for a patient. A key detail vanished between them.","Care-team simulation","Map a fictional patient journey and design a safer handoff between professional roles.","Ask a nurse or healthcare professional how actual teams coordinate and prevent missed information.","project"],
+ ["healthcare-conversation","Healthcare","Beyond the Scrubs","A hospital shift looks different from a television episode. Ask someone who does it.","Career conversation","Talk through the daily responsibilities, training and teamwork of a nurse or allied-health professional.","Ask about real decisions, the pace of the work and what surprised them after qualifying.","conversation"],
+ ["you-be-the-lawyer","Law","Objection!","One strange case. Two sides. Three minutes to persuade the room.","Mock case","Sort a fictional case file, build an argument, and deliver a short closing statement.","Ask a practicing lawyer how they'd prepare advice and manage evidence for a real client.","project"],
+ ["law-conversation","Law","Beyond the Courtroom","What does a lawyer do when nobody is saying 'Objection!'?","Career conversation","Interview a practicing lawyer about clients, research, contracts, specializations and the early years in the profession.","Ask how they prepare advice, communicate with clients and navigate competing priorities.","conversation"],
+ ["design-a-space","Design","300 Square Feet","A tiny room must work for three completely different uses.","Architecture puzzle","Draw a scaled layout, test accessible routes, and propose movable furniture.","Ask an architect how they balance a client's goals, accessibility, budgets and technical limits.","project"],
+ ["ux-redesign","Design","The Seven-Second Website","Visitors arrive, look around, and leave. Fix the first impression.","Web UX sprint","Audit a confusing screen, rearrange the priorities, and test your redesign.","Ask a UX professional which user signals matter most and how they test an early redesign.","project"],
+ ["design-conversation","Design","Inside the Design Studio","A designer's job isn't just making something beautiful. Who decides what works?","Career conversation","Interview a UX, graphic or architectural designer about briefs, critique, client feedback and portfolio decisions.","Ask how much time they spend researching, revising and defending design choices.","conversation"],
+ ["education-conversation","Education","What Teaching Actually Takes","There is the lesson plan. Then there is the classroom.","Career conversation","Interview a teacher or educational professional about daily preparation, working with learners and how teaching careers develop.","Ask about classroom surprises, difficult decisions and the skills outside teaching itself.","conversation"],
+ ["teach-it-better","Education","Teach It in Three Minutes","Explain a hard concept to a beginner. Go.","Teaching lab","Design a three-minute lesson, try it on a peer, and improve it from feedback.","Ask a teacher what changes when a great lesson plan meets real learners.","project"],
+ ["sunday-workroom","College","The Workroom","Bring the assignment you have been avoiding. Leave with actual progress.","Online coworking","Join a focused work sprint, set a goal, and report what got done.","Ask an early-career professional which planning habits matter most when deadlines pile up.","project"],
+ ["choose-your-major","College","Major Plot Twist","Two majors. One internship. Shabbos is not negotiable.","College decision lab","Compare courses, costs, and internships and build a realistic semester plan.","Ask a recent graduate what actually shaped their major, internship and first-job decisions.","project"],
+ ["graduate-conversation","College","The Unfiltered First Job","What did your first job teach you that college didn't?","Career conversation","Interview a recent graduate about their job search, interviews, first manager, workplace culture and adjustments.","Ask which choices paid off and what they'd tell a student making the same decision.","conversation"]
 ];
 const industryList=['Engineering & manufacturing','Software, AI & data','Healthcare & science','Law & public policy','Architecture & design','Finance & business','Media & marketing','Education & nonprofit work'];
 const volunteerList=['Help organize an event','Facilitate a team or workshop','Design learning activities','Outreach and recruit participants','Create graphics and promotion','Help with technology or data','Research opportunities','Host or support in-person events'];
@@ -43,7 +43,14 @@ const professionalList=['Answer a few questions','Join a short team consultation
 const txt=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;n.textContent=value;return n};
 function card(item,featuredCard){
  const id=item[0],title=item[1],meta=featuredCard?item[2]:item[2]+' · '+item[4],desc=featuredCard?item[3]:item[3];
- const el=document.createElement('article');el.className='jm-experience-card';el.append(txt('div','jm-experience-meta',meta),txt('h3','',title),txt('p','',desc));if(!featuredCard&&item[5]){const detail=document.createElement('details');detail.className='jm-card-brief';detail.append(txt('summary','','See your mission'),txt('p','',item[5]));el.append(detail);}
+ const el=document.createElement('article');el.className='jm-experience-card';
+ const tag=featuredCard?meta:(item[7]==='conversation'?'CAREER CONVERSATION · '+item[1].toUpperCase():'PRACTICAL EXPERIENCE + PRO INPUT · '+item[1].toUpperCase());
+ el.append(txt('div','jm-experience-meta',tag),txt('h3','',title),txt('p','',desc));
+ if(!featuredCard&&item[5]){
+  const detail=document.createElement('details');detail.className='jm-card-brief';
+  detail.append(txt('summary','','What you would do'),txt('p','',item[5]));
+  const pro=txt('p','jm-card-pro',item[6]);pro.prepend(txt('strong','','With a professional: '));detail.append(pro);el.append(detail);
+ }
  const foot=document.createElement('div');foot.className='jm-card-footer';
  if(featuredCard)foot.append(txt('span','jm-card-location',item[4]));
  const a=document.createElement('a');a.className='jm-card-action';a.href='join.html?role=seek&interest='+encodeURIComponent(title);a.dataset.jmDrawer='experience';a.dataset.jmExperience=id;a.textContent=featuredCard?'Register interest':"I'd try this";a.setAttribute('aria-haspopup','dialog');foot.append(a);el.append(foot);return el;
@@ -51,6 +58,7 @@ function card(item,featuredCard){
 document.querySelectorAll('[data-jm-featured]').forEach(root=>featured.forEach(item=>root.append(card(item,true))));
 const libraryRoot=document.querySelector('[data-jm-library]');
 const filter=document.querySelector('[data-jm-library-filter]');
+const formatFilter=document.querySelector('[data-jm-format-filter]');
 if(filter){
  const requestedField=new URLSearchParams(window.location.search).get('field');
  if(requestedField&&[...filter.options].some(option=>option.value===requestedField))filter.value=requestedField;
@@ -59,10 +67,12 @@ if(libraryRoot){
  const render=()=>{
   const category=filter?filter.value:'All';
   libraryRoot.replaceChildren();
-  const filtered=library.filter(item=>category==='All'||item[1]===category);
+  const format=formatFilter?formatFilter.value:'All';
+  const filtered=library.filter(item=>(category==='All'||item[1]===category)&&(format==='All'||item[7]===format));
+  filtered.sort((a,b)=>(a[7]==='conversation'?0:1)-(b[7]==='conversation'?0:1));
   filtered.forEach(item=>libraryRoot.append(card(item,false)));
  };
- filter?.addEventListener('change',render);render();
+ filter?.addEventListener('change',render);formatFilter?.addEventListener('change',render);render();
 }
 // Keep the in-page form usable even when a browser or preview tool lacks native dialog support.
 const nativeDialog=typeof HTMLDialogElement!=='undefined'&&typeof HTMLDialogElement.prototype.showModal==='function';

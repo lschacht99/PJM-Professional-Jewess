@@ -74,7 +74,7 @@ dialog.innerHTML=[
 '<div class="jm-drawer-field"><label for="jm-availability">When are you usually available? (optional)</label>',
 '<select id="jm-availability" name="availability"><option value="">Choose if you know</option><option>Weekend afternoons</option><option>Weekday evenings</option><option>Weekdays</option><option>Online only</option><option>Flexible / not sure yet</option></select></div>',
 '<div class="jm-drawer-field"><label for="jm-notes">Anything else? (optional)</label><textarea id="jm-notes" name="notes" rows="3" maxlength="650" placeholder="Questions, ideas, or how you could help"></textarea></div>',
-'<label class="jm-drawer-consent"><input type="checkbox" name="consent" value="yes" required><span>I agree to the <a href="privacy.html" target="_blank" rel="noopener">privacy notice</a> and to being contacted about my request. This does not book a place.</span></label>',
+'<label class="jm-drawer-consent"><input type="checkbox" name="consent" value="yes" required><span>I agree to the <a href="privacy.html" target="_blank" rel="noopener">privacy notice</a> and to being contacted about my request. </span></label>',
 '<div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>',
 '<button class="button button-primary" type="submit">Send my interest</button><p class="jm-drawer-state" role="status" aria-live="polite"></p>',
 '</form></div></div>'
@@ -104,6 +104,7 @@ function show(type,id){
  activeType=['experience','workplace','volunteer','professional'].includes(type)?type:'experience';
  activeId=id||'';const found=featured.find(x=>x[0]===activeId)||library.find(x=>x[0]===activeId);
  activeTitle=found?found[1]:(id||'Career exploration');
+ if(activeId==='career-interests')activeTitle='Career exploration';
  const titles={experience:activeTitle,workplace:'Explore a workplace',volunteer:'Help bring this to life',professional:'Share your experience'};
  const copies={
  experience:"Tell us you'd like to take part. We're gathering interest to help choose what to organize first. There is no date or booking commitment at this stage.",
@@ -154,7 +155,8 @@ form.addEventListener('submit',async e=>{
    const message=limited('['+subject+'] Activities: '+checked.join(', ')+'. Location: '+region+'. Availability: '+availability+'. Notes: '+notes,1950);
    await post('pj_inquiries',{full_name:limited(first+' '+last,150),email,message,source:activeType==='volunteer'?'jewish-mutual-volunteer-2026':'jewish-mutual-expert-2026'});
   }else{
-   const detail=activeType==='workplace'?'[Workplace visit request] Fields: '+checked.join(', '):'[Experience request] ID: '+activeId+'. Title: '+activeTitle+'. Perspective: '+area;
+   const interestChoices=activeId==='career-interests'?[...document.querySelectorAll('[data-jm-field][aria-pressed="true"]')].map(el=>el.dataset.jmField).join(', '):'';
+   const detail=activeType==='workplace'?'[Workplace visit request] Fields: '+checked.join(', '):'[Experience request] ID: '+activeId+'. Title: '+activeTitle+'. Selected fields: '+interestChoices+'. Perspective: '+area;
    const needed=limited(detail+'. Availability: '+availability+'. Notes: '+notes,1450);
    await post('pj_applications',{
     role:'mentee',first_name:first,last_name:last,email,community:region||null,

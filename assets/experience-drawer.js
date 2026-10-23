@@ -3,17 +3,18 @@
 const api='https://vvveenntewwtyhnmimal.supabase.co/rest/v1/';
 const key='sb_publishable_-ydn9Mgc5B0Sqw4Qh6zfdg_46FQy87z'; // Publishable, not a secret role key.
 const featured=[
- ['nyc-challenge-lab','NYC Challenge Lab','NYC · In person · Women-centered','Design a solution with a team. Explore engineering, healthcare, business, technology and design through different project roles.','New York City'],
- ['college-decoded','College, Decoded','Online · Women-centered','A practical discussion with students and graduates about majors, internships, college decisions and Jewish life.','Online'],
- ['inside-tech','Inside Tech: Beyond the Code','Online · Women-centered','Try short activities from software, data and UX to discover what different technology careers involve.','Online'],
- ['sunday-workroom','The Sunday Workroom','NYC · In person · Women-centered','Bring a project, application or assignment, get something done and meet other Jewish young adults.','New York City'],
- ['engineering-challenge','The Engineering Design Challenge','In person or online · Small group','Research a problem, create and test a prototype, and learn how engineers make practical decisions.','Format to be decided']
+ ['nyc-challenge-lab','Team Challenge Lab','Online-first idea','Join a multidisciplinary team to investigate a problem and develop a practical solution.','Online first'],
+ ['college-decoded','College, Decoded','Online idea','Explore college decisions, internships and Jewish life with students and graduates.','Online first'],
+ ['inside-tech','Inside Tech: Beyond the Code','Online idea','Explore software, data and design through beginner-friendly activities.','Online first'],
+ ['sunday-workroom','The Sunday Workroom','Online-first idea','Work alongside other Jewish young adults on projects, applications or assignments.','Online first'],
+ ['engineering-challenge','The Engineering Design Challenge','Online-first idea','Research a problem, create and test a prototype, and learn how engineers approach design.','Online first']
 ];
 const library=[
  ['design-for-everyone','Engineering','Design for Everyone','Redesign an everyday object for people with different mobility or dexterity needs.','Hands-on challenge'],
  ['fix-the-failure','Engineering','Fix the Failure','Investigate a fictional product failure and recommend a safer, more reliable redesign.','Engineering simulation'],
  ['break-the-bridge','Engineering','Break the Bridge','Build and test a model bridge under constraints, then improve your design.','Engineering challenge'],
  ['engineering-design','Engineering','The Engineering Design Challenge','Solve a practical design problem through sketches, prototypes and testing.','Hands-on challenge'],
+ ['team-challenge-lab','Business','Team Challenge Lab','Work in a team with engineering, health, business and creative roles to propose a solution.','Online-first challenge'],
  ['business-idea','Business','From Idea to Business','Find a customer, design a product, estimate costs and pitch a business concept.','Entrepreneurship challenge'],
  ['marketing-challenge','Business','The Marketing Challenge','Respond to a fictional client brief with a campaign and a short pitch.','Creative challenge'],
  ['save-the-budget','Business','Save the Budget','Act as the finance team of a struggling business and recommend a plan.','Finance simulation'],
@@ -32,6 +33,7 @@ const library=[
  ['newsroom-challenge','Design','The Newsroom Challenge','Check sources and assemble a responsible short news report.','Media simulation'],
  ['psychologist','Education','Think Like a Psychologist','Plan an ethical nonclinical study of decision-making and evaluate example results.','Research challenge'],
  ['teach-it-better','Education','Teach It Better','Design and improve a short lesson with feedback from peers.','Education challenge'],
+ ['sunday-workroom','College','The Sunday Workroom','Bring your projects, assignments or applications to a relaxed online work session.','Online-first workroom'],
  ['choose-your-major','College','Choose Your Major','Compare academic paths and create a sample course and career plan.','College workshop'],
  ['college-life','College','Design Your College Life','Plan a semester around classes, work, money, Shabbos and commitments.','College workshop']
 ];
@@ -44,11 +46,15 @@ function card(item,featuredCard){
  const el=document.createElement('article');el.className='jm-experience-card';el.append(txt('div','jm-experience-meta',meta),txt('h3','',title),txt('p','',desc));
  const foot=document.createElement('div');foot.className='jm-card-footer';
  if(featuredCard)foot.append(txt('span','jm-card-location',item[4]));
- const a=document.createElement('a');a.className='jm-card-action';a.href='join.html?role=seek&interest='+encodeURIComponent(title);a.dataset.jmDrawer='experience';a.dataset.jmExperience=id;a.textContent='Join interest list';a.setAttribute('aria-haspopup','dialog');foot.append(a);el.append(foot);return el;
+ const a=document.createElement('a');a.className='jm-card-action';a.href='join.html?role=seek&interest='+encodeURIComponent(title);a.dataset.jmDrawer='experience';a.dataset.jmExperience=id;a.textContent="I'm interested";a.setAttribute('aria-haspopup','dialog');foot.append(a);el.append(foot);return el;
 }
 document.querySelectorAll('[data-jm-featured]').forEach(root=>featured.forEach(item=>root.append(card(item,true))));
 const libraryRoot=document.querySelector('[data-jm-library]');
 const filter=document.querySelector('[data-jm-library-filter]');
+if(filter){
+ const requestedField=new URLSearchParams(window.location.search).get('field');
+ if(requestedField&&[...filter.options].some(option=>option.value===requestedField))filter.value=requestedField;
+}
 if(libraryRoot){
  const render=()=>{
   const category=filter?filter.value:'All';
@@ -136,7 +142,7 @@ function show(type,id){
  dialog.querySelector('#jm-drawer-title').textContent=titles[activeType];
  dialog.querySelector('#jm-drawer-copy').textContent=copies[activeType];
  dialog.querySelector('#jm-drawer-eyebrow').textContent=activeType==='experience'?'EXPERIENCE INTEREST':activeType==='workplace'?'CAREER VISITS':activeType==='volunteer'?'VOLUNTEER WITH US':'FOR PROFESSIONALS';
- form.reset();status.textContent='';status.dataset.error='false';submit.disabled=false;submit.textContent=activeType==='volunteer'?'Offer to volunteer':activeType==='professional'?'Share how I can help':activeType==='workplace'?'Request a career visit':'Join interest list';
+ form.reset();status.textContent='';status.dataset.error='false';submit.disabled=false;submit.textContent=activeType==='volunteer'?'Offer to volunteer':activeType==='professional'?'Share how I can help':activeType==='workplace'?'Request a career visit':'Register interest';
  if(activeType==='experience')selectField('Which career perspective interests you? (optional)',['Engineering','Software & data','Healthcare & science','Business & entrepreneurship','Design & marketing','Law & policy','College / career navigation','Exploring several fields']);
  if(activeType==='workplace')checkboxField('Fields you would like to explore',industryList);
  if(activeType==='volunteer')checkboxField('How would you like to help?',volunteerList);

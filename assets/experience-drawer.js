@@ -14,7 +14,7 @@ const library=[
  ['fix-the-failure','Engineering','Fix the Failure','Investigate a fictional product failure and recommend a safer, more reliable redesign.','Engineering simulation'],
  ['break-the-bridge','Engineering','Break the Bridge','Build and test a model bridge under constraints, then improve your design.','Engineering challenge'],
  ['engineering-design','Engineering','The Engineering Design Challenge','Solve a practical design problem through sketches, prototypes and testing.','Hands-on challenge'],
- ['team-challenge-lab','Business','Team Challenge Lab','Work in a team with engineering, health, business and creative roles to propose a solution.','Online-first challenge'],
+ ['team-challenge-lab','Business','Shabbos, Anywhere: Team Design Challenge','Design a better experience for Jewish travelers planning Shabbos in an unfamiliar city, using tech, engineering, business, accessibility and communication.','Cross-disciplinary idea'],
  ['business-idea','Business','From Idea to Business','Find a customer, design a product, estimate costs and pitch a business concept.','Entrepreneurship challenge'],
  ['marketing-challenge','Business','The Marketing Challenge','Respond to a fictional client brief with a campaign and a short pitch.','Creative challenge'],
  ['save-the-budget','Business','Save the Budget','Act as the finance team of a struggling business and recommend a plan.','Finance simulation'],

@@ -8,6 +8,8 @@ on:
       - 'assets/experience-drawer.js'
       - 'assets/experience-drawer.css'
       - 'assets/jm-home.css'
+      - 'assets/jm-discovery.css'
+      - 'assets/jm-discovery.js'
       - 'tests/experience-smoke.cjs'
       - '.github/workflows/experience-smoke.yml'
   workflow_dispatch:

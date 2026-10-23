@@ -50,6 +50,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.equal(posts[0].data.email,'qa@example.invalid');
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#jd-sheet[open]').count(),0);
+  await page.locator('.jd-feature-reveal summary').click();
   await page.locator('[data-jd-open=sukkah]').first().click();
   assert.match(await page.locator('#jd-selection').innerText(),/Impossible Sukkah/);
   await page.locator('#jd-email').fill('qa2@example.invalid');

@@ -10,32 +10,32 @@ const featured=[
  ['engineering-challenge','The Engineering Design Challenge','Online-first idea','Research a problem, create and test a prototype, and learn how engineers approach design.','Online first']
 ];
 const library=[
- ['design-for-everyone','Engineering','Design for Everyone','Redesign an everyday object for people with different mobility or dexterity needs.','Hands-on challenge'],
- ['fix-the-failure','Engineering','Fix the Failure','Investigate a fictional product failure and recommend a safer, more reliable redesign.','Engineering simulation'],
- ['break-the-bridge','Engineering','Break the Bridge','Build and test a model bridge under constraints, then improve your design.','Engineering challenge'],
- ['engineering-design','Engineering','The Engineering Design Challenge','Solve a practical design problem through sketches, prototypes and testing.','Hands-on challenge'],
- ['team-challenge-lab','Business','Shabbos, Anywhere: Team Design Challenge','Design a better experience for Jewish travelers planning Shabbos in an unfamiliar city, using tech, engineering, business, accessibility and communication.','Cross-disciplinary idea'],
- ['business-idea','Business','From Idea to Business','Find a customer, design a product, estimate costs and pitch a business concept.','Entrepreneurship challenge'],
- ['marketing-challenge','Business','The Marketing Challenge','Respond to a fictional client brief with a campaign and a short pitch.','Creative challenge'],
- ['save-the-budget','Business','Save the Budget','Act as the finance team of a struggling business and recommend a plan.','Finance simulation'],
- ['real-estate-deal','Business','The Real Estate Deal','Evaluate a fictional property with costs, trade-offs and a recommendation.','Business simulation'],
- ['software-sprint','Technology','The Software Design Sprint','Interview users, sketch a feature and build a small working prototype.','Software challenge'],
- ['data-detective','Technology','The Data Detective','Explore an imperfect dataset and defend a recommendation using evidence.','Data challenge'],
- ['cybersecurity-crisis','Technology','The Cybersecurity Crisis Room','Respond to a fictional security incident and prioritize an action plan.','Cybersecurity simulation'],
- ['trust-the-algorithm','Technology','Can You Trust the Algorithm?','Experiment with a classification model and investigate biased or missing data.','AI & data challenge'],
- ['build-an-app','Technology','Build an App Without Coding','Design and test a simple clickable app concept with potential users.','UX & product challenge'],
- ['inside-care-team','Healthcare','Inside the Care Team','Work through a fictional patient journey and compare healthcare roles.','Career simulation'],
- ['stop-the-outbreak','Healthcare','Stop the Outbreak','Analyze a fictional public-health scenario and choose an evidence-based response.','Science & health challenge'],
- ['you-be-the-lawyer','Law','You Be the Lawyer','Read a fictional case, develop an argument and practice presenting it.','Legal simulation'],
- ['negotiation-table','Law','The Negotiation Table','Negotiate a fictional business agreement and explain the trade-offs.','Negotiation challenge'],
- ['design-a-space','Design','Design a Space','Create an architectural layout under budget, accessibility and space constraints.','Architecture challenge'],
- ['ux-redesign','Design','The UX Redesign','Study user frustrations and redesign a confusing digital experience.','Design challenge'],
- ['newsroom-challenge','Design','The Newsroom Challenge','Check sources and assemble a responsible short news report.','Media simulation'],
- ['psychologist','Education','Think Like a Psychologist','Plan an ethical nonclinical study of decision-making and evaluate example results.','Research challenge'],
- ['teach-it-better','Education','Teach It Better','Design and improve a short lesson with feedback from peers.','Education challenge'],
- ['sunday-workroom','College','The Sunday Workroom','Bring your projects, assignments or applications to a relaxed online work session.','Online-first workroom'],
- ['choose-your-major','College','Choose Your Major','Compare academic paths and create a sample course and career plan.','College workshop'],
- ['college-life','College','Design Your College Life','Plan a semester around classes, work, money, Shabbos and commitments.','College workshop']
+ ["design-for-everyone","Engineering","One Hand, No Problem","Try using an everyday object with one hand. Then redesign the annoying part.","Accessibility lab","Sketch two solutions, build a quick cardboard mockup, and test one with another person."],
+ ["fix-the-failure","Engineering","The Product That Snapped","A beloved gadget fails spectacularly. You get the incident report.","Failure investigation","Study sample photos and forces, explain the weak spot, and propose a part you could test."],
+ ["break-the-bridge","Engineering","Bridge vs. Gravity","Build it light. Make it strong. Then see what the weights say.","Build-and-test lab","Design a paper bridge under a material budget, load it until failure, then revise the structure."],
+ ["engineering-design","Engineering","The Great Gadget Hack","Take one frustrating everyday object and invent a better version.","Design sprint","Prototype a mechanism with household materials and explain how you would test durability."],
+ ["team-challenge-lab","Business","The Impossible Sukkah","A tiny courtyard. Almost no storage. Build a sukkah that folds and stays standing.","Engineering + enterprise","Sketch a folding frame, fan-test a scale model, and compare costs; consult an expert on sukkah requirements."],
+ ["business-idea","Business","Will Anyone Buy It?","You love your idea. Your first customer is less convinced.","Startup experiment","Interview a fictional buyer, choose a test price, and pitch a tiny viable launch."],
+ ["marketing-challenge","Business","The Campaign That Has to Work","One product. Three audiences. A budget of almost nothing.","Marketing brief","Pick an audience, write three campaign headlines, and defend your launch choice."],
+ ["save-the-budget","Business","Budget vs. Reality","The dream event is $2,000 over budget. Something has to give.","Finance rescue","Rebuild a sample event budget, negotiate tradeoffs, and present a plan that adds up."],
+ ["real-estate-deal","Business","The Apartment Deal Detective","The listing looks perfect. Then you open the expense sheet.","Real-estate case","Compare fictional rent, taxes, maintenance, and repairs; recommend buy, rent, or pass."],
+ ["software-sprint","Technology","The 48-Hour Product Sprint","An idea lands Friday. The prototype is due Monday.","Product sprint","Choose one user problem, write a tiny feature brief, and mock up the opening screen."],
+ ["data-detective","Technology","The Spreadsheet Is Lying","The chart looks impressive. Its data is hiding a detail.","Data investigation","Audit sample attendance figures, find missing context, and rebuild an honest chart."],
+ ["cybersecurity-crisis","Technology","Someone Clicked the Link","A suspicious office email. One click. Now what?","Cyber incident room","Sort fictional alerts, prioritize containment, and write a short incident briefing."],
+ ["trust-the-algorithm","Technology","AI on Trial","The model says 94% accuracy. One group keeps getting the wrong answer.","AI audit","Compare sample error rates and recommend what must change before deployment."],
+ ["build-an-app","Technology","The App Everyone Hates","Users quit after seven seconds. Give them a reason to stay.","UX rescue","Turn fictional complaints into a clearer flow and test a clickable mockup."],
+ ["inside-care-team","Healthcare","The Missing Handoff","Five people cared for a patient. A key detail vanished between them.","Care-team simulation","Map a fictional patient journey and design a safer handoff between professional roles."],
+ ["stop-the-outbreak","Healthcare","Patient Zero?","The fictional outbreak map is growing. Which clue matters first?","Public-health puzzle","Interpret sample case counts, pick a response, and explain the uncertainty."],
+ ["you-be-the-lawyer","Law","Objection!","One strange case. Two sides. Three minutes to persuade the room.","Mock case","Sort a fictional case file, build an argument, and deliver a short closing statement."],
+ ["negotiation-table","Law","The Dealbreaker","Three teams need a deal. None will accept the first offer.","Negotiation room","Represent a stakeholder and trade concessions to negotiate—or walk away."],
+ ["design-a-space","Design","300 Square Feet","A tiny room must work for three completely different uses.","Architecture puzzle","Draw a scaled layout, test accessible routes, and propose movable furniture."],
+ ["ux-redesign","Design","The Seven-Second Website","Visitors arrive, look around, and leave. Fix the first impression.","Web UX sprint","Audit a confusing screen, rearrange the priorities, and test your redesign."],
+ ["newsroom-challenge","Design","Rumor Has It","A headline is spreading. Is it true—or just very shareable?","Media fact-check","Trace a fictional claim, check the evidence, and write a careful 100-word news update."],
+ ["psychologist","Education","What Would You Click?","Two buttons. One strange choice. Design an experiment to explain it.","Psychology experiment","Write an ethical mini-study, identify confounding factors, and interpret sample responses."],
+ ["teach-it-better","Education","Teach It in Three Minutes","Explain a hard concept to a beginner. Go.","Teaching lab","Design a three-minute lesson, try it on a peer, and improve it from feedback."],
+ ["sunday-workroom","College","The Workroom","Bring the assignment you have been avoiding. Leave with actual progress.","Online coworking","Join a focused work sprint, set a goal, and report what got done."],
+ ["choose-your-major","College","Major Plot Twist","Two majors. One internship. Shabbos is not negotiable.","College decision lab","Compare courses, costs, and internships and build a realistic semester plan."],
+ ["college-life","College","The Impossible Semester","Classes, work, holidays, friends. Somehow it all has to fit.","Schedule challenge","Stress-test a fictional student calendar and decide what to prioritize."]
 ];
 const industryList=['Engineering & manufacturing','Software, AI & data','Healthcare & science','Law & public policy','Architecture & design','Finance & business','Media & marketing','Education & nonprofit work'];
 const volunteerList=['Help organize an event','Facilitate a team or workshop','Design learning activities','Outreach and recruit participants','Create graphics and promotion','Help with technology or data','Research opportunities','Host or support in-person events'];
@@ -43,10 +43,10 @@ const professionalList=['Answer a few questions','Join a short team consultation
 const txt=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;n.textContent=value;return n};
 function card(item,featuredCard){
  const id=item[0],title=item[1],meta=featuredCard?item[2]:item[2]+' · '+item[4],desc=featuredCard?item[3]:item[3];
- const el=document.createElement('article');el.className='jm-experience-card';el.append(txt('div','jm-experience-meta',meta),txt('h3','',title),txt('p','',desc));
+ const el=document.createElement('article');el.className='jm-experience-card';el.append(txt('div','jm-experience-meta',meta),txt('h3','',title),txt('p','',desc));if(!featuredCard&&item[5]){const detail=document.createElement('details');detail.className='jm-card-brief';detail.append(txt('summary','','See your mission'),txt('p','',item[5]));el.append(detail);}
  const foot=document.createElement('div');foot.className='jm-card-footer';
  if(featuredCard)foot.append(txt('span','jm-card-location',item[4]));
- const a=document.createElement('a');a.className='jm-card-action';a.href='join.html?role=seek&interest='+encodeURIComponent(title);a.dataset.jmDrawer='experience';a.dataset.jmExperience=id;a.textContent="I'm interested";a.setAttribute('aria-haspopup','dialog');foot.append(a);el.append(foot);return el;
+ const a=document.createElement('a');a.className='jm-card-action';a.href='join.html?role=seek&interest='+encodeURIComponent(title);a.dataset.jmDrawer='experience';a.dataset.jmExperience=id;a.textContent=featuredCard?'Register interest':"I'd try this";a.setAttribute('aria-haspopup','dialog');foot.append(a);el.append(foot);return el;
 }
 document.querySelectorAll('[data-jm-featured]').forEach(root=>featured.forEach(item=>root.append(card(item,true))));
 const libraryRoot=document.querySelector('[data-jm-library]');

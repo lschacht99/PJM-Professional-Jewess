@@ -72,3 +72,13 @@ body.jm-drawer-open{overflow:hidden}
 .jm-drawer-shade:not([hidden]){position:fixed;inset:0;z-index:9998;background:rgba(14,31,52,.52)}
 .jm-drawer[open]{z-index:9999}
 .jm-drawer[hidden],.jm-drawer-shade[hidden]{display:none!important}
+
+/* Preview the actual activity before visitors are asked to register. */
+.jm-card-brief{margin-top:3px;padding:11px 0 0;border-top:1px solid #dee4dc}
+.jm-card-brief summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;color:#1d478b;font:800 12px/1.4 'DM Sans',Arial,sans-serif;min-height:37px}
+.jm-card-brief summary::-webkit-details-marker{display:none}
+.jm-card-brief summary::marker{content:''}
+.jm-card-brief summary::after{content:'+';font-size:19px;font-weight:400}
+.jm-card-brief[open] summary::after{content:'–'}
+.jm-card-brief[open] p{margin:10px 0 0;font-size:12.5px;line-height:1.65}
+.jm-card-brief summary:focus-visible{outline:3px solid #e56b51;outline-offset:3px}

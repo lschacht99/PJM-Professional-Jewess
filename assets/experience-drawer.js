@@ -71,6 +71,7 @@ dialog.innerHTML=[
 '<div class="jm-drawer-field"><label for="jm-email">Email *</label><input id="jm-email" type="email" name="email" autocomplete="email" maxlength="254" required></div>',
 '<div class="jm-drawer-field"><label for="jm-region">City or region (optional)</label><input id="jm-region" name="region" autocomplete="address-level2" maxlength="150" placeholder="e.g., Brooklyn, NY"></div>',
 '<div class="jm-drawer-field" id="jm-area-wrap"></div>',
+'<div class="jm-drawer-field"><label for="jm-format">Preferred format (optional)</label><select id="jm-format" name="format"><option value="">Choose if you know</option><option>In person</option><option>Online</option><option>Either format</option></select></div>',
 '<div class="jm-drawer-field"><label for="jm-availability">When are you usually available? (optional)</label>',
 '<select id="jm-availability" name="availability"><option value="">Choose if you know</option><option>Weekend afternoons</option><option>Weekday evenings</option><option>Weekdays</option><option>Online only</option><option>Flexible / not sure yet</option></select></div>',
 '<div class="jm-drawer-field"><label for="jm-notes">Anything else? (optional)</label><textarea id="jm-notes" name="notes" rows="3" maxlength="650" placeholder="Questions, ideas, or how you could help"></textarea></div>',
@@ -144,7 +145,7 @@ form.addEventListener('submit',async e=>{
  if(form.elements.namedItem('website')?.value)return;
  const first=limited(form.elements.namedItem('first').value,100),last=limited(form.elements.namedItem('last').value,100),email=limited(form.elements.namedItem('email').value,254);
  if(!first||!last||!email)return;
- const region=limited(form.elements.namedItem('region').value,150),availability=limited(form.elements.namedItem('availability').value,80),notes=limited(form.elements.namedItem('notes').value,650);
+ const region=limited(form.elements.namedItem('region').value,150),availability=limited(form.elements.namedItem('availability').value,80),format=limited(form.elements.namedItem('format').value,30),notes=limited(form.elements.namedItem('notes').value,650);
  const select=form.elements.namedItem('area'),area=select?limited(select.value,120):'';
  const checked=[...form.querySelectorAll('input[name=areas]:checked')].map(x=>x.value);
  const wantsVolunteer=!!form.querySelector('input[name=also_volunteer]:checked');
@@ -153,7 +154,7 @@ form.addEventListener('submit',async e=>{
  try{
   if(activeType==='volunteer'||activeType==='professional'){
    const subject=activeType==='volunteer'?'Volunteer interest':'Professional contribution';
-   const message=limited('['+subject+'] Activities: '+checked.join(', ')+'. Location: '+region+'. Availability: '+availability+'. Notes: '+notes,1950);
+   const message=limited('['+subject+'] Activities: '+checked.join(', ')+'. Location: '+region+'. Preferred format: '+format+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1950);
    await post('pj_inquiries',{full_name:limited(first+' '+last,150),email,message,source:activeType==='volunteer'?'jewish-mutual-volunteer-2026':'jewish-mutual-expert-2026'});
   }else{
    const interestChoices=activeId==='career-interests'?[...document.querySelectorAll('[data-jm-field][aria-pressed="true"]')].map(el=>el.dataset.jmField).join(', '):'';

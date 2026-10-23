@@ -175,12 +175,12 @@ form.addEventListener('submit',async e=>{
  try{
   if(activeType==='volunteer'||activeType==='professional'){
    const subject=activeType==='volunteer'?'Volunteer interest':'Professional contribution';
-   const message=limited('['+subject+'] Activities: '+checked.join(', ')+'. Location: '+region+'. Preferred format: '+format+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1950);
+   const message=limited('['+subject+'] Activities: '+checked.join(', ')+'. Location: '+region+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1950);
    await post('pj_inquiries',{full_name:limited(first+' '+last,150),email,message,source:activeType==='volunteer'?'jewish-mutual-volunteer-2026':'jewish-mutual-expert-2026'});
   }else{
    const interestChoices=activeId==='career-interests'?[...document.querySelectorAll('[data-jm-field][aria-pressed="true"]')].map(el=>el.dataset.jmField).join(', '):'';
    const detail=activeType==='workplace'?'[Workplace visit request] Fields: '+checked.join(', '):'[Experience request] ID: '+activeId+'. Title: '+activeTitle+'. Selected fields: '+interestChoices+'. Perspective: '+area;
-   const needed=limited(detail+'. Availability: '+availability+'. Notes: '+notes,1450);
+   const needed=limited(detail+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1450);
    await post('pj_applications',{
     role:'mentee',first_name:first,last_name:last,email,community:region||null,
     field:limited(activeType==='workplace'?checked.join(', '):area||activeTitle,195)||null,

@@ -1,0 +1,34 @@
+/* The Jewish Mutual: concise, mobile-first conversion homepage. */
+.jm-home{background:#F8F4ED;color:#193e73}
+.jm-home-intro{padding:37px 0 48px;border-bottom:1px solid #1D478B1d}
+.jm-home-main{max-width:820px}
+.jm-home-intro .eyebrow{margin-bottom:14px;color:#9e533e;font-size:10px;letter-spacing:.12em}
+.jm-home-intro h1{max-width:690px;margin:0 0 16px;font:600 clamp(40px,10.7vw,72px)/1.03 'Source Serif 4',Georgia,serif;letter-spacing:-.043em;color:#1D478B}
+.jm-home-intro h1 em{font-style:italic;color:#bf5d47;font-weight:500}
+.jm-home-lead{max-width:570px;margin:0 0 26px;font-size:15px;line-height:1.6;color:#435a70}
+.jm-home-choices{display:grid;grid-template-columns:1fr;gap:11px}
+.jm-home-choice{display:flex;gap:16px;align-items:center;justify-content:space-between;min-height:76px;padding:15px 17px;border:1.5px solid #1D478B;border-radius:11px;background:#1D478B;color:#fff;text-decoration:none}
+.jm-home-choice:hover{background:#183b71;color:#fff}
+.jm-home-choice strong{display:block;margin-bottom:4px;font:700 16px/1.25 'DM Sans',Arial,sans-serif;color:inherit}
+.jm-home-choice small{display:block;font:400 12px/1.5 'DM Sans',Arial,sans-serif;opacity:.93;color:inherit}
+.jm-home-choice-arrow{font-size:23px;flex:none;font-family:Arial,sans-serif;line-height:1}
+.jm-home-choice.secondary{background:#fffaf3;color:#1D478B}
+.jm-home-choice.secondary:hover{background:#f2e5d6}
+.jm-home-footnote{font:400 12px/1.55 'DM Sans',Arial,sans-serif;color:#637285;margin:18px 0 0;max-width:620px}
+.jm-home-fields{padding:39px 0 42px;background:#fffaf2}
+.jm-home-fields-inner{max-width:850px}
+.jm-home-fields h2,.jm-home-next h2{font:600 clamp(28px,7vw,40px)/1.11 'Source Serif 4',Georgia,serif;letter-spacing:-.03em;color:#1D478B;margin:0 0 7px}
+.jm-home-fields p,.jm-home-next p{color:#526678;font-size:13px;line-height:1.6;margin:0 0 17px}
+.jm-home-fields-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.jm-home-field{display:flex;min-width:0;align-items:center;justify-content:space-between;gap:5px;min-height:52px;padding:10px 12px;background:#fff;border:1px solid #ced9d7;border-radius:10px;font:700 12px/1.35 'DM Sans',Arial,sans-serif;color:#1D478B;text-decoration:none}
+.jm-home-field:hover{border-color:#1D478B;background:#f4f7f5;color:#1D478B}
+.jm-home-field span:last-child{font-size:16px;flex:none;font-family:Arial,sans-serif}
+.jm-home-field:focus-visible,.jm-home-choice:focus-visible{outline:3px solid #e56b51;outline-offset:3px}
+.jm-home-fields-footer{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin-top:18px}
+.jm-home-fields-footer a{font-size:13px;font-weight:700;color:#1D478B;text-underline-offset:4px}
+.jm-home-next{padding:28px 0 37px;background:#e9eee5}
+.jm-home-next-inner{max-width:850px}
+.jm-home-next h2{font-size:27px;margin:0 0 8px}
+.jm-home-next p{margin:0;max-width:650px;font-size:13px}
+@media(max-width:380px){.jm-home-intro{padding-top:28px}.jm-home-intro h1{font-size:40px}.jm-home-choice{min-height:73px}.jm-home-field{padding:10px;font-size:11.5px}.jm-home-lead{margin-bottom:21px}}
+@media(min-width:680px){.jm-home-intro{padding:76px 0 82px}.jm-home-intro h1{margin-bottom:21px}.jm-home-lead{font-size:18px;margin-bottom:30px}.jm-home-choices{grid-template-columns:1fr 1fr;gap:16px}.jm-home-choice{min-height:104px;padding:23px 23px}.jm-home-choice strong{font-size:18px}.jm-home-choice small{font-size:13px}.jm-home-fields{padding:55px 0}.jm-home-fields-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.jm-home-field{min-height:62px;padding:15px}.jm-home-next{padding:37px 0 44px}}

@@ -42,7 +42,7 @@ const volunteerList=['Help organize an event','Facilitate a team or workshop','D
 const professionalList=['Answer a few questions','Join a short team consultation','Review a project or proposal','Join a panel or final presentation','Host an office or workplace visit','Offer ongoing mentoring'];
 const txt=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;n.textContent=value;return n};
 function card(item,featuredCard){
- const id=item[0],title=item[1],meta=featuredCard?item[2]:item[2]+' · '+item[4],desc=featuredCard?item[3]:item[3];
+ const id=item[0],title=featuredCard?item[1]:item[2],meta=featuredCard?item[2]:item[4],desc=item[3];
  const el=document.createElement('article');el.className='jm-experience-card';
  const tag=featuredCard?meta:(item[7]==='conversation'?'CAREER CONVERSATION':'HANDS-ON CAREER EXPERIENCE');
  el.append(txt('div','jm-experience-meta',tag),txt('h3','',title),txt('p','',desc));

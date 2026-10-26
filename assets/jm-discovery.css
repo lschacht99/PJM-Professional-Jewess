@@ -155,3 +155,15 @@ body:has(.jd-sheet[open]){overflow:hidden}
 .jd-idea details p.jd-idea-outcome{background:#f0f3ec;border-radius:5px;padding:10px 11px;margin-top:12px}
 .jd-hero .jd-intro{font-size:15px;line-height:1.6}
 @media(min-width:760px){.jd-hero .jd-intro{font-size:17px}}
+
+/* Consistent stroked vector arrows on the homepage; never rely on platform emoji glyphs. */
+.jd-home .jd-vector-arrow,.jm-shared-header .jd-vector-arrow{
+  flex:0 0 auto;display:inline-block;width:16px;height:16px;
+  margin-inline-start:7px;vertical-align:-3px;
+  stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;fill:none;
+}
+.jd-home .jd-btn .jd-vector-arrow{width:18px;height:18px;margin-inline-start:auto}
+.jd-home .jd-feature-expanded-actions .jd-vector-arrow{width:16px;height:16px}
+.jd-home a .jd-vector-arrow{transition:transform .15s ease}
+@media(hover:hover){.jd-home a:hover .jd-vector-arrow{transform:translateX(2px)}}
+@media(prefers-reduced-motion:reduce){.jd-home a .jd-vector-arrow{transition:none}}

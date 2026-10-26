@@ -20,6 +20,8 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.equal(await page.locator('#jd-mail-form').count(),1);
   assert.equal(await page.locator('input[name=email]').count(),1);
   assert.equal(await page.locator('.jd-feature').count(),1);
+  assert.equal(await page.locator('main.jd-home svg.jd-vector-arrow').count()>3,true,'homepage arrows use vector SVG');
+  assert.equal(await page.locator('main.jd-home').evaluate(el=>/[↗→↓]/.test(el.textContent)),false,'no platform text or emoji arrow glyphs in homepage');
   assert.equal(await page.locator('.jd-feature-reveal').getAttribute('open'),null,'featured engineering mission initially collapsed');
   assert.equal(await page.locator('.jd-feature-expanded').isVisible(),false,'hide full mission by default');
   assert.ok(await page.locator('a[href="partners.html#professionals"].jd-btn').count()===1,'professional CTA visible in hero');
@@ -43,7 +45,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.match(await page.locator('#jd-shortlist-count').innerText(),/1 saved/,'shortlist persists after refresh');
   await page.locator('#jd-review').click();
   assert.equal(await page.locator('#jd-sheet[open]').count(),1,'shortlist drawer opens');
-  assert.match(await page.locator('#jd-selection').innerText(),/Spreadsheet Is Lying/);
+  assert.match(await page.locator('#jd-selection').innerText(),/Data Analysis: Spot a Misleading Chart/);
   await page.locator('#jd-email').fill('qa@example.invalid');
   await page.locator('#jd-mail-form input[name=consent]').check();
   await page.locator('#jd-mail-form [type=submit]').click();
@@ -56,7 +58,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.equal(await page.locator('#jd-sheet[open]').count(),0);
   await page.locator('.jd-feature-reveal summary').click();
   await page.locator('[data-jd-open=sukkah]').first().click();
-  assert.match(await page.locator('#jd-selection').innerText(),/Impossible Sukkah/);
+  assert.match(await page.locator('#jd-selection').innerText(),/Foldable Sukkah/);
   await page.locator('#jd-email').fill('qa2@example.invalid');
   await page.locator('#jd-mail-form input[name=consent]').check();
   await page.locator('#jd-mail-form [type=submit]').click();
@@ -70,6 +72,8 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.waitForSelector('[data-jm-library] .jm-experience-card');
   assert.ok((await page.locator('[data-jm-library] .jm-experience-card').count())>=20,'full library preserved');
   assert.equal(await page.locator('.jm-card-brief').count(),26,'each experience reveals a concrete activity');
+  assert.equal(await page.locator('.jm-experience-meta').evaluateAll(nodes=>nodes.every(n=>!n.textContent.includes('Engineering'))),true,'cards do not repeat category name on every item');
+  assert.equal(await page.locator('.jm-experience-card').first().locator('h3').innerText(),'Meet a Mechanical Engineer','titles explain the actual career interaction');
   assert.equal(await page.locator('[data-jm-format-filter]').count(),1,'format filter visible');
   await page.selectOption('#jm-format-filter','conversation');
   assert.equal(await page.locator('.jm-experience-card').count(),8,'eight professional conversations');
@@ -77,14 +81,14 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.selectOption('#jm-library-filter','Engineering');
   assert.equal(await page.locator('.jm-experience-card').count(),1,'one engineering professional conversation');
   await page.selectOption('#jm-format-filter','project');
-  assert.equal(await page.locator('.jm-experience-card').count(),3,'three engineering projects with professional input');
+  assert.equal(await page.locator('.jm-experience-card').count(),4,'four engineering projects with professional input');
   await page.selectOption('#jm-format-filter','All');
   await page.selectOption('#jm-library-filter','All');
   assert.equal(await page.locator('.jm-experience-card').count(),26);
   assert.equal(await page.locator('.jm-card-brief').first().getAttribute('open'),null,'missions collapsed initially');
   await page.locator('.jm-card-brief summary').first().click();
   assert.equal(await page.locator('.jm-card-brief').first().locator('p').isVisible(),true);
-  assert.equal(await page.locator('.jm-card-pro').count(),26,'every concept has a professional connection');
+  assert.equal(await page.locator('.jm-card-pro-preview').count(),26,'each card shows professional context before expanding');
   const desktop=await browser.newPage({viewport:{width:1280,height:900}});
   desktop.on('pageerror',e=>errors.push('desktop '+e.message));
   await desktop.goto('http://127.0.0.1:8765/index.html',{waitUntil:'domcontentloaded'});

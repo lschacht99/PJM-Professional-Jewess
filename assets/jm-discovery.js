@@ -6,7 +6,7 @@ const catalog={
   "ideas": [
    {
     "id": "inside-an-engineers-day",
-    "name": "Beyond the Blueprint",
+    "name": "Meet a Mechanical Engineer",
     "format": "Professional Q&A",
     "hook": "What does an engineer actually do between the first sketch and the finished product?",
     "pro": "Ask a working engineer about projects, mistakes, team decisions, and a typical workday.",
@@ -15,7 +15,7 @@ const catalog={
    },
    {
     "id": "career-interview",
-    "name": "The Questions You Can't Google",
+    "name": "Ask a Professional About Their Career",
     "format": "Professional interview",
     "hook": "The job title sounds interesting. What's the reality nobody mentions?",
     "pro": "Interview a professional about career turns, daily responsibilities, and what they wish they'd known.",
@@ -29,7 +29,7 @@ const catalog={
   "ideas": [
    {
     "id": "team-lab",
-    "name": "The 90-Minute Rescue",
+    "name": "Project Management: Rescue an Event",
     "format": "Team project + professional feedback",
     "hook": "A community event is going off course. Make the case for your rescue plan.",
     "pro": "Present your proposed solution to a working project manager or organizer and ask how they'd prioritize.",
@@ -38,7 +38,7 @@ const catalog={
    },
    {
     "id": "community-redesign",
-    "name": "The Tiny-Space Takeover",
+    "name": "Design a Small Space with an Architect",
     "format": "Design brief + professional Q&A",
     "hook": "One small room needs three different layouts. Can you make the space work?",
     "pro": "Ask an architect or designer how they balance safety, usability, budget and client feedback.",
@@ -52,7 +52,7 @@ const catalog={
   "ideas": [
    {
     "id": "data-detective",
-    "name": "The Spreadsheet Is Lying",
+    "name": "Data Analysis: Spot a Misleading Chart",
     "format": "Data challenge + analyst discussion",
     "hook": "The graph looks excellent. Unfortunately, the numbers have other plans.",
     "pro": "Ask a data analyst how they catch flawed assumptions and explain findings to clients.",
@@ -61,7 +61,7 @@ const catalog={
    },
    {
     "id": "product-sprint",
-    "name": "Behind the App",
+    "name": "Interview a UX Designer About Apps",
     "format": "Product professional interview",
     "hook": "Who decides what an app should do—and what gets cut?",
     "pro": "Interview a product manager or UX designer about user research, priorities and their career path.",
@@ -75,7 +75,7 @@ const catalog={
   "ideas": [
    {
     "id": "impossible-sukkah",
-    "name": "The Impossible Sukkah",
+    "name": "Design a Foldable Sukkah with an Engineer",
     "format": "Prototype + engineer review",
     "hook": "A tiny courtyard. Almost no storage. Can you design a fold-up sukkah?",
     "pro": "Ask an engineer how they'd test stability, mechanisms and tradeoffs in a real prototype.",
@@ -84,7 +84,7 @@ const catalog={
    },
    {
     "id": "fix-failure",
-    "name": "Behind the Drawings",
+    "name": "Mechanical Engineering: From CAD to Production",
     "format": "Engineer career conversation",
     "hook": "CAD is one part of the job. What happens when a design leaves the screen?",
     "pro": "Ask a mechanical engineer about testing, teamwork, manufacturing and their route into the field.",
@@ -98,7 +98,7 @@ const catalog={
   "ideas": [
    {
     "id": "care-team",
-    "name": "The Missing Handoff",
+    "name": "Healthcare: Fix a Patient Handoff",
     "format": "Care-team simulation + professional Q&A",
     "hook": "One patient, five healthcare roles and a handoff that didn't go to plan.",
     "pro": "Ask a healthcare professional how their real team communicates and handles uncertainty.",
@@ -107,7 +107,7 @@ const catalog={
    },
    {
     "id": "health-research",
-    "name": "Beyond the Scrubs",
+    "name": "Interview a Nurse About Hospital Work",
     "format": "Healthcare professional interview",
     "hook": "What does a hospital shift actually look like, beyond television?",
     "pro": "Ask a nurse or allied-health professional about decisions, training, teamwork and daily routines.",
@@ -121,7 +121,7 @@ const catalog={
   "ideas": [
    {
     "id": "idea-business",
-    "name": "Will Anyone Buy It?",
+    "name": "Test a Startup Idea with an Entrepreneur",
     "format": "Business challenge + founder feedback",
     "hook": "You love your product idea. What would an actual customer think?",
     "pro": "Ask an entrepreneur how they test demand, set prices and decide what not to build.",
@@ -130,7 +130,7 @@ const catalog={
    },
    {
     "id": "budget-rescue",
-    "name": "The Decisions Behind the Business",
+    "name": "Interview a Founder About Business Decisions",
     "format": "Founder or finance professional Q&A",
     "hook": "Which tradeoffs keep a good idea alive when money gets tight?",
     "pro": "Interview a business owner or finance professional about real budgeting and difficult decisions.",
@@ -144,7 +144,7 @@ const catalog={
   "ideas": [
    {
     "id": "be-lawyer",
-    "name": "Objection!",
+    "name": "Prepare a Legal Case with a Lawyer",
     "format": "Legal case + lawyer discussion",
     "hook": "One strange case. Two good arguments. What would you tell your client?",
     "pro": "Ask a practicing lawyer how they'd research, advise and prepare the case.",
@@ -153,7 +153,7 @@ const catalog={
    },
    {
     "id": "negotiation",
-    "name": "Beyond the Courtroom",
+    "name": "Interview a Lawyer About Daily Work",
     "format": "Lawyer career interview",
     "hook": "Most legal work never gets a dramatic courtroom scene. So what fills the day?",
     "pro": "Interview a lawyer about contracts, client meetings, research and career paths.",
@@ -167,7 +167,7 @@ const catalog={
   "ideas": [
    {
     "id": "college-decoded",
-    "name": "Major Plot Twist",
+    "name": "Plan College with a Recent Graduate",
     "format": "Planning lab + graduate Q&A",
     "hook": "Two majors, one internship and some very real tradeoffs.",
     "pro": "Ask a recent graduate how they chose classes, internships and professional direction.",
@@ -176,7 +176,7 @@ const catalog={
    },
    {
     "id": "internship",
-    "name": "The Unfiltered First Job",
+    "name": "Ask a Graduate About Their First Job",
     "format": "Early-career professional interview",
     "hook": "What did your first job teach you that school didn't?",
     "pro": "Interview an early-career professional about applying, interviewing, adjusting and asking for help.",
@@ -195,7 +195,7 @@ const tabs=[...root.querySelectorAll('[data-jd-tab]')],grid=root.querySelector('
 const bar=document.querySelector('#jd-shortlist-bar'),counter=document.querySelector('#jd-shortlist-count'),review=document.querySelector('#jd-review'),sheet=document.querySelector('#jd-sheet'),selection=document.querySelector('#jd-selection'),form=document.querySelector('#jd-mail-form'),state=document.querySelector('#jd-mail-state'),send=form.querySelector('[type=submit]'),close=sheet.querySelector('.jd-sheet-close');
 let current='conversations',mode='saved',oneId=null,priorFocus=null;
 const el=(tag,klass,content)=>{const node=document.createElement(tag);if(klass)node.className=klass;if(content!==undefined)node.textContent=content;return node};
-function updateBar(){const n=saved.size;bar.hidden=n===0;counter.textContent=n+' saved '+(n===1?'idea':'ideas');review.textContent='Review →';root.querySelectorAll('.jd-save').forEach(button=>{const on=saved.has(button.dataset.id);button.setAttribute('aria-pressed',String(on));button.textContent=on?'Saved ✓':'Add to shortlist +'})}
+function updateBar(){const n=saved.size;bar.hidden=n===0;counter.textContent=n+' saved '+(n===1?'idea':'ideas');review.textContent='Review interests';root.querySelectorAll('.jd-save').forEach(button=>{const on=saved.has(button.dataset.id);button.setAttribute('aria-pressed',String(on));button.textContent=on?'Saved ✓':'Add to shortlist +'})}
 function toggle(id){if(saved.has(id))saved.delete(id);else if(saved.size<MAX)saved.add(id);else{openSheet('saved');state.textContent='You can keep up to '+MAX+' ideas. Remove one to save another.';return}persist();updateBar();if(sheet.open&&mode==='saved')renderSelection()}
 function card(item,i){
  const article=el('article','jd-idea');
@@ -204,7 +204,7 @@ function card(item,i){
  const details=el('details','');const summary=el('summary','','What the experience involves'),body=el('p','',item.detail);
  const takeaway=el('p','jd-idea-outcome');takeaway.append(el('strong','','You take away: '),document.createTextNode(item.takeaway));
  details.append(summary,body,takeaway);article.append(details);
- const actions=el('div','jd-idea-actions'),save=el('button','jd-save'),interest=el('button','jd-interest-now',"I'd try this →");
+ const actions=el('div','jd-idea-actions'),save=el('button','jd-save'),interest=el('button','jd-interest-now',"I'm interested");
  save.type='button';save.dataset.id=item.id;save.setAttribute('aria-label','Save '+item.name);
  save.addEventListener('click',()=>toggle(item.id));
  interest.type='button';interest.addEventListener('click',()=>openSheet('single',item.id));

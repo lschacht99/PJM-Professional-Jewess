@@ -91,3 +91,12 @@ body.jm-drawer-open{overflow:hidden}
 .jm-card-brief .jm-card-pro strong{font-weight:800;color:#1d478b}
 .jm-experience-card .jm-experience-meta{line-height:1.45}
 @media(max-width:400px){.jm-op-filter{gap:10px}.jm-filter-field{flex-basis:100%}}
+
+/* One field filter heading is enough; each card highlights the format and professional value. */
+.jm-experience-card p.jm-card-pro-preview{
+  border-top:1px solid #e1e7df;margin:3px 0 0;padding:11px 0 0;
+  font-size:12px;line-height:1.6;color:#415d70;
+}
+.jm-experience-card .jm-card-pro-preview strong{color:#1d478b;font-weight:800}
+.jm-experience-card .jm-experience-meta{font-size:10px;letter-spacing:.08em;margin-bottom:9px}
+.jm-experience-card h3{font-size:clamp(22px,4.5vw,27px);line-height:1.2}

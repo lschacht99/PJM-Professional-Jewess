@@ -85,6 +85,9 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.selectOption('#jm-format-filter','All');
   await page.selectOption('#jm-library-filter','All');
   assert.equal(await page.locator('.jm-experience-card').count(),26);
+  const cardTitles=await page.locator('.jm-experience-card h3').allInnerTexts();
+  assert.equal(new Set(cardTitles).size,26,'all 26 card titles are unique');
+  assert.equal(cardTitles.some(t=>['Engineering','Business','Technology','Healthcare','Law','Design','College','Education'].includes(t)),false,'no card has a field name as its title');
   assert.equal(await page.locator('.jm-card-brief').first().getAttribute('open'),null,'missions collapsed initially');
   await page.locator('.jm-card-brief summary').first().click();
   assert.equal(await page.locator('.jm-card-brief').first().locator('p').isVisible(),true);

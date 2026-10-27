@@ -121,6 +121,8 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.locator('#jm-last').fill('Interests');
   await page.locator('#jm-email').fill('library@example.invalid');
   await page.locator('#jm-region').fill('Troy, NY');
+  assert.equal(await page.locator('#jm-optional').getAttribute('open'),null,'nonessential interest questions start collapsed');
+  await page.locator('#jm-optional summary').click();
   await page.locator('input[name=fields]').first().check();
   await page.locator('input[name=fields]').nth(1).check();
   await page.locator('input[name=consent]').check();

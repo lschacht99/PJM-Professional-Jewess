@@ -132,3 +132,86 @@ body.jm-drawer-open .jm-shortlist-bar{visibility:hidden}
 .jm-optional-section[open]>summary::after{content:'−'}
 .jm-optional-section>summary:focus-visible{outline:3px solid #e56b51;outline-offset:2px}
 .jm-extra-fields{display:grid;gap:14px;padding:15px 0 3px}
+
+
+/* Professional landing page: substantive explanation, mobile-first and independent of the opportunity cards. */
+.jm-pro-page{background:#fffaf3;color:#334c6b}
+.jm-pro-page .jm-pro-hero{background:#f3e9dc;padding:40px 0 50px;scroll-margin-top:10px}
+.jm-pro-hero-grid{display:grid;gap:25px;align-items:start}
+.jm-pro-page .eyebrow{font-weight:800;letter-spacing:.10em}
+.jm-pro-page .jm-pro-hero h1{font:600 clamp(39px,9.4vw,67px)/1.07 'Source Serif 4',Georgia,serif;letter-spacing:-.045em;margin:0 0 17px;color:#1d478b;max-width:850px}
+.jm-pro-deck{font:400 clamp(15px,3.8vw,18px)/1.62 'DM Sans',Arial,sans-serif;color:#425a6b;margin:0 0 13px;max-width:680px}
+.jm-pro-deck-small{font:400 13px/1.65 'DM Sans',Arial,sans-serif;color:#536c79;margin:0 0 22px;max-width:630px}
+.jm-pro-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 17px}
+.jm-pro-page .button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:11px 17px;text-align:center}
+.jm-pro-actions .button{flex:0 0 auto}
+.jm-pro-text-link{display:inline-flex;align-items:center;gap:8px;min-height:42px;color:#1d478b;font:800 12px/1.35 'DM Sans',Arial,sans-serif;text-decoration:underline;text-underline-offset:3px}
+.jm-pro-text-link svg{height:16px;width:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.jm-pro-hero-aside{background:#fffdf9;border:1px solid #d2d9d1;border-radius:13px;padding:22px 20px 19px;box-shadow:0 9px 22px #2147800e}
+.jm-pro-hero-aside .eyebrow{margin:0 0 12px}
+.jm-pro-example-type{display:inline-block;color:#46644f;background:#e8efe2;border-radius:25px;padding:7px 11px;font:800 10px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.02em;margin-bottom:12px}
+.jm-pro-page .jm-pro-hero-aside h2{font:600 clamp(25px,6.7vw,34px)/1.15 'Source Serif 4',Georgia,serif;margin:0 0 10px;color:#1d478b;letter-spacing:-.028em}
+.jm-pro-hero-aside>p:not(.eyebrow){font:400 13px/1.66 'DM Sans',Arial,sans-serif;color:#516674;margin:0 0 13px}
+.jm-pro-example-result{border-top:1px solid #dfe5dc;padding-top:13px;display:grid;gap:5px}
+.jm-pro-example-result strong{font:800 11px/1.4 'DM Sans',Arial,sans-serif;color:#1d478b}
+.jm-pro-example-result span{font-size:12px;line-height:1.6;color:#4a6270}
+.jm-pro-hero-aside p.jm-pro-example-note{font-size:10px;line-height:1.5;color:#738087;margin:13px 0 0}
+.jm-pro-page h2{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(30px,7vw,46px);line-height:1.11;letter-spacing:-.035em;color:#1d478b;margin:0 0 12px}
+.jm-pro-purpose{padding:53px 0;background:#fffdf9}
+.jm-pro-purpose-grid,.jm-pro-process-grid{display:grid;gap:18px}
+.jm-pro-purpose-copy{max-width:750px}
+.jm-pro-purpose-copy p{font:400 14px/1.73 'DM Sans',Arial,sans-serif;color:#405e70;margin:0 0 14px}
+.jm-pro-purpose-copy p:last-child{margin-bottom:0}
+.jm-pro-ways{background:#eaf0e7;padding:54px 0 55px;scroll-margin-top:16px}
+.jm-pro-section-head{max-width:820px;margin-bottom:21px}
+.jm-pro-section-head>p:last-child{font:400 14px/1.6 'DM Sans',Arial,sans-serif;color:#496674;margin:0}
+.jm-pro-ways-grid{display:grid;gap:12px}
+.jm-pro-way{background:#fffdf9;border:1px solid #d6ddd4;border-radius:10px;padding:22px 19px;min-width:0}
+.jm-pro-index{display:block;color:#c0694e;font:700 14px/1.2 'DM Sans',Arial,sans-serif;margin-bottom:10px}
+.jm-pro-page .jm-pro-way-type{font:800 10px/1.5 'DM Sans',Arial,sans-serif;color:#40664c;letter-spacing:.08em;margin:0 0 11px}
+.jm-pro-page .jm-pro-way h3{font:600 26px/1.14 'Source Serif 4',Georgia,serif;letter-spacing:-.03em;color:#1d478b;margin:0 0 12px}
+.jm-pro-way>p:not(.jm-pro-way-type){font:400 13px/1.65 'DM Sans',Arial,sans-serif;color:#455e6e;margin:0 0 12px}
+.jm-pro-way>p:last-child{margin-bottom:0}
+.jm-pro-way-example{border-top:1px solid #dfe5da;padding-top:13px}
+.jm-pro-way-example strong{color:#1d478b}
+.jm-pro-mentoring-note{font:600 12px/1.62 'DM Sans',Arial,sans-serif;color:#425d70;margin:20px 0 0}
+.jm-pro-process{background:#fffdf9;padding:53px 0 58px}
+.jm-pro-steps{list-style:none;counter-reset:step;margin:0;padding:0;max-width:700px}
+.jm-pro-steps li{counter-increment:step;display:grid;grid-template-columns:32px 1fr;gap:2px 12px;padding:15px 0;border-top:1px solid #dbe2dc}
+.jm-pro-steps li:before{content:'0' counter(step);grid-row:span 2;font:800 12px/1.5 'DM Sans',Arial,sans-serif;color:#b5644a}
+.jm-pro-steps strong{display:block;color:#1d478b;font:800 13px/1.45 'DM Sans',Arial,sans-serif}
+.jm-pro-steps span{font:400 12.5px/1.62 'DM Sans',Arial,sans-serif;color:#4b6573}
+.jm-pro-invite{background:#1d478b;color:#fff;padding:47px 0}
+.jm-pro-invite-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.jm-pro-invite-inner>div{max-width:690px}
+.jm-pro-invite .eyebrow{color:#e4bb89}
+.jm-pro-page .jm-pro-invite h2{color:#fff;max-width:670px}
+.jm-pro-invite p:last-child{font:400 13px/1.65 'DM Sans',Arial,sans-serif;color:#e9eef6;margin:0}
+.jm-pro-invite .button{background:#fffaf2;color:#1d478b;border-color:#fffaf2}
+.jm-pro-invite .button:hover{background:#eaf0e7;color:#1d478b}
+.jm-pro-volunteer{background:#f3e9dc;padding:44px 0 51px;scroll-margin-top:16px}
+.jm-pro-volunteer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+.jm-pro-volunteer-inner>div{max-width:710px}
+.jm-pro-page .jm-pro-volunteer h2{font-size:clamp(27px,6.5vw,36px)}
+.jm-pro-volunteer p:last-child{font:400 13px/1.68 'DM Sans',Arial,sans-serif;color:#4b6475;margin:0}
+.jm-pro-page :is(a,button):focus-visible{outline:3px solid #e56b51;outline-offset:3px}
+@media(max-width:599px){
+ .jm-pro-page .jm-pro-hero{padding-top:29px;padding-bottom:39px}
+ .jm-pro-hero-grid{gap:21px}
+ .jm-pro-hero-aside{padding:17px}
+ .jm-pro-actions .button{width:100%}
+ .jm-pro-purpose,.jm-pro-ways,.jm-pro-process{padding:43px 0 48px}
+ .jm-pro-way{padding:19px 17px}
+ .jm-pro-invite .button,.jm-pro-volunteer .button{width:100%}
+}
+@media(min-width:780px){
+ .jm-pro-page .jm-pro-hero{padding:70px 0 77px}
+ .jm-pro-hero-grid{grid-template-columns:minmax(0,1fr) minmax(330px,.77fr);gap:clamp(24px,5vw,70px);align-items:center}
+ .jm-pro-purpose-grid,.jm-pro-process-grid{grid-template-columns:minmax(220px,.78fr) minmax(0,1.22fr);gap:clamp(38px,6vw,92px)}
+ .jm-pro-purpose,.jm-pro-process{padding:70px 0}
+ .jm-pro-ways{padding:72px 0}
+ .jm-pro-ways-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+ .jm-pro-way{padding:23px 21px}
+ .jm-pro-invite{padding:58px 0}
+ .jm-pro-volunteer{padding:55px 0}
+}

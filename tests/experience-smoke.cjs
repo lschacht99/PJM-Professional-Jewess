@@ -137,7 +137,21 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.match(posts[2].data.help_needed,/Engineering, Technology & data/);
   await page.locator('.jm-drawer-close').click();
   await page.goto('http://127.0.0.1:8765/partners.html#professionals',{waitUntil:'domcontentloaded'});
-  await page.locator('[data-jm-drawer=professional]').first().click();
+  assert.equal(await page.locator('#professionals h1').count(),1,'professional landing starts with clear mission');
+  assert.match(await page.locator('#professionals h1').innerText(),/what your career is really like/i);
+  assert.match(await page.locator('.jm-pro-deck').innerText(),/career exploration/i);
+  assert.equal(await page.locator('.jm-pro-way').count(),3,'three specific contribution formats');
+  assert.match(await page.locator('.jm-pro-hero-aside').innerText(),/engineer|engineering/i,'specific example of how a professional helps');
+  assert.equal(await page.locator('.jm-pro-steps li').count(),3,'clear signup-to-participation steps');
+  assert.equal(await page.locator('#volunteers').count(),1,'volunteers have their own secondary route');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'professional page fits small phone');
+  const expertCTA=await page.locator('.jm-pro-hero-actions .button').count();
+  assert.equal(expertCTA,0,'no obsolete action grouping');
+  const proCTA=await page.locator('.jm-pro-hero .button[data-jm-drawer=professional]').boundingBox();
+  assert.ok(proCTA&&proCTA.y+proCTA.height<=812,'professional contribution CTA appears on initial mobile screen');
+  await page.locator('.jm-pro-text-link').click();
+  assert.equal(await page.locator('#ways-to-help .jm-pro-way').count(),3,'learn-more link reaches contributions section');
+  await page.locator('.jm-pro-hero .button[data-jm-drawer=professional]').click();
   assert.equal(await page.locator('input[name=expertise]').count(),8,'professional can select many fields');
   await page.locator('input[name=expertise]').nth(0).check();
   await page.locator('input[name=expertise]').nth(3).check();
@@ -162,7 +176,10 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await desktop.waitForFunction(()=>document.documentElement.dataset.jdReady==='true');
   assert.ok(await desktop.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'desktop no overflow');
   assert.equal(await desktop.locator('.jd-path-card').count(),2,'two desktop career pathways');
+  await desktop.goto('http://127.0.0.1:8765/partners.html',{waitUntil:'domcontentloaded'});
+  assert.ok(await desktop.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'professional desktop layout has no horizontal overflow');
+  assert.equal(await desktop.locator('.jm-pro-ways-grid .jm-pro-way').count(),3,'desktop professional contribution choices visible');
   assert.deepEqual(errors,[],'no JavaScript errors');
-  console.log('PASS: five-link mobile menu, two career pathways, explorer deep links, professional CTA, wishlist and mocked submissions.');
+  console.log('PASS: professional explainer, concrete examples, mobile CTA, multi-field professional signup, homepage and interest workflows.');
  }finally{await browser.close()}
 })().catch(e=>{console.error('FAILED',e);process.exitCode=1});

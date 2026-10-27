@@ -187,9 +187,14 @@ const catalog={
  }
 };
 const all=new Map(Object.values(catalog).flatMap(group=>group.ideas.map(idea=>[idea.id,idea])));
-const KEY='jm:interests:v2', MAX=12;
+const KEY='jm:interests:v2', LABEL_KEY='jm:interest-labels:v2', MAX=12;
+const readLabels=()=>{try{const value=JSON.parse(localStorage.getItem(LABEL_KEY)||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{}}catch{return {}}};
+const sharedLabels=readLabels();
+for(const [id,name] of Object.entries(sharedLabels)){if(!all.has(id)&&/^[a-z0-9-]{2,80}$/.test(id)&&typeof name==='string')all.set(id,{id,name:name.slice(0,120)})}
 const load=()=>{try{const a=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(a)?a.filter(id=>all.has(id)).slice(0,MAX):[]}catch{return []}};
-const saved=new Set(load());const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify([...saved]))}catch{}};
+const saved=new Set(load());
+const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify([...saved]));const names={...sharedLabels};for(const [id,item] of all)names[id]=item.name;localStorage.setItem(LABEL_KEY,JSON.stringify(names))}catch{}};
+persist();
 const root=document.querySelector('[data-jd-home]');if(!root)return;
 const tabs=[...root.querySelectorAll('[data-jd-tab]')],grid=root.querySelector('#jd-ideas'),categoryName=root.querySelector('#jd-category-name');
 const bar=document.querySelector('#jd-shortlist-bar'),counter=document.querySelector('#jd-shortlist-count'),review=document.querySelector('#jd-review'),sheet=document.querySelector('#jd-sheet'),selection=document.querySelector('#jd-selection'),form=document.querySelector('#jd-mail-form'),state=document.querySelector('#jd-mail-state'),send=form.querySelector('[type=submit]'),close=sheet.querySelector('.jd-sheet-close');
@@ -221,7 +226,7 @@ root.querySelectorAll('[data-jd-category]').forEach(link=>{
 });
 const ids=()=>mode==='single'?[oneId]:[...saved];
 function renderSelection(){selection.replaceChildren();const list=ids().filter(id=>all.has(id));if(!list.length){selection.append(el('p','jd-sheet-explainer','Your shortlist is empty. Explore a field and save something that catches your attention.'));send.disabled=true;return}send.disabled=false;for(const id of list){const row=el('div','jd-selected-item'),label=el('span','',all.get(id).name);row.append(label);if(mode==='saved'){const remove=el('button','','Remove');remove.type='button';remove.addEventListener('click',()=>toggle(id));row.append(remove)}selection.append(row)}}
-function openSheet(nextMode='saved',id=null){mode=nextMode;oneId=id;priorFocus=document.activeElement;sheet.querySelector('#jd-sheet-title').textContent=mode==='single'?'Hear about this idea':'Your saved ideas';sheet.querySelector('#jd-sheet-copy').textContent=mode==='single'?'Interested in this one? Leave an email and we can contact you as it develops.':"Save what catches your attention. Your choices stay in this browser until you decide to email them.";form.reset();form.querySelector('[name=email]').disabled=false;form.querySelector('[name=consent]').disabled=false;state.textContent='';state.dataset.error='false';send.textContent='Keep me posted';renderSelection();if(!sheet.open)sheet.showModal();close.focus({preventScroll:true})}
+function openSheet(nextMode='saved',id=null){mode=nextMode;oneId=id;priorFocus=document.activeElement;sheet.querySelector('#jd-sheet-title').textContent=mode==='single'?'Hear about this idea':'Your saved ideas';sheet.querySelector('#jd-sheet-copy').textContent=mode==='single'?'Interested in this one? Tell us who you are and where you are based.':"Review your interests first. Nothing is sent until you choose to submit this form.";form.reset();form.querySelectorAll('input,select').forEach(control=>control.disabled=false);state.textContent='';state.dataset.error='false';send.textContent='Keep me posted';renderSelection();if(!sheet.open)sheet.showModal();close.focus({preventScroll:true})}
 function closeSheet(){sheet.close();priorFocus?.focus?.({preventScroll:true})}
 root.querySelectorAll('[data-jd-open]').forEach(btn=>btn.addEventListener('click',()=>openSheet(btn.dataset.jdOpen==='sukkah'?'single':'saved',btn.dataset.jdOpen==='sukkah'?'impossible-sukkah':null)));
 review.addEventListener('click',()=>openSheet('saved'));close.addEventListener('click',closeSheet);
@@ -234,11 +239,14 @@ form.addEventListener('submit',async event=>{
  const formIds=ids().filter(id=>all.has(id));
  if(!formIds.length){state.textContent='Please choose at least one idea.';state.dataset.error='true';return}
  const email=form.querySelector('[name=email]').value.trim().slice(0,254);
- if(!email||!form.querySelector('[name=consent]').checked)return;
+ const full_name=form.querySelector('[name=full_name]').value.trim().slice(0,150);
+ const location=form.querySelector('[name=location]').value.trim().slice(0,150);
+ const stage=form.querySelector('[name=stage]').value.trim().slice(0,60)||null;
+ if(!email||!full_name||!location||!form.querySelector('[name=consent]').checked)return;
  if(form.querySelector('[name=website]').value)return;
  state.textContent='Saving your interest…';state.dataset.error='false';send.disabled=true;send.textContent='Saving…';
  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),18000);
- try{const res=await fetch(API,{method:'POST',credentials:'omit',mode:'cors',signal:ctrl.signal,headers:{apikey:PUBLISHABLE,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({email,idea_ids:formIds,consent:true,source:'jm-home-discovery'})});if(!res.ok)throw new Error('Unable to save interest');state.textContent='Thanks. We have your interest and will be in touch when there is something relevant.';send.textContent='Interest recorded';form.querySelector('[name=email]').disabled=true;form.querySelector('[name=consent]').disabled=true;}
+ try{const res=await fetch(API,{method:'POST',credentials:'omit',mode:'cors',signal:ctrl.signal,headers:{apikey:PUBLISHABLE,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({full_name,location,stage,email,idea_ids:formIds,consent:true,source:'jm-home-discovery'})});if(!res.ok)throw new Error('Unable to save interest');state.textContent='Thanks. We have your interest and will be in touch when there is something relevant.';send.textContent='Interest recorded';form.querySelectorAll('input,select').forEach(control=>control.disabled=true);}
  catch(error){state.dataset.error='true';state.textContent=error.name==='AbortError'?'We could not confirm whether it was saved. Please check before trying again.':'Something went wrong. Please try again.';send.disabled=false;send.textContent='Try again'}
  finally{clearTimeout(timer)}
 });

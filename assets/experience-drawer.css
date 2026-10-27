@@ -123,3 +123,12 @@ body.jm-drawer-open .jm-shortlist-bar{visibility:hidden}
 .jm-choice-group{border:0;padding:0;margin:0 0 15px}
 .jm-choice-group legend{font-size:12px;color:#1d478b;font-weight:800;margin-bottom:11px}
 @media(max-width:599px){.jm-card-footer{flex-direction:row!important;align-items:center!important}.jm-card-save,.jm-card-action{flex:1 1 auto;justify-content:center;text-align:center}.jm-selected-wrap{padding:12px}}
+
+/* Optional application fields stay behind a disclosure on small experience requests. */
+.jm-optional-section{border-top:1px solid #dce4dc;border-bottom:1px solid #dce4dc;padding:12px 0}
+.jm-optional-section>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:36px;color:#1d478b;font:800 12px/1.45 'DM Sans',Arial,sans-serif}
+.jm-optional-section>summary::-webkit-details-marker{display:none}
+.jm-optional-section>summary::after{content:'+';font:500 21px/1 'DM Sans',Arial,sans-serif}
+.jm-optional-section[open]>summary::after{content:'−'}
+.jm-optional-section>summary:focus-visible{outline:3px solid #e56b51;outline-offset:2px}
+.jm-extra-fields{display:grid;gap:14px;padding:15px 0 3px}

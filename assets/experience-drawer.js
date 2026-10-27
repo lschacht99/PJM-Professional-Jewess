@@ -111,7 +111,6 @@ if(libraryRoot){
  const review=document.createElement('button');review.type='button';review.textContent='Review my interests';
  review.addEventListener('click',()=>{lastTrigger=review;show('experience','')});
  inner.append(summaryCount,review);bar.append(inner);document.body.append(bar);toolbar=bar;
- updateInterestUI();
 }
 // Keep the in-page form usable even when a browser or preview tool lacks native dialog support.
 const nativeDialog=typeof HTMLDialogElement!=='undefined'&&typeof HTMLDialogElement.prototype.showModal==='function';
@@ -162,6 +161,7 @@ dialog.querySelector('.jm-drawer-close').addEventListener('click',()=>dialog.clo
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
 dialog.addEventListener('close',()=>{document.body.classList.remove('jm-drawer-open');lastTrigger?.focus({preventScroll:true});});
 let activeType='experience',activeId='',activeTitle='';
+updateInterestUI();
 function selectField(label,options){
  areaWrap.replaceChildren();
  const select=document.createElement('select');select.name='area';select.id='jm-area';

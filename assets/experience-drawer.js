@@ -267,6 +267,7 @@ form.addEventListener('submit',async e=>{
    const needed=limited(detail+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1450);
    await post('pj_applications',{
     role:'mentee',first_name:first,last_name:last,email,community:region||null,
+    experience_ids:activeType==='experience'?[...selected]:[],
     field:limited(activeType==='workplace'?checked.join(', '):fields.join(', ')||[...selected].map(id=>nameFor(id)).join(', '),195)||null,
     help_needed:needed,help_offered:wantsVolunteer?'Interested in helping as a volunteer alongside participation.':null,
     goals:limited('Interest type: '+activeType+'. '+needed,2900),

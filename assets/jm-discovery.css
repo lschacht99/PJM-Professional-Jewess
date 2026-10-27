@@ -189,3 +189,12 @@ body:has(.jd-sheet[open]){overflow:hidden}
 .jd-home .jd-process{background:#f5eee5}
 @media(max-width:420px){.jd-hero{padding:25px 0 38px}.jd-path-card{padding:16px 16px 14px}.jd-path-card h2{font-size:24px}.jd-path-card p{margin-bottom:11px}.jd-hero .jd-hero-actions .jd-btn{min-height:46px}}
 @media(min-width:760px){.jd-hero{padding:66px 0 65px}.jd-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.91fr);gap:clamp(29px,5vw,76px);align-items:start}.jd-path-preview{gap:14px}.jd-path-card{padding:22px 24px}.jd-path-card h2{font-size:clamp(25px,2.6vw,30px)}.jd-path-card p{font-size:13px}}
+
+
+/* Contact details collected only when someone opts into their saved interests. */
+.jd-mail-form input[type=text],.jd-mail-form select{
+ width:100%;min-height:46px;border:1.5px solid #a4b4bb;border-radius:7px;
+ padding:11px 12px;font:400 16px 'DM Sans',Arial,sans-serif;background:#fff;color:#243f5d
+}
+.jd-mail-form>label:not(.jd-consent){margin-top:11px}
+.jd-mail-form input:focus-visible,.jd-mail-form select:focus-visible{outline:3px solid #d97855;outline-offset:2px}

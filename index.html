@@ -77,12 +77,15 @@
 <dialog class="jd-sheet" id="jd-sheet" aria-labelledby="jd-sheet-title"><div class="jd-sheet-shell"><header class="jd-sheet-head"><div><p class="jd-eyebrow">YOUR INTERESTS</p><h2 id="jd-sheet-title">Your saved ideas</h2></div><button type="button" class="jd-sheet-close" aria-label="Close your interests">×</button></header><div class="jd-sheet-content">
 <p class="jd-sheet-explainer" id="jd-sheet-copy">Save what catches your attention. Your choices stay in this browser until you decide to email them.</p>
 <div class="jd-selected" id="jd-selection"></div>
-<form class="jd-mail-form" id="jd-mail-form"><h3>Keep the good ideas coming.</h3><p>Just your email. We'll get in touch if there's news about the ideas you picked.</p>
-<label for="jd-email">Your email</label><input id="jd-email" type="email" name="email" autocomplete="email" maxlength="254" required placeholder="you@example.com">
+<form class="jd-mail-form" id="jd-mail-form"><h3>Tell us a little about yourself.</h3><p>Share your selected interests and how to reach you. We'll use this to plan relevant opportunities.</p>
+<label for="jd-name">Full name *</label><input id="jd-name" type="text" name="full_name" autocomplete="name" maxlength="150" required placeholder="Your first and last name">
+<label for="jd-email">Email *</label><input id="jd-email" type="email" name="email" autocomplete="email" maxlength="254" required placeholder="you@example.com">
+<label for="jd-location">City or region *</label><input id="jd-location" type="text" name="location" autocomplete="address-level2" maxlength="150" required placeholder="e.g., Brooklyn, NY">
+<label for="jd-stage">Where are you in your career? (optional)</label><select id="jd-stage" name="stage"><option value="">Choose if you'd like</option><option>High school student</option><option>College or university student</option><option>Recent graduate</option><option>Working professional</option><option>Exploring a career change</option><option>Other / not sure yet</option></select>
 <label class="jd-consent"><input name="consent" type="checkbox" required><span>I agree to the <a href="privacy.html" target="_blank" rel="noopener">privacy notice</a> and to receive updates about these interests.</span></label>
 <div class="jd-hidden" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
 <button type="submit" class="jd-btn">Keep me posted <span aria-hidden="true"><svg class="jm-line-arrow jd-vector-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></span></button><p class="jd-mail-state" id="jd-mail-state" role="status" aria-live="polite"></p>
-<p class="jd-device-note">Saved ideas stay on this device until you clear them or choose to share them. Your email is sent only when you submit.</p>
+<p class="jd-device-note">Saved ideas stay on this device until you clear them or choose to share them. Your contact details and interests are sent only when you submit.</p>
 </form></div></div></dialog>
 <footer class="site-footer jm-shared-footer"><div class="wrap foot-inner"><span>The Jewish Mutual · People, opportunities, Jewish life</span><nav aria-label="Footer"><a href="index.html#jd-explore">Explore</a><a href="opportunities.html">Experiences</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="understanding-jewish-life.html">Jewish life explained</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></nav></div></footer>
 </body></html>

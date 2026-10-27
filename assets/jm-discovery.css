@@ -167,3 +167,25 @@ body:has(.jd-sheet[open]){overflow:hidden}
 .jd-home a .jd-vector-arrow{transition:transform .15s ease}
 @media(hover:hover){.jd-home a:hover .jd-vector-arrow{transform:translateX(2px)}}
 @media(prefers-reduced-motion:reduce){.jd-home a .jd-vector-arrow{transition:none}}
+
+/* Dual-path homepage introduction — inviting but professional; designed for narrow phones first. */
+.jd-path-preview{display:grid;gap:12px;min-width:0;scroll-margin-top:20px}
+.jd-path-eyebrow{margin:0 0 1px!important}
+.jd-path-card{background:#fffdf8;border:1px solid #d4dbd5;border-radius:12px;padding:19px 19px 17px;min-width:0}
+.jd-path-conversation{border-left:4px solid #1d478b}
+.jd-path-project{border-left:4px solid #9b7150;background:#f7f0e5}
+.jd-path-top{display:flex;gap:12px;align-items:center;margin:0 0 12px;color:#677b7e;font:800 10px/1.4 'DM Sans',Arial,sans-serif;letter-spacing:.075em}
+.jd-path-number{display:inline-grid;place-items:center;flex:none;width:30px;height:30px;border:1px solid #b9c8ce;border-radius:50%;color:#1d478b;font:800 10px 'DM Sans',Arial,sans-serif}
+.jd-path-card h2{margin:0 0 9px;font:600 clamp(23px,6.5vw,31px)/1.13 'Source Serif 4',Georgia,serif;letter-spacing:-.035em}
+.jd-path-card p{margin:0 0 15px;color:#486277;font:400 12.5px/1.6 'DM Sans',Arial,sans-serif}
+.jd-path-card a{display:inline-flex;align-items:center;gap:6px;min-height:35px;color:#1d478b;font:800 12px/1.35 'DM Sans',Arial,sans-serif;text-decoration:underline;text-underline-offset:4px}
+.jd-path-card a:hover{color:#bf5d47}
+.jd-path-card .jd-vector-arrow{margin-inline-start:4px;width:15px;height:15px}
+.jd-hero-copy{min-width:0}
+.jd-hero .jd-hero-grid{align-items:start}
+.jd-hero .jd-hero-actions{gap:9px}
+.jd-hero .jd-hero-actions .jd-btn{max-width:370px}
+.jd-hero .jd-intro{margin-bottom:21px}
+.jd-home .jd-process{background:#f5eee5}
+@media(max-width:420px){.jd-hero{padding:25px 0 38px}.jd-path-card{padding:16px 16px 14px}.jd-path-card h2{font-size:24px}.jd-path-card p{margin-bottom:11px}.jd-hero .jd-hero-actions .jd-btn{min-height:46px}}
+@media(min-width:760px){.jd-hero{padding:66px 0 65px}.jd-hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.91fr);gap:clamp(29px,5vw,76px);align-items:start}.jd-path-preview{gap:14px}.jd-path-card{padding:22px 24px}.jd-path-card h2{font-size:clamp(25px,2.6vw,30px)}.jd-path-card p{font-size:13px}}

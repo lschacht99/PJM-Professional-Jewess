@@ -146,8 +146,10 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.locator('.jm-pro-faq-list summary').first().click();
   assert.equal(await page.locator('.jm-pro-faq-list details').first().locator('p').isVisible(),true,'expanded FAQ reveals useful guidance');
   await page.locator('.jm-pro-faq-list summary').first().click();
+  await page.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0)});
+  await page.waitForFunction(()=>window.scrollY<4);
   const heroCta=await page.locator('.jm-pro-hero [data-jm-drawer=professional]').boundingBox();
-  assert.ok(heroCta&&heroCta.y+heroCta.height<=812,'professional signup remains above the first phone fold');
+  assert.ok(heroCta&&heroCta.y>=0&&heroCta.y+heroCta.height<=812,'professional signup remains above the first phone fold');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'no horizontal overflow on professional page');
   assert.equal(await page.locator('.jm-pro-library-link').getAttribute('href'),'opportunities.html#library','readers can review career examples');
   assert.equal(await page.locator('[data-jm-drawer=professional]').count(),3,'professionals have clear signup routes at top and bottom');

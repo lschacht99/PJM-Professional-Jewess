@@ -49,7 +49,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.match(await page.locator('#jd-shortlist-count').innerText(),/1 saved/,'shortlist persists after refresh');
   await page.locator('#jd-review').click();
   assert.equal(await page.locator('#jd-sheet[open]').count(),1,'shortlist drawer opens');
-  assert.match(await page.locator('#jd-selection').innerText(),/Data Analysis: Spot a Misleading Chart/);
+  assert.match(await page.locator('#jd-selection').innerText(),/Investigate Data with an Analyst/);
   await page.locator('#jd-name').fill('Test Person');
   await page.locator('#jd-email').fill('qa@example.invalid');
   await page.locator('#jd-location').fill('Albany, NY');
@@ -115,7 +115,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.equal(await page.locator('.jm-drawer[open]').count(),1,'library click opens the drawer');
   assert.equal(await page.locator('#jm-selected-items .jm-selected-item').count(),4,'clicked activity is automatically included with saved choices');
   assert.match(await page.locator('#jm-selected-items').innerText(),/Interview a Nurse About Hospital Work/);
-  await page.locator('#jm-selected-items button[aria-label*="Data Analysis"]').click();
+  await page.locator('#jm-selected-items button[aria-label*="Investigate Data"]').click();
   assert.equal(await page.locator('#jm-selected-items .jm-selected-item').count(),3,'visitor can remove an activity inside drawer');
   await page.locator('#jm-first').fill('Multiple');
   await page.locator('#jm-last').fill('Interests');

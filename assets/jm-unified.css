@@ -390,3 +390,26 @@
 @media(min-width:750px){.jm-about-two{grid-template-columns:minmax(0,.81fr) minmax(0,1fr);gap:clamp(40px,7vw,98px)}.jm-about-ways-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}.jm-about-join-inner{grid-template-columns:minmax(0,1fr) minmax(230px,.62fr);gap:54px;align-items:center}}
 @media(min-width:900px){.jm-about-hero{padding:75px 0 78px}.jm-about-purpose,.jm-about-community,.jm-about-now{padding:69px 0 74px}.jm-about-ways{padding:68px 0 78px}.jm-about-join{padding:66px 0 73px}}
 @media(max-width:500px){.jm-about-hero{padding:35px 0 43px}.jm-about-purpose,.jm-about-community,.jm-about-now{padding:44px 0 49px}.jm-about-ways{padding:45px 0 52px}.jm-about-join{padding:45px 0 52px}.jm-about-ways-grid{gap:18px}.jm-about-ways h2{margin-bottom:19px}.jm-about-hero h1{font-size:clamp(38px,10vw,48px)}}
+
+/* Simplified mobile navigation: five plain destinations, never cards or subtitles. */
+@media(max-width:729px){
+ .jm-mobile-menu nav{
+   display:flex;flex-direction:column;gap:0;grid-template-columns:none;
+   margin:0;padding:7px 0 12px;border:0;border-top:1px solid #1D478B2b;
+   border-radius:0;background:transparent;box-shadow:none;width:100%;
+ }
+ .jm-mobile-menu nav a,
+ .jm-mobile-menu nav a.jm-mobile-primary,
+ .jm-mobile-menu nav a.jm-mobile-aux{
+   display:flex;flex-direction:row;align-items:center;justify-content:space-between;
+   min-height:54px;gap:10px;margin:0;padding:15px 7px;
+   border:0;border-bottom:1px solid #1D478B20;border-radius:0;background:transparent;
+   color:#1D478B;text-decoration:none;
+   font:600 15px/1.35 'DM Sans',Arial,sans-serif;
+   transition:color .15s;
+ }
+ .jm-mobile-menu nav a:last-child{border-bottom:0}
+ .jm-mobile-menu nav a:hover{background:transparent;color:#a85742;text-decoration:underline;text-underline-offset:4px}
+ .jm-mobile-menu nav a[aria-current=page]{font-weight:800}
+ .jm-mobile-menu[open] .jm-menu-open{display:inline}
+}

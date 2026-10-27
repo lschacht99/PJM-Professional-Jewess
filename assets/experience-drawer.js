@@ -145,11 +145,11 @@ dialog.innerHTML=[
 '<div class="jm-drawer-field"><label for="jm-last">Last name *</label><input id="jm-last" name="last" autocomplete="family-name" maxlength="100" required></div></div>',
 '<div class="jm-drawer-field"><label for="jm-email">Email *</label><input id="jm-email" type="email" name="email" autocomplete="email" maxlength="254" required></div>',
 '<div class="jm-drawer-field"><label for="jm-region">City or region (optional)</label><input id="jm-region" name="region" autocomplete="address-level2" maxlength="150" placeholder="e.g., Brooklyn, NY"></div>',
-'<div class="jm-drawer-field" id="jm-area-wrap"></div>',
+'<details id="jm-optional" class="jm-optional-section"><summary>More preferences (optional)</summary><div class="jm-extra-fields"><div class="jm-drawer-field" id="jm-area-wrap"></div>',
 '<div class="jm-drawer-field"><label for="jm-format">Preferred format (optional)</label><select id="jm-format" name="format"><option value="">Choose if you know</option><option>In person</option><option>Online</option><option>Either format</option></select></div>',
 '<div class="jm-drawer-field"><label for="jm-availability">When are you usually available? (optional)</label>',
 '<select id="jm-availability" name="availability"><option value="">Choose if you know</option><option>Weekend afternoons</option><option>Weekday evenings</option><option>Weekdays</option><option>Online only</option><option>Flexible / not sure yet</option></select></div>',
-'<div class="jm-drawer-field"><label for="jm-notes">Anything else? (optional)</label><textarea id="jm-notes" name="notes" rows="3" maxlength="650" placeholder="Questions, ideas, or how you could help"></textarea></div>',
+'<div class="jm-drawer-field"><label for="jm-notes">Anything else? (optional)</label><textarea id="jm-notes" name="notes" rows="3" maxlength="650" placeholder="Questions, ideas, or how you could help"></textarea></div></div></details>',
 '<label class="jm-drawer-consent"><input type="checkbox" name="consent" value="yes" required><span>I agree to the <a href="privacy.html" target="_blank" rel="noopener">privacy notice</a> and to being contacted about my request. </span></label>',
 '<div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>',
 '<button class="button button-primary" type="submit">Send my interest</button><p class="jm-drawer-state" role="status" aria-live="polite"></p>',
@@ -214,6 +214,9 @@ function show(type,id){
  if(activeType==='workplace')checkboxField('Fields you would like to explore',industryList);
  if(activeType==='volunteer')checkboxField('How would you like to help?',volunteerList);
  if(activeType==='professional'){checkboxField('Your professional fields (select all that apply)',industryList,'expertise');checkboxField('How could you contribute? (select all that apply)',professionalList,'areas',true)}
+ const optional=dialog.querySelector('#jm-optional');
+ optional.open=activeType!=='experience';
+ optional.querySelector('summary').textContent=activeType==='experience'?'Add career fields, availability or notes (optional)':'Your fields and availability';
  if(activeType==='experience'){
   const lab=document.createElement('label');lab.className='jm-drawer-consent';lab.id='jm-also-volunteer';
   const check=document.createElement('input');check.type='checkbox';check.name='also_volunteer';check.value='yes';
@@ -248,6 +251,7 @@ form.addEventListener('submit',async e=>{
  const expertise=[...form.querySelectorAll('input[name=expertise]:checked')].map(x=>x.value);
  const fields=[...form.querySelectorAll('input[name=fields]:checked')].map(x=>x.value);
  const wantsVolunteer=!!form.querySelector('input[name=also_volunteer]:checked');
+ if(activeType==='professional'&&expertise.length===0){status.dataset.error='true';status.textContent='Please choose at least one professional field.';areaWrap.scrollIntoView({block:'nearest'});return}
  if(activeType==='experience'&&selected.size===0){status.dataset.error='true';status.textContent='Please choose at least one experience.';return}
  if(['workplace','volunteer','professional'].includes(activeType)&&checked.length===0){status.dataset.error='true';status.textContent='Please select at least one field or way you could help.';areaWrap.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
  submit.disabled=true;submit.textContent='Saving…';status.textContent='Saving your interest…';status.dataset.error='false';

@@ -130,6 +130,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.waitForFunction(()=>document.querySelector('.jm-drawer-state')?.textContent?.includes('Your interest was saved'));
   assert.equal(posts.length,3,'multiple selected activities generate one record');
   assert.ok(posts[2].url.endsWith('pj_applications'));
+  assert.deepEqual(posts[2].data.experience_ids,['engineering-conversation','business-conversation','healthcare-conversation'],'submission preserves full multi-experience selection');
   assert.match(posts[2].data.help_needed,/engineering-conversation/);
   assert.match(posts[2].data.help_needed,/business-conversation/);
   assert.match(posts[2].data.help_needed,/healthcare-conversation/);

@@ -52,7 +52,7 @@ const catalog={
   "ideas": [
    {
     "id": "data-detective",
-    "name": "Data Analysis: Spot a Misleading Chart",
+    "name": "Investigate Data with an Analyst",
     "format": "Data challenge + analyst discussion",
     "hook": "The graph looks excellent. Unfortunately, the numbers have other plans.",
     "pro": "Ask a data analyst how they catch flawed assumptions and explain findings to clients.",

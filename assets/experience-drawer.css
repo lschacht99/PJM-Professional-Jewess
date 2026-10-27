@@ -233,3 +233,5 @@ body.jm-drawer-open .jm-shortlist-bar{visibility:hidden}
  .jm-pro-volunteer .jm-pro-text-link{flex:none}
 }
 @media(prefers-reduced-motion:reduce){.jm-pro-page *{scroll-behavior:auto}}
+
+.jm-pro-library-link{display:inline-flex;align-items:center;gap:9px;min-height:42px;margin-top:21px;color:#1d478b;font:800 12.5px/1.4 'DM Sans',Arial,sans-serif;text-decoration:underline;text-underline-offset:4px}

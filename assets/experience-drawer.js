@@ -41,6 +41,35 @@ const industryList=['Engineering & manufacturing','Software, AI & data','Healthc
 const volunteerList=['Help organize an event','Facilitate a team or workshop','Design learning activities','Outreach and recruit participants','Create graphics and promotion','Help with technology or data','Research opportunities','Host or support in-person events'];
 const professionalList=['Answer a few questions','Join a short team consultation','Review a project or proposal','Join a panel or final presentation','Host an office or workplace visit','Offer ongoing mentoring'];
 const txt=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;n.textContent=value;return n};
+
+const savedKey='jm:interests:v2', labelKey='jm:interest-labels:v2', MAX_INTERESTS=12;
+const catalogNames=new Map([...featured.map(x=>[x[0],x[1]]),...library.map(x=>[x[0],x[2]])]);
+const readStore=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback))}catch{return fallback}};
+const savedLabels=readStore(labelKey,{});
+const savedIds=readStore(savedKey,[]);
+const selected=new Set(Array.isArray(savedIds)?savedIds.filter(x=>typeof x==='string').slice(0,MAX_INTERESTS):[]);
+function nameFor(id){return catalogNames.get(id)||savedLabels[id]||id.replace(/-/g,' ')}
+function persistInterests(){
+ const labels={...savedLabels};
+ for(const [id,title]of catalogNames)labels[id]=title;
+ try{localStorage.setItem(savedKey,JSON.stringify([...selected]));localStorage.setItem(labelKey,JSON.stringify(labels))}catch{}
+}
+function changeInterest(id,enabled=true){
+ if(!id)return;
+ if(enabled){if(!selected.has(id)&&selected.size>=MAX_INTERESTS)return false;selected.add(id)}
+ else selected.delete(id);
+ persistInterests();updateInterestUI();return true;
+}
+let toolbar=null,summaryCount=null;
+function updateInterestUI(){
+ document.querySelectorAll('[data-jm-save]').forEach(button=>{
+  const on=selected.has(button.dataset.jmSave);button.setAttribute('aria-pressed',String(on));
+  button.textContent=on?'Selected ✓':'Add to my list +';
+ });
+ if(toolbar){toolbar.hidden=selected.size===0;summaryCount.textContent=selected.size+' selected '+(selected.size===1?'experience':'experiences')}
+ if(dialog?.hasAttribute('open')&&activeType==='experience')renderSelectedExperiences();
+}
+
 function card(item,featuredCard){
  const id=item[0],title=featuredCard?item[1]:item[2],meta=featuredCard?item[2]:item[4],desc=item[3];
  const el=document.createElement('article');el.className='jm-experience-card';
@@ -55,6 +84,7 @@ function card(item,featuredCard){
  }
  const foot=document.createElement('div');foot.className='jm-card-footer';
  if(featuredCard)foot.append(txt('span','jm-card-location',item[4]));
+ if(!featuredCard){const save=document.createElement('button');save.type='button';save.className='jm-card-save';save.dataset.jmSave=id;save.setAttribute('aria-pressed',String(selected.has(id)));save.textContent=selected.has(id)?'Selected ✓':'Add to my list +';save.addEventListener('click',()=>{if(!changeInterest(id,!selected.has(id)))alert('You can choose up to '+MAX_INTERESTS+' experiences.')});foot.append(save)}
  const a=document.createElement('a');a.className='jm-card-action';a.href='join.html?role=seek&interest='+encodeURIComponent(title);a.dataset.jmDrawer='experience';a.dataset.jmExperience=id;a.textContent=featuredCard?'Register interest':"I'd try this";a.setAttribute('aria-haspopup','dialog');foot.append(a);el.append(foot);return el;
 }
 document.querySelectorAll('[data-jm-featured]').forEach(root=>featured.forEach(item=>root.append(card(item,true))));
@@ -75,6 +105,13 @@ if(libraryRoot){
   filtered.forEach(item=>libraryRoot.append(card(item,false)));
  };
  filter?.addEventListener('change',render);formatFilter?.addEventListener('change',render);render();
+ const bar=document.createElement('div');bar.className='jm-shortlist-bar';bar.hidden=true;
+ const inner=document.createElement('div');inner.className='jm-shortlist-inner';
+ summaryCount=txt('strong','','0 selected experiences');
+ const review=document.createElement('button');review.type='button';review.textContent='Review my interests';
+ review.addEventListener('click',()=>{lastTrigger=review;show('experience','')});
+ inner.append(summaryCount,review);bar.append(inner);document.body.append(bar);toolbar=bar;
+ updateInterestUI();
 }
 // Keep the in-page form usable even when a browser or preview tool lacks native dialog support.
 const nativeDialog=typeof HTMLDialogElement!=='undefined'&&typeof HTMLDialogElement.prototype.showModal==='function';
@@ -103,6 +140,7 @@ dialog.innerHTML=[
 '<p class="eyebrow" id="jm-drawer-eyebrow">THE JEWISH MUTUAL</p><h2 id="jm-drawer-title">Express your interest</h2>',
 '</div><button class="jm-drawer-close" type="button" aria-label="Close form">×</button></header>',
 '<div class="jm-drawer-content"><p class="jm-drawer-copy" id="jm-drawer-copy"></p>',
+'<div id="jm-experience-selection" class="jm-selected-wrap" hidden><div class="jm-selected-head"><strong>Your selected experiences</strong><button type="button" id="jm-keep-browsing">Choose more</button></div><div id="jm-selected-items"></div></div>',
 '<form id="jm-drawer-form" novalidate>',
 '<div class="jm-drawer-pair"><div class="jm-drawer-field"><label for="jm-first">First name *</label><input id="jm-first" name="first" autocomplete="given-name" maxlength="100" required></div>',
 '<div class="jm-drawer-field"><label for="jm-last">Last name *</label><input id="jm-last" name="last" autocomplete="family-name" maxlength="100" required></div></div>',
@@ -131,44 +169,65 @@ function selectField(label,options){
  options.forEach(option=>select.append(new Option(option,option)));
  const lab=txt('label','',label);lab.htmlFor='jm-area';areaWrap.append(lab,select);
 }
-function checkboxField(label,options){
- areaWrap.replaceChildren();
- const fieldset=document.createElement('fieldset');fieldset.style.cssText='border:0;padding:0;margin:0';
- const legend=txt('legend','',label);legend.style.cssText='font-size:12px;font-weight:700;color:#1D478B;margin-bottom:9px';fieldset.append(legend);
+function checkboxField(label,options,groupName='areas',append=false){
+ if(!append)areaWrap.replaceChildren();
+ const fieldset=document.createElement('fieldset');fieldset.className='jm-choice-group';
+ const legend=txt('legend','',label);fieldset.append(legend);
  const row=document.createElement('div');row.className='jm-drawer-choices';
- options.forEach(option=>{const lab=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.name='areas';check.value=option;lab.append(check,document.createTextNode(option));row.append(lab)});
+ options.forEach(option=>{const lab=document.createElement('label'),check=document.createElement('input');check.type='checkbox';check.name=groupName;check.value=option;lab.append(check,document.createTextNode(option));row.append(lab)});
  fieldset.append(row);areaWrap.append(fieldset);
 }
+const selectionWrap=dialog.querySelector('#jm-experience-selection'),selectionList=dialog.querySelector('#jm-selected-items');
+function renderSelectedExperiences(){
+ selectionList.replaceChildren();
+ if(!selected.size)selectionList.append(txt('p','jm-empty-selection','No experiences selected yet. Choose one or more from the library.'));
+ else for(const id of selected){
+  const row=document.createElement('div');row.className='jm-selected-item';
+  row.append(txt('span','',nameFor(id)));
+  const remove=document.createElement('button');remove.type='button';remove.textContent='Remove';remove.setAttribute('aria-label','Remove '+nameFor(id));
+  remove.addEventListener('click',()=>changeInterest(id,false));row.append(remove);selectionList.append(row);
+ }
+ if(activeType==='experience')dialog.querySelector('#jm-drawer-title').textContent=selected.size===1?nameFor([...selected][0]):'Your career experiences';
+}
+dialog.querySelector('#jm-keep-browsing').addEventListener('click',()=>{
+ dialog.close();if(libraryRoot){libraryRoot.scrollIntoView({block:'start',behavior:'smooth'})}
+});
+
 function show(type,id){
  activeType=['experience','workplace','volunteer','professional'].includes(type)?type:'experience';
  activeId=id||'';const found=featured.find(x=>x[0]===activeId)||library.find(x=>x[0]===activeId);
- activeTitle=found?found[1]:(id||'Career exploration');
+ activeTitle=found?(found.length>5?found[2]:found[1]):(id||'Career exploration');
  if(activeId==='career-interests')activeTitle='Career exploration';
  const titles={experience:activeTitle,workplace:'Explore a workplace',volunteer:'Help bring this to life',professional:'Share your experience'};
  const copies={
- experience:"Tell us you'd like to take part. We're gathering interest to help choose what to organize first. There is no date or booking commitment at this stage.",
+ experience:'Your selections are saved here. Review them, then send one interest form for everything you chose.',
  workplace:'Request the fields you would like to see up close. We will use requests to guide future outreach to workplaces and professionals.',
  volunteer:'Students, recent graduates and community members can help with events, activities, outreach, research and organizing. You can volunteer and participate in experiences.',
  professional:'Offer a small amount of time or a longer commitment. We can work around your availability and interests.'
  };
  dialog.querySelector('#jm-drawer-title').textContent=titles[activeType];
+ selectionWrap.hidden=activeType!=='experience';
  dialog.querySelector('#jm-drawer-copy').textContent=copies[activeType];
  dialog.querySelector('#jm-drawer-eyebrow').textContent=activeType==='experience'?'EXPERIENCE INTEREST':activeType==='workplace'?'CAREER VISITS':activeType==='volunteer'?'VOLUNTEER WITH US':'FOR PROFESSIONALS';
  form.reset();status.textContent='';status.dataset.error='false';submit.disabled=false;submit.textContent=activeType==='volunteer'?'Offer to volunteer':activeType==='professional'?'Share how I can help':activeType==='workplace'?'Request a career visit':'Register interest';
- if(activeType==='experience')selectField('Which career perspective interests you? (optional)',['Engineering','Software & data','Healthcare & science','Business & entrepreneurship','Design & marketing','Law & policy','College / career navigation','Exploring several fields']);
+ if(activeType==='experience')checkboxField('Additional career interests (optional)',['Engineering','Technology & data','Healthcare & science','Business','Architecture & design','Law & policy','College / career navigation'],'fields');
  if(activeType==='workplace')checkboxField('Fields you would like to explore',industryList);
  if(activeType==='volunteer')checkboxField('How would you like to help?',volunteerList);
- if(activeType==='professional')checkboxField('How could you contribute?',professionalList);
+ if(activeType==='professional'){checkboxField('Your professional fields (select all that apply)',industryList,'expertise');checkboxField('How could you contribute? (select all that apply)',professionalList,'areas',true)}
  if(activeType==='experience'){
   const lab=document.createElement('label');lab.className='jm-drawer-consent';lab.id='jm-also-volunteer';
   const check=document.createElement('input');check.type='checkbox';check.name='also_volunteer';check.value='yes';
   lab.append(check,document.createTextNode("I'd also be interested in helping as a volunteer."));areaWrap.append(lab);
  }
- dialog.showModal();document.body.classList.add('jm-drawer-open');dialog.querySelector('.jm-drawer-close').focus({preventScroll:true});
+ if(activeType==='experience')renderSelectedExperiences();
+  dialog.showModal();document.body.classList.add('jm-drawer-open');dialog.querySelector('.jm-drawer-close').focus({preventScroll:true});
 }
 document.addEventListener('click',e=>{
  const a=e.target.closest('[data-jm-drawer]');if(!a)return;
- e.preventDefault();lastTrigger=a;show(a.dataset.jmDrawer,a.dataset.jmExperience||a.dataset.jmTitle||'');
+ e.preventDefault();lastTrigger=a;
+ const type=a.dataset.jmDrawer,id=a.dataset.jmExperience||a.dataset.jmTitle||'';
+ if(type==='experience'&&id&&id!=='career-interests'&&!changeInterest(id,true)){alert('You can choose up to '+MAX_INTERESTS+' experiences.');return}
+ show(type,id);
 });
 const limited=(s,n)=>String(s||'').trim().slice(0,n);
 async function post(table,data){
@@ -185,23 +244,26 @@ form.addEventListener('submit',async e=>{
  const first=limited(form.elements.namedItem('first').value,100),last=limited(form.elements.namedItem('last').value,100),email=limited(form.elements.namedItem('email').value,254);
  if(!first||!last||!email)return;
  const region=limited(form.elements.namedItem('region').value,150),availability=limited(form.elements.namedItem('availability').value,80),format=limited(form.elements.namedItem('format').value,30),notes=limited(form.elements.namedItem('notes').value,650);
- const select=form.elements.namedItem('area'),area=select?limited(select.value,120):'';
  const checked=[...form.querySelectorAll('input[name=areas]:checked')].map(x=>x.value);
+ const expertise=[...form.querySelectorAll('input[name=expertise]:checked')].map(x=>x.value);
+ const fields=[...form.querySelectorAll('input[name=fields]:checked')].map(x=>x.value);
  const wantsVolunteer=!!form.querySelector('input[name=also_volunteer]:checked');
+ if(activeType==='experience'&&selected.size===0){status.dataset.error='true';status.textContent='Please choose at least one experience.';return}
  if(['workplace','volunteer','professional'].includes(activeType)&&checked.length===0){status.dataset.error='true';status.textContent='Please select at least one field or way you could help.';areaWrap.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
  submit.disabled=true;submit.textContent='Saving…';status.textContent='Saving your interest…';status.dataset.error='false';
  try{
   if(activeType==='volunteer'||activeType==='professional'){
    const subject=activeType==='volunteer'?'Volunteer interest':'Professional contribution';
-   const message=limited('['+subject+'] Activities: '+checked.join(', ')+'. Location: '+region+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1950);
+   const message=limited('['+subject+'] Fields: '+expertise.join(', ')+'. Activities: '+checked.join(', ')+'. Location: '+region+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1950);
    await post('pj_inquiries',{full_name:limited(first+' '+last,150),email,message,source:activeType==='volunteer'?'jewish-mutual-volunteer-2026':'jewish-mutual-expert-2026'});
   }else{
    const interestChoices=activeId==='career-interests'?[...document.querySelectorAll('[data-jm-field][aria-pressed="true"]')].map(el=>el.dataset.jmField).join(', '):'';
-   const detail=activeType==='workplace'?'[Workplace visit request] Fields: '+checked.join(', '):'[Experience request] ID: '+activeId+'. Title: '+activeTitle+'. Selected fields: '+interestChoices+'. Perspective: '+area;
+   const selectedDetail=[...selected].map(id=>id+' ('+nameFor(id)+')').join('; ');
+   const detail=activeType==='workplace'?'[Workplace visit request] Fields: '+checked.join(', '):'[Experience request] Selected: '+selectedDetail+'. Additional fields: '+fields.join(', ')+'. Previously chosen fields: '+interestChoices;
    const needed=limited(detail+'. Preferred format: '+format+'. Availability: '+availability+'. Notes: '+notes,1450);
    await post('pj_applications',{
     role:'mentee',first_name:first,last_name:last,email,community:region||null,
-    field:limited(activeType==='workplace'?checked.join(', '):area||activeTitle,195)||null,
+    field:limited(activeType==='workplace'?checked.join(', '):fields.join(', ')||[...selected].map(id=>nameFor(id)).join(', '),195)||null,
     help_needed:needed,help_offered:wantsVolunteer?'Interested in helping as a volunteer alongside participation.':null,
     goals:limited('Interest type: '+activeType+'. '+needed,2900),
     preferred_contact:'email',privacy_ack:true,

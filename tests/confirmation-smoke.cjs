@@ -36,4 +36,22 @@ for(const kind of ['participant','professional','volunteer','workplace','contact
 assert.match(edge,/not a confirmed place in a program/);
 assert.match(edge,/not committed to hosting or mentoring/);
 assert.match(edge,/No particular company, visit or date/);
-console.log('PASS: secure, idempotent six-template Jewish Mutual email queue and sender invariants.');
+const bridge=fs.readFileSync('google-apps-script/JewishMutualConfirmation.gs','utf8');
+new Function(bridge); // Google Apps Script uses the V8 JavaScript runtime.
+assert.match(bridge,/thejewishmutual@gmail\.com/);
+assert.match(bridge,/MailApp\.sendEmail/);
+assert.match(bridge,/JM_BRIDGE_SECRET/);
+assert.match(bridge,/JM_OWNER_EMAIL/);
+assert.match(bridge,/Session\.getEffectiveUser/);
+assert.match(bridge,/jmSecureEqual_/);
+assert.match(bridge,/MailApp\.getRemainingDailyQuota/);
+assert.match(bridge,/LockService\.getScriptLock/);
+assert.match(bridge,/setProperty\(marker/);
+assert.ok(!/JM_BRIDGE_SECRET\s*=\s*['"][a-f0-9]{64}['"]/.test(bridge),'do not publish a fixed secret');
+assert.match(edge,/JM_GMAIL_SCRIPT_URL/);
+assert.match(edge,/async function sendGmail/);
+assert.match(edge,/sendMessage\(/);
+assert.match(edge,/settings\.webhook_token/);
+assert.ok(edge.includes('!GMAIL_SCRIPT_URL &&'),'Gmail route must bypass Resend credential guard');
+assert.match(sql,/timeout_milliseconds:=30000/);
+console.log('PASS: secured Gmail or Resend dispatch, six templates and private email outbox.');

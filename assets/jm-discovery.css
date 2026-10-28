@@ -198,3 +198,12 @@ body:has(.jd-sheet[open]){overflow:hidden}
 }
 .jd-mail-form>label:not(.jd-consent){margin-top:11px}
 .jd-mail-form input:focus-visible,.jd-mail-form select:focus-visible{outline:3px solid #d97855;outline-offset:2px}
+
+
+/* Sharpen the home page into an invitation rather than a second catalog. */
+.jd-final-cta{padding:42px 0 48px;background:#eaf0e8}
+.jd-final-cta-inner{display:flex;flex-wrap:wrap;gap:18px 32px;justify-content:space-between;align-items:center}
+.jd-final-cta h2{font:600 clamp(28px,6vw,37px)/1.12 'Source Serif 4',Georgia,serif;color:#1d478b;letter-spacing:-.03em;margin:0 0 9px}
+.jd-final-cta p:not(.jd-eyebrow){color:#4b6573;font-size:13px;line-height:1.65;margin:0;max-width:580px}
+.jd-final-cta .jd-btn{max-width:330px;min-width:190px}
+@media(max-width:679px){.jd-final-cta{padding:35px 0}.jd-final-cta .jd-btn{width:100%;max-width:none}.jd-explore{padding-top:38px}.jd-why{padding:38px 0}}

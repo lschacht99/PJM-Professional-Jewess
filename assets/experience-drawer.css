@@ -249,3 +249,8 @@ body.jm-drawer-open .jm-shortlist-bar{visibility:hidden}
 .jm-card-pro-preview{font-size:13px!important}
 .jm-card-action,.jm-card-save{min-height:44px}
 @media(max-width:600px){.jm-library-toolbar{align-items:start;flex-direction:column}.jm-experience-card{padding:19px!important}.jm-card-pro-preview{line-height:1.65}.jm-shortlist-inner button{min-height:44px}}
+
+
+.jm-card-brief .jm-card-outcome{background:#eef2ec;border-radius:6px;padding:10px 12px;margin:12px 0 0;font-size:13px;line-height:1.6}
+.jm-card-outcome strong{color:#1d478b}
+@media(max-width:680px){.jm-experience-card>p,.jm-card-pro-preview,.jm-card-brief p{font-size:14px!important}.jm-experience-card .jm-card-action,.jm-card-save{min-height:44px}}

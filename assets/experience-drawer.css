@@ -235,3 +235,17 @@ body.jm-drawer-open .jm-shortlist-bar{visibility:hidden}
 @media(prefers-reduced-motion:reduce){.jm-pro-page *{scroll-behavior:auto}}
 
 .jm-pro-library-link{display:inline-flex;align-items:center;gap:9px;min-height:42px;margin-top:21px;color:#1d478b;font:800 12.5px/1.4 'DM Sans',Arial,sans-serif;text-decoration:underline;text-underline-offset:4px}
+
+
+/* Release refinement: short starting list, expandable catalog and readable mobile controls. */
+.jm-library-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px;margin:15px 0 17px}
+.jm-library-showing{margin:0!important;color:#355e76;font:800 12px/1.4 'DM Sans',Arial,sans-serif}
+.jm-library-expand{appearance:none;display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:#1d478b;text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:9px 0;font:800 12px/1.4 'DM Sans',Arial,sans-serif;cursor:pointer}
+.jm-library-expand[hidden]{display:none!important}
+.jm-library-expand svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.jm-experience-grid .jm-library-concealed[hidden]{display:none!important}
+.jm-drawer-field input,.jm-drawer-field select,.jm-drawer-field textarea{font-size:max(16px,1rem)}
+.jm-drawer-field label{font-size:13px}
+.jm-card-pro-preview{font-size:13px!important}
+.jm-card-action,.jm-card-save{min-height:44px}
+@media(max-width:600px){.jm-library-toolbar{align-items:start;flex-direction:column}.jm-experience-card{padding:19px!important}.jm-card-pro-preview{line-height:1.65}.jm-shortlist-inner button{min-height:44px}}

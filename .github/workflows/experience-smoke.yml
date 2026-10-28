@@ -28,6 +28,8 @@ on:
       - 'supabase/functions/jm-confirmation/**'
       - 'ops/sql/pj-confirmation-outbox.sql'
       - 'ops/AUTOMATIC-CONFIRMATIONS.md'
+      - 'ops/GMAIL-SENDER-SETUP.md'
+      - 'google-apps-script/**'
       - '.github/workflows/experience-smoke.yml'
   workflow_dispatch:
 permissions:

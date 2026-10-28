@@ -77,7 +77,7 @@ function card(item,featuredCard){
  el.append(txt('div','jm-experience-meta',tag),txt('h3','',title),txt('p','',desc));
  if(!featuredCard&&item[5]){
   const pro=txt('p','jm-card-pro-preview',item[6]);
-  pro.prepend(txt('strong','','Professional connection: '));el.append(pro);
+  pro.prepend(txt('strong','','Professional perspective: '));el.append(pro);
   const detail=document.createElement('details');detail.className='jm-card-brief';
   detail.append(txt('summary','','What you would do'),txt('p','',item[5]));
   el.append(detail);
@@ -96,15 +96,39 @@ if(filter){
  if(requestedField&&[...filter.options].some(option=>option.value===requestedField))filter.value=requestedField;
 }
 if(libraryRoot){
+ const expand=document.querySelector('#jm-library-expand'),showing=document.querySelector('#jm-library-showing');
+ let expanded=false;
+ const highlighted=['healthcare-conversation','engineering-conversation','business-conversation','law-conversation','team-challenge-lab','graduate-conversation'];
  const render=()=>{
   const category=filter?filter.value:'All';
   libraryRoot.replaceChildren();
   const format=formatFilter?formatFilter.value:'All';
   const filtered=library.filter(item=>(category==='All'||item[1]===category)&&(format==='All'||item[7]===format));
-  filtered.sort((a,b)=>(a[7]==='conversation'?0:1)-(b[7]==='conversation'?0:1));
-  filtered.forEach(item=>libraryRoot.append(card(item,false)));
+  filtered.sort((a,b)=>{
+   if(category==='All'&&format==='All'&& !expanded){
+     const x=highlighted.indexOf(a[0]),y=highlighted.indexOf(b[0]);
+     if(x>=0&&y>=0)return x-y;if(x>=0)return -1;if(y>=0)return 1;
+   }
+   return (a[7]==='conversation'?0:1)-(b[7]==='conversation'?0:1);
+  });
+  const isCurated=category==='All'&&format==='All'&&!expanded;
+  filtered.forEach((item,i)=>{
+   const element=card(item,false);
+   if(isCurated&&i>=6){element.hidden=true;element.classList.add('jm-library-concealed')}
+   libraryRoot.append(element);
+  });
+  if(expand){
+    const filteredMode=category!=='All'||format!=='All';
+    expand.hidden=filteredMode;
+    expand.setAttribute('aria-expanded',String(!isCurated));
+    expand.textContent=isCurated?'See all 26 experience ideas':'Show six starting ideas';
+  }
+  if(showing)showing.textContent=isCurated?'Six starting ideas':filtered.length+' experience '+(filtered.length===1?'idea':'ideas');
  };
- filter?.addEventListener('change',render);formatFilter?.addEventListener('change',render);render();
+ expand?.addEventListener('click',()=>{expanded=!expanded;render()});
+ filter?.addEventListener('change',()=>{expanded=true;render()});
+ formatFilter?.addEventListener('change',()=>{expanded=true;render()});
+ render();
  const bar=document.createElement('div');bar.className='jm-shortlist-bar';bar.hidden=true;
  const inner=document.createElement('div');inner.className='jm-shortlist-inner';
  summaryCount=txt('strong','','0 selected experiences');

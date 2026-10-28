@@ -24,6 +24,10 @@ on:
       - 'assets/jm-discovery.js'
       - 'tests/experience-smoke.cjs'
       - 'tests/release-audit.cjs'
+      - 'tests/confirmation-smoke.cjs'
+      - 'supabase/functions/jm-confirmation/**'
+      - 'ops/sql/pj-confirmation-outbox.sql'
+      - 'ops/AUTOMATIC-CONFIRMATIONS.md'
       - '.github/workflows/experience-smoke.yml'
   workflow_dispatch:
 permissions:
@@ -37,6 +41,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify secure confirmation templates and backend logic
+        run: node tests/confirmation-smoke.cjs
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Check deployed confirmation Edge Function TypeScript
+        run: deno check supabase/functions/jm-confirmation/index.ts
       - name: Verify links, metadata and launch routing
         run: node tests/release-audit.cjs
       - run: npm install --no-save --no-package-lock playwright@1.56.1

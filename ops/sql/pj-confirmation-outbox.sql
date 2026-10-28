@@ -86,6 +86,14 @@ begin
     return NEW;
   end if;
 
+  -- Limit accidental duplicates and simple confirmation-email abuse.
+  -- Every application is still saved; only rapid repeat receipts are suppressed.
+  if exists (
+    select 1 from public.pj_mail_jobs
+    where recipient_email=v_email and kind=v_kind
+      and created_at>now()-interval '10 minutes'
+  ) then return NEW; end if;
+
   select enabled,webhook_token into v_enabled,v_token
   from public.pj_mail_settings where id=1;
   insert into public.pj_mail_jobs
@@ -128,3 +136,39 @@ comment on table public.pj_mail_jobs is
 'The Jewish Mutual confirmation outbox. Private to backend; no public select/insert policies.';
 comment on table public.pj_mail_settings is
 'Private configuration. Enable only after provider credentials and sender-domain verification.';
+
+-- Administrative retry for failures only; never callable with the anonymous API.
+-- Check the provider's delivery log first if an HTTP response was ambiguous.
+create or replace function public.pj_retry_confirmation(p_job_id uuid)
+returns boolean
+language plpgsql security definer set search_path=''
+as $fn$
+declare
+  v_enabled boolean;
+  v_token text;
+  v_id uuid;
+begin
+  select enabled,webhook_token into v_enabled,v_token
+  from public.pj_mail_settings where id=1;
+  if v_enabled is distinct from true then return false; end if;
+  update public.pj_mail_jobs
+  set status='queued',last_error=null,claimed_at=null,attempts=attempts+1
+  where id=p_job_id and status='failed' and attempts<3
+  returning id into v_id;
+  if v_id is null then return false; end if;
+  begin
+    perform net.http_post(
+      url:='https://vvveenntewwtyhnmimal.supabase.co/functions/v1/jm-confirmation',
+      body:=jsonb_build_object('job_id',v_id::text),
+      headers:=jsonb_build_object('Content-Type','application/json','x-jm-hook-token',v_token),
+      timeout_milliseconds:=10000
+    );
+  exception when others then
+    update public.pj_mail_jobs set status='failed',
+      last_error='Unable to re-enqueue confirmation' where id=v_id;
+    return false;
+  end;
+  return true;
+end
+$fn$;
+revoke all on function public.pj_retry_confirmation(uuid) from public,anon,authenticated;

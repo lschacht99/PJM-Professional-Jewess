@@ -114,7 +114,7 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.equal(await page.locator('#jm-library-expand').getAttribute('aria-expanded'),'true');
   assert.equal(await page.locator('.jm-card-brief').count(),26,'each experience reveals a concrete activity');
   assert.equal(await page.locator('.jm-experience-meta').evaluateAll(nodes=>nodes.every(n=>!n.textContent.includes('Engineering'))),true,'cards do not repeat category name on every item');
-  assert.equal(await page.locator('.jm-experience-card').first().locator('h3').innerText(),'Interview a Nurse About Hospital Work','curated experience begins with a concrete professional conversation');
+  assert.equal(await page.locator('.jm-experience-card').first().locator('h3').innerText(),'Meet a Mechanical Engineer','sorted conversation after filters remains a real professional activity');
   assert.equal(await page.locator('[data-jm-format-filter]').count(),1,'format filter visible');
   await page.selectOption('#jm-format-filter','conversation');
   assert.equal(await page.locator('.jm-experience-card').count(),8,'eight professional conversations');

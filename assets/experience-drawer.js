@@ -37,6 +37,34 @@ const library=[
  ["choose-your-major","College","Plan Your Major with a Recent Graduate","Two majors. One internship. Shabbos is not negotiable.","College decision lab","Compare courses, costs, and internships and build a realistic semester plan.","Ask a recent graduate what actually shaped their major, internship and first-job decisions.","project"],
  ["graduate-conversation","College","Ask a Graduate About Their First Job","What did your first job teach you that college didn't?","Career conversation","Interview a recent graduate about their job search, interviews, first manager, workplace culture and adjustments.","Ask which choices paid off and what they'd tell a student making the same decision.","conversation"]
 ];
+const outcomes={
+ "design-for-everyone": "A tested accessibility improvement and a new perspective on user-centered design.",
+ "fix-the-failure": "A failure analysis and a better understanding of design-test-revise cycles.",
+ "break-the-bridge": "A working model, load-test observations and questions for a structural engineer.",
+ "engineering-conversation": "A realistic picture of engineering projects, teamwork and career routes.",
+ "team-challenge-lab": "A folding mechanism sketch, prototype test and material-cost decisions.",
+ "business-idea": "A testable customer hypothesis and practical questions for an entrepreneur.",
+ "marketing-challenge": "A campaign brief and a clearer sense of professional marketing work.",
+ "save-the-budget": "A revised budget and experience prioritizing real financial tradeoffs.",
+ "business-conversation": "A founder's perspective on risk, customers and the first year in business.",
+ "technology-conversation": "A clearer comparison of software, design and product management roles.",
+ "data-detective": "An evidence-based conclusion and a clearer view of data analysis.",
+ "cybersecurity-crisis": "A prioritized incident-response plan and insight into security operations.",
+ "trust-the-algorithm": "A model audit and questions about fairness and deployment.",
+ "build-an-app": "A tested UX concept and insight into product-design decisions.",
+ "inside-care-team": "A safer handoff concept and a clearer picture of healthcare teamwork.",
+ "healthcare-conversation": "Questions answered about hospital routines, training and team roles.",
+ "you-be-the-lawyer": "A short argument and a stronger understanding of legal preparation.",
+ "law-conversation": "A realistic view of contracts, clients and legal specialties.",
+ "design-a-space": "A space plan with accessibility and client tradeoffs.",
+ "ux-redesign": "A redesigned screen, usability feedback and UX research questions.",
+ "design-conversation": "An understanding of how designers work with clients and criticism.",
+ "education-conversation": "An honest view of teaching preparation and classroom decisions.",
+ "teach-it-better": "A short improved lesson and feedback on how people learn.",
+ "sunday-workroom": "Progress on a real task and practical work-planning habits.",
+ "choose-your-major": "A draft semester plan and questions for a recent graduate.",
+ "graduate-conversation": "An honest look at an entry-level role and next steps toward it."
+};
 const industryList=['Engineering & manufacturing','Software, AI & data','Healthcare & science','Law & public policy','Architecture & design','Finance & business','Media & marketing','Education & nonprofit work'];
 const volunteerList=['Help organize an event','Facilitate a team or workshop','Design learning activities','Outreach and recruit participants','Create graphics and promotion','Help with technology or data','Research opportunities','Host or support in-person events'];
 const professionalList=['Answer a few questions','Join a short team consultation','Review a project or proposal','Join a panel or final presentation','Host an office or workplace visit','Offer ongoing mentoring'];
@@ -80,6 +108,7 @@ function card(item,featuredCard){
   pro.prepend(txt('strong','','Professional perspective: '));el.append(pro);
   const detail=document.createElement('details');detail.className='jm-card-brief';
   detail.append(txt('summary','','What you would do'),txt('p','',item[5]));
+  if(outcomes[id]){const takeaway=txt('p','jm-card-outcome',outcomes[id]);takeaway.prepend(txt('strong','','What you could take away: '));detail.append(takeaway)}
   el.append(detail);
  }
  const foot=document.createElement('div');foot.className='jm-card-footer';

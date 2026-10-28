@@ -4,6 +4,9 @@
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SERVICE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const RESEND_KEY = Deno.env.get("JM_RESEND_API_KEY") || "";
+// Existing Gmail account can send through an authorized Google Apps Script.
+// This URL is a server-side secret, never exposed on the public website.
+const GMAIL_SCRIPT_URL = Deno.env.get("JM_GMAIL_SCRIPT_URL") || "";
 const FROM = Deno.env.get("JM_FROM_EMAIL") || "";
 const REPLY_TO = Deno.env.get("JM_REPLY_TO_EMAIL") || "";
 const TEAM_EMAIL = Deno.env.get("JM_TEAM_NOTIFY_EMAIL") || "";
@@ -162,6 +165,33 @@ async function sendResend(payload:Record<string,unknown>, idempotency:string) {
   return String(body.id);
  }finally{clearTimeout(timer)}
 }
+// Gmail is selected only after a verified Apps Script deployment URL is configured.
+async function sendGmail(payload:Record<string,unknown>, idempotency:string, token:string){
+ if(!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(GMAIL_SCRIPT_URL))
+   throw new Error("Gmail bridge URL is invalid");
+ const to=payload.to as string[];
+ const controller=new AbortController();
+ const timer=setTimeout(()=>controller.abort(),25000);
+ try{
+  const res=await fetch(GMAIL_SCRIPT_URL,{
+   method:"POST",redirect:"follow",signal:controller.signal,
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({
+    token,idempotency_key:idempotency,
+    to:to?.[0],subject:payload.subject,text:payload.text,html:payload.html
+   })
+  });
+  if(!res.ok)throw new Error("Gmail bridge error ("+res.status+")");
+  const response=await res.json();
+  if(response?.ok!==true)throw new Error("Gmail bridge rejected request: "+String(response?.code||"unknown").slice(0,60));
+  return "gmail-"+idempotency;
+ }finally{clearTimeout(timer)}
+}
+async function sendMessage(payload:Record<string,unknown>,idempotency:string,token:string){
+ return GMAIL_SCRIPT_URL
+  ? sendGmail(payload,idempotency,token)
+  : sendResend(payload,idempotency);
+}
 Deno.serve(async (req:Request)=>{
  if(req.method!=="POST")return answer(405,"method_not_allowed");
  if(!SUPABASE_URL||!SERVICE_KEY)return answer(503,"backend_not_configured");
@@ -174,7 +204,9 @@ Deno.serve(async (req:Request)=>{
  }catch{return answer(503,"configuration_unavailable")}
  if(!settings||!safeEqual(provided,settings.webhook_token))return answer(401,"unauthorized");
  if(!settings.enabled)return answer(503,"mail_not_enabled");
- if(!RESEND_KEY||!FROM||!EMAIL.test(FROM.replace(/^.*</,"").replace(/>$/,"")))
+ // Gmail delivery does not need a purchased or verified custom domain.
+ // Resend remains available when the Gmail bridge is not configured.
+ if(!GMAIL_SCRIPT_URL && (!RESEND_KEY||!FROM||!EMAIL.test(FROM.replace(/^.*</,"").replace(/>$/,""))))
   return answer(503,"sender_not_configured");
  let id="";
  try{
@@ -196,21 +228,21 @@ Deno.serve(async (req:Request)=>{
  }
  const email=template(job);
  try{
-  const messageId=await sendResend({
+  const messageId=await sendMessage({
    from:FROM,to:[job.recipient_email],
    ...(REPLY_TO&&EMAIL.test(REPLY_TO)?{reply_to:REPLY_TO}:{}),
    subject:email.subject,html:email.html,text:email.text
-  },"jm-user-"+job.id);
+  },"jm-user-"+job.id,settings.webhook_token);
   await patchJob(id,{status:"sent",sent_at:new Date().toISOString(),
     provider_message_id:messageId,last_error:null});
   // Optional separate staff notification. Never repeat or forward the applicant's free text.
   if(TEAM_EMAIL&&EMAIL.test(TEAM_EMAIL)){
    try{
-    await sendResend({from:FROM,to:[TEAM_EMAIL],
+    await sendMessage({from:FROM,to:[TEAM_EMAIL],
      subject:"New "+job.kind+" inquiry · The Jewish Mutual",
      html:"<p>A new "+escapeHtml(job.kind)+" form was received.</p><p>Name: "+escapeHtml(job.recipient_name)+"<br>Email: "+escapeHtml(job.recipient_email)+"</p><p>Review the private Supabase intake tables for details.</p>",
      text:"New "+job.kind+" inquiry\n"+job.recipient_name+"\n"+job.recipient_email+"\nReview the private Supabase intake tables."
-    },"jm-staff-"+job.id);
+    },"jm-staff-"+job.id,settings.webhook_token);
    }catch{ /* User confirmation has already succeeded; admin notifications are optional. */ }
   }
   return answer(200,"sent");

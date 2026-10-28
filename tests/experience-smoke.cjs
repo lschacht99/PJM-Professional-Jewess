@@ -131,7 +131,8 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   assert.equal(cardTitles.some(t=>['Engineering','Business','Technology','Healthcare','Law','Design','College','Education'].includes(t)),false,'no card has a field name as its title');
   assert.equal(await page.locator('.jm-card-brief').first().getAttribute('open'),null,'missions collapsed initially');
   await page.locator('.jm-card-brief summary').first().click();
-  assert.equal(await page.locator('.jm-card-brief').first().locator('p').isVisible(),true);
+  assert.equal(await page.locator('.jm-card-brief').first().locator('p').first().isVisible(),true);
+  assert.equal(await page.locator('.jm-card-outcome').count(),26,'every experience has a concrete takeaway');
   assert.equal(await page.locator('.jm-card-pro-preview').count(),26,'each card shows professional context before expanding');
   assert.equal(await page.locator('[data-jm-save]').count(),26,'all library experiences can be saved');
   const savedOnHome=await page.locator('[data-jm-save="data-detective"]').getAttribute('aria-pressed');

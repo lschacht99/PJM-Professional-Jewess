@@ -25,9 +25,12 @@ on:
       - 'tests/experience-smoke.cjs'
       - 'tests/release-audit.cjs'
       - 'tests/confirmation-smoke.cjs'
+      - 'tests/gmail-bridge-smoke.cjs'
       - 'supabase/functions/jm-confirmation/**'
       - 'ops/sql/pj-confirmation-outbox.sql'
       - 'ops/AUTOMATIC-CONFIRMATIONS.md'
+      - 'ops/GMAIL-SENDER-SETUP.md'
+      - 'google-apps-script/**'
       - '.github/workflows/experience-smoke.yml'
   workflow_dispatch:
 permissions:
@@ -42,7 +45,9 @@ jobs:
         with:
           node-version: '22'
       - name: Verify secure confirmation templates and backend logic
-        run: node tests/confirmation-smoke.cjs
+        run: |
+          node tests/confirmation-smoke.cjs
+          node tests/gmail-bridge-smoke.cjs
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x

@@ -6,10 +6,12 @@
 - Database triggers are active for **new** rows in `pj_interest_shortlists`, `pj_applications`, and `pj_inquiries`. They add a private email job after a form is saved.
 - A database-generated 64-character secret authenticates webhook dispatches. It is never in the public GitHub site. The Edge Function checks that secret using the service-role key that Supabase supplies server-side.
 - Jobs are initially marked `waiting_for_setup`; **no email is sent** until the sender is verified and dispatch is explicitly enabled. Historical `waiting_for_setup` jobs are *not automatically sent retroactively*.
-- The function uses Resend's REST API with an idempotency key per user receipt, to avoid duplicates on webhook retries. It stores provider-accepted message IDs and errors in the private `pj_mail_jobs` outbox. A provider acceptance is not proof of inbox delivery.
+- The function supports Gmail Apps Script using the existing **thejewishmutual@gmail.com** mailbox, or Resend using a verified custom domain. Gmail is selected when the server-side `JM_GMAIL_SCRIPT_URL` environment secret is set. Both use per-job deduplication to avoid duplicate receipts on retries. It stores provider-accepted message IDs and errors in the private `pj_mail_jobs` outbox. A provider acceptance is not proof of inbox delivery.
 - An optional separate team notification can be sent to a designated address after the user receipt succeeds. It includes the applicant name, email, and inquiry type, not the free-form message.
 
 ## One-time sender setup (requires email account/domain owner)
+
+**Recommended for this project:** Follow [Gmail sender setup](GMAIL-SENDER-SETUP.md) to send directly from `thejewishmutual@gmail.com` without buying a domain. The instructions below describe the alternative Resend sender.
 
 1. Verify a domain you control in **Resend** (add the DNS SPF/DKIM records Resend supplies). Use a sender address on that verified domain, e.g. `The Jewish Mutual <hello@your-verified-domain.org>`. This example is **not** an existing mailbox.
 2. In Resend, create a sending-only API key. Do not add the key to this public GitHub repository or paste it into a website form.

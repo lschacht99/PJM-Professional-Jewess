@@ -109,7 +109,7 @@ begin
         url:='https://vvveenntewwtyhnmimal.supabase.co/functions/v1/jm-confirmation',
         body:=jsonb_build_object('job_id',v_job::text),
         headers:=jsonb_build_object('Content-Type','application/json','x-jm-hook-token',v_token),
-        timeout_milliseconds:=10000
+        timeout_milliseconds:=30000
       );
     exception when others then
       -- An email delivery issue must never invalidate an accepted signup.
@@ -161,7 +161,7 @@ begin
       url:='https://vvveenntewwtyhnmimal.supabase.co/functions/v1/jm-confirmation',
       body:=jsonb_build_object('job_id',v_id::text),
       headers:=jsonb_build_object('Content-Type','application/json','x-jm-hook-token',v_token),
-      timeout_milliseconds:=10000
+      timeout_milliseconds:=30000
     );
   exception when others then
     update public.pj_mail_jobs set status='failed',

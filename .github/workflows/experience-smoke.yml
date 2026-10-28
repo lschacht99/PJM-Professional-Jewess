@@ -5,12 +5,25 @@ on:
       - 'index.html'
       - 'opportunities.html'
       - 'partners.html'
+      - 'about.html'
+      - 'join.html'
+      - 'contact.html'
+      - 'resources.html'
+      - 'privacy.html'
+      - 'understanding-jewish-life.html'
+      - 'challenge-product.html'
+      - 'experience-architecture.html'
+      - 'applied.html'
+      - '404.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
       - 'assets/experience-drawer.js'
       - 'assets/experience-drawer.css'
       - 'assets/jm-home.css'
       - 'assets/jm-discovery.css'
       - 'assets/jm-discovery.js'
       - 'tests/experience-smoke.cjs'
+      - 'tests/release-audit.cjs'
       - '.github/workflows/experience-smoke.yml'
   workflow_dispatch:
 permissions:
@@ -24,6 +37,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify links, metadata and launch routing
+        run: node tests/release-audit.cjs
       - run: npm install --no-save --no-package-lock playwright@1.56.1
       - run: npx playwright install --with-deps chromium
       - name: Start local static server and test user flows

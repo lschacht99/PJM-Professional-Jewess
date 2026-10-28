@@ -207,3 +207,6 @@ body:has(.jd-sheet[open]){overflow:hidden}
 .jd-final-cta p:not(.jd-eyebrow){color:#4b6573;font-size:13px;line-height:1.65;margin:0;max-width:580px}
 .jd-final-cta .jd-btn{max-width:330px;min-width:190px}
 @media(max-width:679px){.jd-final-cta{padding:35px 0}.jd-final-cta .jd-btn{width:100%;max-width:none}.jd-explore{padding-top:38px}.jd-why{padding:38px 0}}
+
+
+@media(max-width:680px){.jd-path-card p,.jd-idea-description,.jd-idea-pro,.jd-why p{font-size:14px!important;line-height:1.6}.jd-field-tabs button,.jd-save,.jd-interest-now{min-height:44px}.jd-shortlist-inner button{min-height:44px}}

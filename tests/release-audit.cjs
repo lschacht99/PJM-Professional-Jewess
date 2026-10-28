@@ -5,7 +5,7 @@ const pages=['index.html','opportunities.html','partners.html','about.html','joi
 const legacy=['challenge-product.html','experience-architecture.html','applied.html','404.html'];
 const read=p=>fs.readFileSync(p,'utf8');
 const ids={};
-for(const p of [...pages,...legacy])ids[p]=new Set([...read(p).matchAll(/\\bid=["']([^"']+)["']/g)].map(x=>x[1]));
+for(const p of [...pages,...legacy])ids[p]=new Set([...read(p).matchAll(/\bid=["']([^"']+)["']/g)].map(x=>x[1]));
 let links=0;
 for(const p of pages){
  const s=read(p);
@@ -14,9 +14,9 @@ for(const p of pages){
  assert.match(s,/<meta name="twitter:card"/,'twitter share card missing '+p);
  const canon=p==='index.html'?base:base+p;
  assert.ok(s.includes('rel="canonical" href="'+canon+'"'),'canonical wrong '+p);
- const idArray=[...s.matchAll(/\\bid=["']([^"']+)["']/g)].map(m=>m[1]);
+ const idArray=[...s.matchAll(/\bid=["']([^"']+)["']/g)].map(m=>m[1]);
  assert.equal(new Set(idArray).size,idArray.length,'duplicate IDs in '+p);
- for(const match of s.matchAll(/\\bhref=["']([^"']+)["']/g)){
+ for(const match of s.matchAll(/\bhref=["']([^"']+)["']/g)){
   const href=match[1].replace(/&amp;/g,'&');
   if(/^(?:https?:|mailto:|tel:|javascript:)/.test(href))continue;
   const [dest,fragment]=href.split('#');

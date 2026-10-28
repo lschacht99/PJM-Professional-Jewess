@@ -413,3 +413,18 @@
  .jm-mobile-menu nav a[aria-current=page]{font-weight:800}
  .jm-mobile-menu[open] .jm-menu-open{display:inline}
 }
+
+
+/* One coherent re-entry page replaces the legacy third application form. */
+.jm-join-guide{background:#fffaf2;padding:48px 0 60px}
+.jm-join-guide-inner{max-width:960px}
+.jm-join-guide h1{font:600 clamp(36px,8vw,56px)/1.07 'Source Serif 4',Georgia,serif;color:#1d478b;letter-spacing:-.04em;max-width:660px;margin:0 0 15px}
+.jm-join-guide-lead{color:#4a6576;font-size:15px;line-height:1.68;max-width:650px;margin:0 0 27px}
+.jm-join-guide-choices{display:grid;grid-template-columns:1fr;gap:13px}
+.jm-join-guide-choices article{border-radius:12px;border:1px solid #d4ded5;background:#fffefb;padding:22px}
+.jm-join-guide-choices h2{font:600 28px/1.18 'Source Serif 4',Georgia,serif;color:#1d478b;letter-spacing:-.03em;margin:0 0 11px}
+.jm-join-guide-choices p:not(.eyebrow){font-size:13px;line-height:1.65;color:#4b6172;max-width:430px;margin:0 0 18px}
+.jm-join-guide-choices .button{display:inline-flex;align-items:center;justify-content:center;min-height:46px}
+.jm-join-guide-note{font-size:12px;line-height:1.65;color:#526778;margin:22px 0 0}
+.jm-join-guide-note a{font-weight:800;color:#1d478b;text-underline-offset:3px}
+@media(min-width:720px){.jm-join-guide{padding:70px 0 80px}.jm-join-guide-choices{grid-template-columns:1fr 1fr;gap:18px}}

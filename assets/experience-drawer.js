@@ -37,6 +37,34 @@ const library=[
  ["choose-your-major","College","Plan Your Major with a Recent Graduate","Two majors. One internship. Shabbos is not negotiable.","College decision lab","Compare courses, costs, and internships and build a realistic semester plan.","Ask a recent graduate what actually shaped their major, internship and first-job decisions.","project"],
  ["graduate-conversation","College","Ask a Graduate About Their First Job","What did your first job teach you that college didn't?","Career conversation","Interview a recent graduate about their job search, interviews, first manager, workplace culture and adjustments.","Ask which choices paid off and what they'd tell a student making the same decision.","conversation"]
 ];
+const outcomes={
+ "design-for-everyone": "A tested accessibility improvement and a new perspective on user-centered design.",
+ "fix-the-failure": "A failure analysis and a better understanding of design-test-revise cycles.",
+ "break-the-bridge": "A working model, load-test observations and questions for a structural engineer.",
+ "engineering-conversation": "A realistic picture of engineering projects, teamwork and career routes.",
+ "team-challenge-lab": "A folding mechanism sketch, prototype test and material-cost decisions.",
+ "business-idea": "A testable customer hypothesis and practical questions for an entrepreneur.",
+ "marketing-challenge": "A campaign brief and a clearer sense of professional marketing work.",
+ "save-the-budget": "A revised budget and experience prioritizing real financial tradeoffs.",
+ "business-conversation": "A founder's perspective on risk, customers and the first year in business.",
+ "technology-conversation": "A clearer comparison of software, design and product management roles.",
+ "data-detective": "An evidence-based conclusion and a clearer view of data analysis.",
+ "cybersecurity-crisis": "A prioritized incident-response plan and insight into security operations.",
+ "trust-the-algorithm": "A model audit and questions about fairness and deployment.",
+ "build-an-app": "A tested UX concept and insight into product-design decisions.",
+ "inside-care-team": "A safer handoff concept and a clearer picture of healthcare teamwork.",
+ "healthcare-conversation": "Questions answered about hospital routines, training and team roles.",
+ "you-be-the-lawyer": "A short argument and a stronger understanding of legal preparation.",
+ "law-conversation": "A realistic view of contracts, clients and legal specialties.",
+ "design-a-space": "A space plan with accessibility and client tradeoffs.",
+ "ux-redesign": "A redesigned screen, usability feedback and UX research questions.",
+ "design-conversation": "An understanding of how designers work with clients and criticism.",
+ "education-conversation": "An honest view of teaching preparation and classroom decisions.",
+ "teach-it-better": "A short improved lesson and feedback on how people learn.",
+ "sunday-workroom": "Progress on a real task and practical work-planning habits.",
+ "choose-your-major": "A draft semester plan and questions for a recent graduate.",
+ "graduate-conversation": "An honest look at an entry-level role and next steps toward it."
+};
 const industryList=['Engineering & manufacturing','Software, AI & data','Healthcare & science','Law & public policy','Architecture & design','Finance & business','Media & marketing','Education & nonprofit work'];
 const volunteerList=['Help organize an event','Facilitate a team or workshop','Design learning activities','Outreach and recruit participants','Create graphics and promotion','Help with technology or data','Research opportunities','Host or support in-person events'];
 const professionalList=['Answer a few questions','Join a short team consultation','Review a project or proposal','Join a panel or final presentation','Host an office or workplace visit','Offer ongoing mentoring'];
@@ -77,9 +105,10 @@ function card(item,featuredCard){
  el.append(txt('div','jm-experience-meta',tag),txt('h3','',title),txt('p','',desc));
  if(!featuredCard&&item[5]){
   const pro=txt('p','jm-card-pro-preview',item[6]);
-  pro.prepend(txt('strong','','Professional connection: '));el.append(pro);
+  pro.prepend(txt('strong','','Professional perspective: '));el.append(pro);
   const detail=document.createElement('details');detail.className='jm-card-brief';
   detail.append(txt('summary','','What you would do'),txt('p','',item[5]));
+  if(outcomes[id]){const takeaway=txt('p','jm-card-outcome',outcomes[id]);takeaway.prepend(txt('strong','','What you could take away: '));detail.append(takeaway)}
   el.append(detail);
  }
  const foot=document.createElement('div');foot.className='jm-card-footer';
@@ -96,15 +125,39 @@ if(filter){
  if(requestedField&&[...filter.options].some(option=>option.value===requestedField))filter.value=requestedField;
 }
 if(libraryRoot){
+ const expand=document.querySelector('#jm-library-expand'),showing=document.querySelector('#jm-library-showing');
+ let expanded=false;
+ const highlighted=['healthcare-conversation','engineering-conversation','business-conversation','law-conversation','team-challenge-lab','graduate-conversation'];
  const render=()=>{
   const category=filter?filter.value:'All';
   libraryRoot.replaceChildren();
   const format=formatFilter?formatFilter.value:'All';
   const filtered=library.filter(item=>(category==='All'||item[1]===category)&&(format==='All'||item[7]===format));
-  filtered.sort((a,b)=>(a[7]==='conversation'?0:1)-(b[7]==='conversation'?0:1));
-  filtered.forEach(item=>libraryRoot.append(card(item,false)));
+  filtered.sort((a,b)=>{
+   if(category==='All'&&format==='All'&& !expanded){
+     const x=highlighted.indexOf(a[0]),y=highlighted.indexOf(b[0]);
+     if(x>=0&&y>=0)return x-y;if(x>=0)return -1;if(y>=0)return 1;
+   }
+   return (a[7]==='conversation'?0:1)-(b[7]==='conversation'?0:1);
+  });
+  const isCurated=category==='All'&&format==='All'&&!expanded;
+  filtered.forEach((item,i)=>{
+   const element=card(item,false);
+   if(isCurated&&i>=6){element.hidden=true;element.classList.add('jm-library-concealed')}
+   libraryRoot.append(element);
+  });
+  if(expand){
+    const filteredMode=category!=='All'||format!=='All';
+    expand.hidden=filteredMode;
+    expand.setAttribute('aria-expanded',String(!isCurated));
+    expand.textContent=isCurated?'See all 26 experience ideas':'Show six starting ideas';
+  }
+  if(showing)showing.textContent=isCurated?'Six starting ideas':filtered.length+' experience '+(filtered.length===1?'idea':'ideas');
  };
- filter?.addEventListener('change',render);formatFilter?.addEventListener('change',render);render();
+ expand?.addEventListener('click',()=>{expanded=!expanded;render()});
+ filter?.addEventListener('change',()=>{expanded=true;render()});
+ formatFilter?.addEventListener('change',()=>{expanded=true;render()});
+ render();
  const bar=document.createElement('div');bar.className='jm-shortlist-bar';bar.hidden=true;
  const inner=document.createElement('div');inner.className='jm-shortlist-inner';
  summaryCount=txt('strong','','0 selected experiences');

@@ -60,17 +60,14 @@ const KEY='sb_publishable_-ydn9Mgc5B0Sqw4Qh6zfdg_46FQy87z';
 const limit=(v,n=500)=>String(v||'').trim().slice(0,n);
 const val=(f,n)=>limit(f.elements.namedItem(n)?.value||'',1800);
 const selected=(f,n)=>[...f.querySelectorAll(`input[name="${n}"]:checked`)].map(x=>x.value);
-const post=async(table,data)=>{
-  // Never retry a write automatically: a timed-out response may still have saved.
-  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);
-  try{
-    const r=await fetch(API+table,{method:'POST',mode:'cors',credentials:'omit',signal:controller.signal,headers:{'apikey':KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(data)});
-    if(!r.ok)throw Error('Could not save: '+r.status);
-  }finally{clearTimeout(timeout)}
+const post=async(table,data,form)=>{
+  if(!window.JMSecureSubmit)throw Error('Secure form service unavailable. Please refresh.');
+  return window.JMSecureSubmit.submit(table,data,form);
 };
 for(const form of document.querySelectorAll('form[data-preview]')){
 form.removeAttribute('data-preview');
 const status=form.querySelector('.form-state'),button=form.querySelector('[type="submit"]');
+const submitIntake=(table,data)=>post(table,data,form);
 form.addEventListener('submit',async(e)=>{e.preventDefault();if(!form.reportValidity())return;
 if(val(form,'website'))return;
 const consent=form.elements.namedItem('privacy_ack');if(!consent?.checked){if(status)status.textContent='Please review the privacy notice and confirm your agreement.';return}
@@ -80,12 +77,12 @@ const slowNotice=setTimeout(()=>{if(status)status.textContent='This is taking lo
 try{
 if(form.hasAttribute('data-contact-form')){
 const name=limit(form.querySelector('#cname')?.value,150),email=limit(form.querySelector('#cemail')?.value,254),subject=limit(form.querySelector('#csubject')?.value,120),message=limit(form.querySelector('#cmessage')?.value,1400);
-await post('pj_inquiries',{full_name:name,email,message:limit('[Website contact: '+subject+'] '+message,1950),source:'jewish-mutual-contact-2026'});
+await submitIntake('pj_inquiries',{full_name:name,email,message:limit('[Website contact: '+subject+'] '+message,1950),source:'jewish-mutual-contact-2026'});
 }else if(form.closest('#inquiry')){
 const first=limit(form.querySelector('#pname')?.value,150),org=limit(form.querySelector('#porg')?.value,180),email=limit(form.querySelector('#pemail')?.value,254);
 const role=limit(form.querySelector('#prole')?.value,120),loc=limit(form.querySelector('#ploc')?.value,120),detail=limit(form.querySelector('#pmessage')?.value,750);
 const types=selected(form,'contribution_type'),settings=selected(form,'meeting_format');
-await post('pj_inquiries',{full_name:first,email,message:limit(`[Partnership inquiry] Organization: ${org}. Role: ${role}. Location: ${loc}. Contribution interests: ${types.join(', ')}. Meeting options: ${settings.join(', ')}. Details: ${detail}`,1950),source:'jewish-mutual-partner-2026'});
+await submitIntake('pj_inquiries',{full_name:first,email,message:limit(`[Partnership inquiry] Organization: ${org}. Role: ${role}. Location: ${loc}. Contribution interests: ${types.join(', ')}. Meeting options: ${settings.join(', ')}. Details: ${detail}`,1950),source:'jewish-mutual-partner-2026'});
 }else{
 const first=val(form,'jfirst'),last=val(form,'jlast'),email=val(form,'jemail'),role=val(form,'participation_role');
 const city=val(form,'jcity'),fields=selected(form,'field_interest'),other=val(form,'jfield'),goals=val(form,'jgoal'),suggestion=val(form,'jsuggest');
@@ -93,12 +90,12 @@ const want=selected(form,'experience_type'),offerTypes=selected(form,'contributi
 const expert=val(form,'jexpert'),organization=val(form,'jorganization'),offer=val(form,'joffer');
 const format=val(form,'jformat'),stage=val(form,'jstage'),contact=val(form,'jcontact');
 if(role==='suggest'){
-await post('pj_inquiries',{full_name:limit(first+' '+last,145),email:limit(email,254),message:limit(`[Experience idea] City: ${city}. Suggestion: ${suggestion}`,1950),source:'jewish-mutual-idea-2026'});
+await submitIntake('pj_inquiries',{full_name:limit(first+' '+last,145),email:limit(email,254),message:limit(`[Experience idea] City: ${city}. Suggestion: ${suggestion}`,1950),source:'jewish-mutual-idea-2026'});
 }else{
 const receiving=role==='seek'||role==='both',giving=role==='offer'||role==='both';
 const needed=receiving?limit(`Fields: ${[...fields,other].filter(Boolean).join(', ')}. Experiences: ${want.join(', ')}. Preferred location/format: ${format}. Goal: ${goals}`,1450):null;
 const offered=giving?limit(`Organization: ${organization}. Professional role: ${expert}. Contributions: ${offerTypes.join(', ')}. Offer: ${offer}`,1450):null;
-await post('pj_applications',{role:role==='both'?'both':receiving?'mentee':'mentor',first_name:limit(first,100),last_name:limit(last,100),email:limit(email,254),community:limit(city,190)||null,field:limit([fields[0],other,expert].filter(Boolean).join(' / '),195)||null,stage:limit(stage,95)||null,preferred_contact:'email',phone:null,whatsapp:null,help_needed:needed,help_offered:offered,mentor_capacity:giving?'As availability permits':null,goals:limit(`Path: ${role}. ${needed||''} ${offered||''} Contact preference: ${contact}.`,2900),privacy_ack:true,source:'jewish-mutual-site-2026'});
+await submitIntake('pj_applications',{role:role==='both'?'both':receiving?'mentee':'mentor',first_name:limit(first,100),last_name:limit(last,100),email:limit(email,254),community:limit(city,190)||null,field:limit([fields[0],other,expert].filter(Boolean).join(' / '),195)||null,stage:limit(stage,95)||null,preferred_contact:'email',phone:null,whatsapp:null,help_needed:needed,help_offered:offered,mentor_capacity:giving?'As availability permits':null,goals:limit(`Path: ${role}. ${needed||''} ${offered||''} Contact preference: ${contact}.`,2900),privacy_ack:true,source:'jewish-mutual-site-2026'});
 }}
 form.reset();
 if(status)status.textContent=form.hasAttribute('data-contact-form')?

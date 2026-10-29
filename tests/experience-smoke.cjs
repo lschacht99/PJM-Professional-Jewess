@@ -6,7 +6,12 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   const page=await browser.newPage({viewport:{width:375,height:812},isMobile:true,hasTouch:true,deviceScaleFactor:1});
   page.on('pageerror',e=>errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error'&&!m.text().includes('fonts.googleapis'))errors.push(m.text())});
-  await page.route('https://vvveenntewwtyhnmimal.supabase.co/rest/v1/**',async route=>{posts.push({url:route.request().url(),data:JSON.parse(route.request().postData()||'{}')});await route.fulfill({status:201,body:'',headers:{'access-control-allow-origin':'*'}})});
+  await page.route('https://vvveenntewwtyhnmimal.supabase.co/functions/v1/jm-intake',async route=>{
+    if(route.request().method()==='GET'){await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({captcha_required:false,site_key:null}),headers:{'access-control-allow-origin':'*'}});return}
+    if(route.request().method()==='OPTIONS'){await route.fulfill({status:204,headers:{'access-control-allow-origin':'*','access-control-allow-headers':'content-type'}});return}
+    posts.push({url:route.request().url(),data:JSON.parse(route.request().postData()||'{}')});
+    await route.fulfill({status:200,contentType:'application/json',body:'{"ok":true}',headers:{'access-control-allow-origin':'*'}});
+  });
   await page.goto('http://127.0.0.1:8765/index.html',{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>document.documentElement.dataset.jdReady==='true');
   assert.match(await page.locator('h1').innerText(),/Find out what a career/i);
@@ -78,12 +83,12 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.locator('#jd-mail-form [type=submit]').click();
   await page.waitForFunction(()=>document.querySelector('#jd-mail-state')?.textContent?.startsWith('Thanks.'));
   assert.equal(posts.length,1);
-  assert.ok(posts[0].url.endsWith('pj_interest_shortlists'));
-  assert.deepEqual(posts[0].data.idea_ids,['data-detective']);
-  assert.equal(posts[0].data.email,'qa@example.invalid');
-  assert.equal(posts[0].data.full_name,'Test Person');
-  assert.equal(posts[0].data.location,'Albany, NY');
-  assert.equal(posts[0].data.stage,'College or university student');
+  assert.ok(posts[0].data.table==='pj_interest_shortlists');
+  assert.deepEqual(posts[0].data.data.idea_ids,['data-detective']);
+  assert.equal(posts[0].data.data.email,'qa@example.invalid');
+  assert.equal(posts[0].data.data.full_name,'Test Person');
+  assert.equal(posts[0].data.data.location,'Albany, NY');
+  assert.equal(posts[0].data.data.stage,'College or university student');
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#jd-sheet[open]').count(),0);
   await page.locator('[data-jd-tab=engineering]').click();
@@ -96,8 +101,8 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.locator('#jd-mail-form [type=submit]').click();
   await page.waitForFunction(()=>document.querySelector('#jd-mail-state')?.textContent?.startsWith('Thanks.'));
   assert.equal(posts.length,2,'direct expression of interest does not require save');
-  assert.deepEqual(posts[1].data.idea_ids,['impossible-sukkah']);
-  assert.equal(posts[1].data.full_name,'Another Tester');
+  assert.deepEqual(posts[1].data.data.idea_ids,['impossible-sukkah']);
+  assert.equal(posts[1].data.data.full_name,'Another Tester');
   await page.keyboard.press('Escape');
   await page.goto('http://127.0.0.1:8765/join.html',{waitUntil:'domcontentloaded'});
   assert.equal(await page.locator('.join-form').count(),0,'old duplicate application form removed');
@@ -158,12 +163,12 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.locator('#jm-drawer-form [type=submit]').click();
   await page.waitForFunction(()=>document.querySelector('.jm-drawer-state')?.textContent?.includes('Your interest was saved'));
   assert.equal(posts.length,3,'multiple selected activities generate one record');
-  assert.ok(posts[2].url.endsWith('pj_applications'));
-  assert.deepEqual(posts[2].data.experience_ids,['engineering-conversation','business-conversation','healthcare-conversation'],'submission preserves full multi-experience selection');
-  assert.match(posts[2].data.help_needed,/engineering-conversation/);
-  assert.match(posts[2].data.help_needed,/business-conversation/);
-  assert.match(posts[2].data.help_needed,/healthcare-conversation/);
-  assert.match(posts[2].data.help_needed,/Engineering, Technology & data/);
+  assert.ok(posts[2].data.table==='pj_applications');
+  assert.deepEqual(posts[2].data.data.experience_ids,['engineering-conversation','business-conversation','healthcare-conversation'],'submission preserves full multi-experience selection');
+  assert.match(posts[2].data.data.help_needed,/engineering-conversation/);
+  assert.match(posts[2].data.data.help_needed,/business-conversation/);
+  assert.match(posts[2].data.data.help_needed,/healthcare-conversation/);
+  assert.match(posts[2].data.data.help_needed,/Engineering, Technology & data/);
   await page.locator('.jm-drawer-close').click();
   await page.goto('http://127.0.0.1:8765/partners.html#professionals',{waitUntil:'domcontentloaded'});
   assert.match(await page.locator('#jm-pro-title').innerText(),/Your experience could open a door/i,'professionals understand the value immediately');
@@ -196,11 +201,11 @@ const {chromium}=require('playwright');const assert=require('node:assert/strict'
   await page.locator('#jm-drawer-form [type=submit]').click();
   await page.waitForFunction(()=>document.querySelector('.jm-drawer-state')?.textContent?.includes('offer to help'));
   assert.equal(posts.length,4);
-  assert.ok(posts[3].url.endsWith('pj_inquiries'));
-  assert.match(posts[3].data.message,/Engineering & manufacturing/);
-  assert.match(posts[3].data.message,/Law & public policy/);
-  assert.match(posts[3].data.message,/Answer a few questions/);
-  assert.match(posts[3].data.message,/Review a project/);
+  assert.ok(posts[3].data.table==='pj_inquiries');
+  assert.match(posts[3].data.data.message,/Engineering & manufacturing/);
+  assert.match(posts[3].data.data.message,/Law & public policy/);
+  assert.match(posts[3].data.data.message,/Answer a few questions/);
+  assert.match(posts[3].data.data.message,/Review a project/);
   await page.locator('.jm-drawer-close').click();
   const desktop=await browser.newPage({viewport:{width:1280,height:900}});
   desktop.on('pageerror',e=>errors.push('desktop '+e.message));

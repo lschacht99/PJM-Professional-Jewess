@@ -26,6 +26,11 @@ on:
       - 'tests/release-audit.cjs'
       - 'tests/confirmation-smoke.cjs'
       - 'tests/gmail-bridge-smoke.cjs'
+      - 'tests/intake-security.cjs'
+      - 'assets/jm-secure-submit.js'
+      - 'supabase/functions/jm-intake/**'
+      - 'ops/sql/pj-intake-rate-limits.sql'
+      - 'ops/sql/pj-disable-public-inserts.sql'
       - 'supabase/functions/jm-confirmation/**'
       - 'ops/sql/pj-confirmation-outbox.sql'
       - 'ops/AUTOMATIC-CONFIRMATIONS.md'
@@ -48,11 +53,14 @@ jobs:
         run: |
           node tests/confirmation-smoke.cjs
           node tests/gmail-bridge-smoke.cjs
+          node tests/intake-security.cjs
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
       - name: Check deployed confirmation Edge Function TypeScript
-        run: deno check supabase/functions/jm-confirmation/index.ts
+        run: |
+          deno check supabase/functions/jm-confirmation/index.ts
+          deno check supabase/functions/jm-intake/index.ts
       - name: Verify links, metadata and launch routing
         run: node tests/release-audit.cjs
       - run: npm install --no-save --no-package-lock playwright@1.56.1

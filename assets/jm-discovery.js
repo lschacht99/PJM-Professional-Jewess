@@ -232,8 +232,7 @@ root.querySelectorAll('[data-jd-open]').forEach(btn=>btn.addEventListener('click
 review.addEventListener('click',()=>openSheet('saved'));close.addEventListener('click',closeSheet);
 sheet.addEventListener('click',event=>{if(event.target===sheet)closeSheet()});
 sheet.addEventListener('close',()=>{priorFocus?.focus?.({preventScroll:true})});
-const API='https://vvveenntewwtyhnmimal.supabase.co/rest/v1/pj_interest_shortlists';
-const PUBLISHABLE='sb_publishable_-ydn9Mgc5B0Sqw4Qh6zfdg_46FQy87z';
+// The intake gateway validates every request before it can reach the database.
 form.addEventListener('submit',async event=>{
  event.preventDefault();if(!form.reportValidity())return;
  const formIds=ids().filter(id=>all.has(id));
@@ -246,8 +245,8 @@ form.addEventListener('submit',async event=>{
  if(form.querySelector('[name=website]').value)return;
  state.textContent='Saving your interest…';state.dataset.error='false';send.disabled=true;send.textContent='Saving…';
  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),18000);
- try{const res=await fetch(API,{method:'POST',credentials:'omit',mode:'cors',signal:ctrl.signal,headers:{apikey:PUBLISHABLE,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({full_name,location,stage,email,idea_ids:formIds,consent:true,source:'jm-home-discovery'})});if(!res.ok)throw new Error('Unable to save interest');state.textContent='Thanks. We have your interest and will be in touch when there is something relevant.';send.textContent='Interest recorded';form.querySelectorAll('input,select').forEach(control=>control.disabled=true);}
- catch(error){state.dataset.error='true';state.textContent=error.name==='AbortError'?'We could not confirm whether it was saved. Please check before trying again.':'Something went wrong. Please try again.';send.disabled=false;send.textContent='Try again'}
+ try{if(!window.JMSecureSubmit)throw Error('Secure form service unavailable. Please refresh.');await window.JMSecureSubmit.submit('pj_interest_shortlists',{full_name,location,stage,email,idea_ids:formIds,consent:true,source:'jm-home-discovery'},form);state.textContent='Thanks. We have your interest and will be in touch when there is something relevant.';send.textContent='Interest recorded';form.querySelectorAll('input,select').forEach(control=>control.disabled=true);}
+ catch(error){state.dataset.error='true';state.textContent=error.name==='AbortError'?'We could not confirm whether it was saved. Please check before trying again.':(error.message||'Something went wrong. Please try again.');send.disabled=false;send.textContent='Try again'}
  finally{clearTimeout(timer)}
 });
 setTab(current);updateBar();

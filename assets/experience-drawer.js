@@ -287,11 +287,8 @@ document.addEventListener('click',e=>{
 });
 const limited=(s,n)=>String(s||'').trim().slice(0,n);
 async function post(table,data){
- const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),20000);
- try{
-  const result=await fetch(api+table,{method:'POST',mode:'cors',credentials:'omit',signal:ctrl.signal,headers:{apikey:key,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(data)});
-  if(!result.ok)throw Error('Request failed ('+result.status+')');
- }finally{clearTimeout(timer)}
+ if(!window.JMSecureSubmit)throw Error('Secure form service unavailable. Please refresh.');
+ return window.JMSecureSubmit.submit(table,data,form);
 }
 document.documentElement.dataset.jmDrawerReady='true';
 form.addEventListener('submit',async e=>{
@@ -333,7 +330,7 @@ form.addEventListener('submit',async e=>{
  }catch(error){
   console.error('Could not save interest',error);
   status.dataset.error='true';
-  status.textContent=error.name==='AbortError'?"We couldn't confirm whether your interest was received. Please don't resubmit immediately.":'We could not save your interest right now. Please try again.';
+  status.textContent=error.name==='AbortError'?"We couldn't confirm whether your interest was received. Please don't resubmit immediately.":(error.message||'We could not save your interest right now. Please try again.');
   submit.disabled=false;submit.textContent='Try again';
  }
 });

@@ -193,7 +193,7 @@ dialog.innerHTML=[
 '</div><button class="jm-drawer-close" type="button" aria-label="Close form">×</button></header>',
 '<div class="jm-drawer-content"><p class="jm-drawer-copy" id="jm-drawer-copy"></p>',
 '<div id="jm-experience-selection" class="jm-selected-wrap" hidden><div class="jm-selected-head"><strong>Your selected experiences</strong><button type="button" id="jm-keep-browsing">Choose more</button></div><div id="jm-selected-items"></div></div>',
-'<form id="jm-drawer-form" novalidate>',
+'<form id="jm-drawer-form" method="post" novalidate>',
 '<div class="jm-drawer-pair"><div class="jm-drawer-field"><label for="jm-first">First name *</label><input id="jm-first" name="first" autocomplete="given-name" maxlength="100" required></div>',
 '<div class="jm-drawer-field"><label for="jm-last">Last name *</label><input id="jm-last" name="last" autocomplete="family-name" maxlength="100" required></div></div>',
 '<div class="jm-drawer-field"><label for="jm-email">Email *</label><input id="jm-email" type="email" name="email" autocomplete="email" maxlength="254" required></div>',
@@ -210,6 +210,8 @@ dialog.innerHTML=[
 ].join('');
 document.body.append(dialog);
 const form=dialog.querySelector('#jm-drawer-form'),submit=form.querySelector('[type=submit]'),status=form.querySelector('.jm-drawer-state'),areaWrap=form.querySelector('#jm-area-wrap');
+const originalClose=dialog.close.bind(dialog);dialog.close=()=>{if(form.dataset.submitting!=='true')originalClose()};
+dialog.addEventListener('cancel',event=>{if(form.dataset.submitting==='true')event.preventDefault()});
 dialog.querySelector('.jm-drawer-close').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
 dialog.addEventListener('close',()=>{document.body.classList.remove('jm-drawer-open');lastTrigger?.focus({preventScroll:true});});
@@ -243,7 +245,7 @@ function renderSelectedExperiences(){
  if(activeType==='experience')dialog.querySelector('#jm-drawer-title').textContent=selected.size===1?nameFor([...selected][0]):'Your career experiences';
 }
 dialog.querySelector('#jm-keep-browsing').addEventListener('click',()=>{
- dialog.close();if(libraryRoot){libraryRoot.scrollIntoView({block:'start',behavior:'smooth'})}
+ if(form.dataset.submitting==='true')return;dialog.close();if(libraryRoot){libraryRoot.scrollIntoView({block:'start',behavior:'smooth'})}
 });
 
 function show(type,id){
@@ -292,7 +294,7 @@ async function post(table,data){
 }
 document.documentElement.dataset.jmDrawerReady='true';
 form.addEventListener('submit',async e=>{
- e.preventDefault();if(!form.reportValidity())return;
+ e.preventDefault();if(form.dataset.submitting==='true'||!form.reportValidity())return;
  if(form.elements.namedItem('website')?.value)return;
  const first=limited(form.elements.namedItem('first').value,100),last=limited(form.elements.namedItem('last').value,100),email=limited(form.elements.namedItem('email').value,254);
  if(!first||!last||!email)return;

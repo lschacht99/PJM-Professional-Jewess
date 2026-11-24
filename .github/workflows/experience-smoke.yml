@@ -1,5 +1,7 @@
 name: Experience UX smoke tests
 on:
+  push:
+    branches: [main]
   pull_request:
     paths:
       - 'index.html'

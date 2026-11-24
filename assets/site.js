@@ -68,7 +68,7 @@ for(const form of document.querySelectorAll('form[data-preview]')){
 form.removeAttribute('data-preview');
 const status=form.querySelector('.form-state'),button=form.querySelector('[type="submit"]');
 const submitIntake=(table,data)=>post(table,data,form);
-form.addEventListener('submit',async(e)=>{e.preventDefault();if(!form.reportValidity())return;
+form.addEventListener('submit',async(e)=>{e.preventDefault();if(form.dataset.submitting==='true'||!form.reportValidity())return;
 if(val(form,'website'))return;
 const consent=form.elements.namedItem('privacy_ack');if(!consent?.checked){if(status)status.textContent='Please review the privacy notice and confirm your agreement.';return}
 button.disabled=true;const label=button.innerHTML;button.textContent='Sending…';
@@ -107,7 +107,7 @@ if(status)status.textContent=form.hasAttribute('data-contact-form')?
   console.error('Submission failed',err);
   if(status)status.textContent=err.name==='AbortError'?
     'We couldn’t confirm whether your information was received. Please don’t submit again immediately; contact us if you are unsure.':
-    'We couldn’t save this just now. Please check your connection and try again.';
+    (err.message||'We couldn’t save this just now. Please check your connection and try again.');
 }finally{clearTimeout(slowNotice);button.disabled=false;button.innerHTML=label;if(status){status.classList.add('visible');status.setAttribute('tabindex','-1');status.focus()}}
 });
 }

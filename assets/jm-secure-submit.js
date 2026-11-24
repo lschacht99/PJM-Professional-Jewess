@@ -2,14 +2,16 @@
 (()=>{'use strict';
 const ENDPOINT='https://vvveenntewwtyhnmimal.supabase.co/functions/v1/jm-intake';
 let configPromise=null,scriptPromise=null;
+const activeForms=new WeakSet();
 const formState=new WeakMap();
 function config(){
  if(!configPromise){
-  configPromise=fetch(ENDPOINT,{method:'GET',mode:'cors',credentials:'omit'})
+  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),12000);
+  configPromise=fetch(ENDPOINT,{method:'GET',mode:'cors',credentials:'omit',cache:'no-store',signal:ctrl.signal})
    .then(async r=>{if(!r.ok)throw new Error('Verification is temporarily unavailable.');
      const data=await r.json();if(typeof data.captcha_required!=='boolean')throw Error('Invalid gateway configuration.');
      return data});
-  configPromise.catch(()=>{configPromise=null});
+  configPromise=configPromise.catch(()=>{throw Error('Could not reach the form service. Please check your connection and try again.')}).finally(()=>{clearTimeout(timer);configPromise=null});
  }
  return configPromise;
 }
@@ -58,11 +60,14 @@ async function tokenFor(form,sitekey){
   };
   try{
    if(state.widget===null)state.widget=turnstile.render(state.slot,options);
-   else turnstile.reset(state.widget);
+   else {turnstile.remove(state.widget);state.widget=turnstile.render(state.slot,options);}
   }catch{done('Unable to start verification. Please refresh.')}
  });
 }
 async function submit(table,data,form){
+ if(!form||activeForms.has(form))throw Error('This form is already being submitted.');
+ activeForms.add(form);form.dataset.submitting='true';
+ try{
  const cfg=await config();
  if(cfg.captcha_required&&!cfg.site_key)throw Error('Human verification is not configured.');
  const turnstile_token=cfg.captcha_required?await tokenFor(form,cfg.site_key):null;
@@ -78,8 +83,11 @@ async function submit(table,data,form){
    if(r.status===422)throw Error('Please check the application details and try again.');
    throw Error('Your form could not be saved. Please try again.');
   }
-  return await r.json();
+  const result=await r.json();
+  if(result?.ok!==true)throw Error('The service did not confirm your submission. Contact us before trying again.');
+  return result;
  }finally{clearTimeout(timer)}
+ }finally{activeForms.delete(form);delete form.dataset.submitting}
 }
 window.JMSecureSubmit={submit};
 })();

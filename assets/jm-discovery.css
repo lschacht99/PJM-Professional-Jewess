@@ -210,3 +210,5 @@ body:has(.jd-sheet[open]){overflow:hidden}
 
 
 @media(max-width:680px){.jd-path-card p,.jd-idea-description,.jd-idea-pro,.jd-why p{font-size:14px!important;line-height:1.6}.jd-field-tabs button,.jd-save,.jd-interest-now{min-height:44px}.jd-shortlist-inner button{min-height:44px}}
+
+.jd-mail-form input:not([type=checkbox]),.jd-mail-form select{font-size:16px}.jd-mail-form .jd-consent{font-size:13px}.jd-mail-form .jd-consent input{min-width:20px;min-height:20px}.jd-mail-form .jd-mail-state{overflow-wrap:anywhere}

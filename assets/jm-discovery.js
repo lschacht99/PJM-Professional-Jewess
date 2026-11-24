@@ -225,16 +225,17 @@ root.querySelectorAll('[data-jd-category]').forEach(link=>{
  });
 });
 const ids=()=>mode==='single'?[oneId]:[...saved];
-function renderSelection(){selection.replaceChildren();const list=ids().filter(id=>all.has(id));if(!list.length){selection.append(el('p','jd-sheet-explainer','Your shortlist is empty. Explore a field and save something that catches your attention.'));send.disabled=true;return}send.disabled=false;for(const id of list){const row=el('div','jd-selected-item'),label=el('span','',all.get(id).name);row.append(label);if(mode==='saved'){const remove=el('button','','Remove');remove.type='button';remove.addEventListener('click',()=>toggle(id));row.append(remove)}selection.append(row)}}
+function renderSelection(){selection.replaceChildren();const list=ids().filter(id=>all.has(id));if(!list.length){selection.append(el('p','jd-sheet-explainer','Your shortlist is empty. Explore a field and save something that catches your attention.'));send.disabled=true;return}send.disabled=form.dataset.submitting==='true';for(const id of list){const row=el('div','jd-selected-item'),label=el('span','',all.get(id).name);row.append(label);if(mode==='saved'){const remove=el('button','','Remove');remove.type='button';remove.addEventListener('click',()=>toggle(id));row.append(remove)}selection.append(row)}}
 function openSheet(nextMode='saved',id=null){mode=nextMode;oneId=id;priorFocus=document.activeElement;sheet.querySelector('#jd-sheet-title').textContent=mode==='single'?'Hear about this idea':'Your saved ideas';sheet.querySelector('#jd-sheet-copy').textContent=mode==='single'?'Interested in this one? Tell us who you are and where you are based.':"Review your interests first. Nothing is sent until you choose to submit this form.";form.reset();form.querySelectorAll('input,select').forEach(control=>control.disabled=false);state.textContent='';state.dataset.error='false';send.textContent='Keep me posted';renderSelection();if(!sheet.open)sheet.showModal();close.focus({preventScroll:true})}
-function closeSheet(){sheet.close();priorFocus?.focus?.({preventScroll:true})}
+function closeSheet(){if(form.dataset.submitting==='true')return;sheet.close();priorFocus?.focus?.({preventScroll:true})}
 root.querySelectorAll('[data-jd-open]').forEach(btn=>btn.addEventListener('click',()=>openSheet(btn.dataset.jdOpen==='sukkah'?'single':'saved',btn.dataset.jdOpen==='sukkah'?'impossible-sukkah':null)));
 review.addEventListener('click',()=>openSheet('saved'));close.addEventListener('click',closeSheet);
 sheet.addEventListener('click',event=>{if(event.target===sheet)closeSheet()});
+sheet.addEventListener('cancel',event=>{if(form.dataset.submitting==='true')event.preventDefault()});
 sheet.addEventListener('close',()=>{priorFocus?.focus?.({preventScroll:true})});
 // The intake gateway validates every request before it can reach the database.
 form.addEventListener('submit',async event=>{
- event.preventDefault();if(!form.reportValidity())return;
+ event.preventDefault();if(form.dataset.submitting==='true'||!form.reportValidity())return;
  const formIds=ids().filter(id=>all.has(id));
  if(!formIds.length){state.textContent='Please choose at least one idea.';state.dataset.error='true';return}
  const email=form.querySelector('[name=email]').value.trim().slice(0,254);
@@ -244,10 +245,8 @@ form.addEventListener('submit',async event=>{
  if(!email||!full_name||!location||!form.querySelector('[name=consent]').checked)return;
  if(form.querySelector('[name=website]').value)return;
  state.textContent='Saving your interest…';state.dataset.error='false';send.disabled=true;send.textContent='Saving…';
- const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),18000);
  try{if(!window.JMSecureSubmit)throw Error('Secure form service unavailable. Please refresh.');await window.JMSecureSubmit.submit('pj_interest_shortlists',{full_name,location,stage,email,idea_ids:formIds,consent:true,source:'jm-home-discovery'},form);state.textContent='Thanks. We have your interest and will be in touch when there is something relevant.';send.textContent='Interest recorded';form.querySelectorAll('input,select').forEach(control=>control.disabled=true);}
- catch(error){state.dataset.error='true';state.textContent=error.name==='AbortError'?'We could not confirm whether it was saved. Please check before trying again.':(error.message||'Something went wrong. Please try again.');send.disabled=false;send.textContent='Try again'}
- finally{clearTimeout(timer)}
+ catch(error){state.dataset.error='true';state.textContent=error.name==='AbortError'?'We could not confirm whether it was saved. Contact us before trying again.':(error.message||'Something went wrong. Please try again.');send.disabled=false;send.textContent='Try again'}
 });
 setTab(current);updateBar();
 document.documentElement.dataset.jdReady='true';

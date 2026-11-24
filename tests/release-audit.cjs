@@ -9,7 +9,7 @@ for(const p of [...pages,...legacy])ids[p]=new Set([...read(p).matchAll(/\bid=["
 let links=0;
 for(const p of pages){
  const s=read(p);
- assert.match(s,/<meta name="robots" content="noindex,follow">/,'staging noindex missing '+p);
+ assert.match(s,/<meta name="robots" content="index,follow">/,'public indexing missing '+p);
  assert.match(s,/<meta property="og:image"/,'share image missing '+p);
  assert.match(s,/<meta name="twitter:card"/,'twitter share card missing '+p);
  const canon=p==='index.html'?base:base+p;
@@ -32,4 +32,4 @@ for(const p of legacy)assert.match(read(p),/noindex/,'legacy page must remain un
 const sitemap=read('sitemap.xml');
 assert.ok(!sitemap.includes('/applied.html'),'legacy pages in main sitemap');
 assert.ok(read('robots.txt').includes('Sitemap:'),'sitemap reference missing');
-console.log('PASS: '+pages.length+' core pages; '+links+' internal links, staging metadata, canonical tags, no duplicate IDs, catalog and form routes.');
+console.log('PASS: '+pages.length+' core pages; '+links+' internal links, public indexing metadata, canonical tags, no duplicate IDs, catalog and form routes.');
